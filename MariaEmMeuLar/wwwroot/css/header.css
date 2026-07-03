@@ -1,0 +1,98 @@
+﻿.hero {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background : #f8f0e3;
+    color: #0b356d;
+}
+
+.navbar {
+    height: 85px;
+    display: flex;
+    align-items: center;
+    padding: 0 45px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.logo-text strong{
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.logo-text span{
+    font-size: 15px;
+}
+
+.menu{
+    display: flex;
+    gap: 42px;
+    margin-left: 180px;
+}
+
+.menu a {
+    color: #0b356d;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.btn_route{
+    margin-left: auto;
+    padding: 12px 38px;
+    border: 3px solid #0b356d;
+    border-radius: 28px;
+    color: #0b356d;
+    font-weight: 800;
+}
+
+.hero-content{
+    min-height: calc(100vh - 85px);
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.hero-text{
+    margin-left: 95px;
+    margin-top: -40px;
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-text h1{
+    font-size: 78px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 8px;
+}
+
+.hero-text p{
+    font-size: 24px;
+}
+
+.maria-img{
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    width: 82%;
+    max-width: 850%;
+    z-index: 1;
+}

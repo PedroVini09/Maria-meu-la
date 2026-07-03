@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Maria em Meu Lar";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<header class="hero" id="inicio">
+    <nav class="navbar">
+        <div class="logo-area">
+            <img src="~/img/logo_paroquia.png"alt="Logo Sagrado Coração de Jesus" class="logo-img"/>
+            
+            <div class="logo-text">
+                <strong>Sagrado Coração</strong>
+                <span>de Jesus</span>
+            </div>
+        </div>
+        
+        <ul class="menu">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#programação">Programação</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#Inscrição">Inscrição</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+        
+        <a href="#local" class="btn_route">Como chegar</a>
+    </nav>
+    
+    <section class="hero-content">
+        <div class="hero-text">
+            <h1>Maria em<br/>Meu Lar</h1>
+            <p>Uma mini frase</p>
+        </div>
+        
+        <img src="~/img/maria-ilustracao.png" alt="Maria segurando uma criança" class="maria-img"/>
+    </section>
+</header>
