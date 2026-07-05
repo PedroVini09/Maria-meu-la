@@ -2,58 +2,119 @@
     ViewData["Title"] = "Maria em Meu Lar";
 }
 <header class="hero" id="inicio">
-    <nav class="navbar">
-        <div class="logo-area">
-            <img src="~/img/logo_paroquia.png" alt="Logo Paróquia Sagrado Coração de Jesus" class="logo-img"/>
+   <nav class="navbar">
+    <div class="logo-area">
+        <img src="~/img/logo_paroquia.png" alt="Logo Paróquia Sagrado Coração de Jesus" class="logo-img"/>
 
-            <div class="logo-text">
-                <strong>Sagrado Coração</strong>
-                <span>de Jesus</span>
-            </div>
+        <div class="logo-text">
+            <strong>Sagrado Coração</strong>
+            <span>de Jesus</span>
         </div>
+    </div>
 
-        <ul class="menu">
-            <li>
-                <a href="#inicio" class="menu-link">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Início</span>
-                </a>
-            </li>
+    <ul class="menu">
+        <li>
+            <a href="#inicio" class="menu-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
+            </a>
+        </li>
 
-            <li>
-                <a href="#programacao" class="menu-link">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span>Programação</span>
-                </a>
-            </li>
+        <li>
+            <a href="#programacao" class="menu-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Programação</span>
+            </a>
+        </li>
 
-            <li>
-                <a href="#galeria" class="menu-link">
-                    <i class="fa-solid fa-camera"></i>
-                    <span>Galeria</span>
-                </a>
-            </li>
+        <li>
+            <a href="#galeria" class="menu-link">
+                <i class="fa-solid fa-camera"></i>
+                <span>Galeria</span>
+            </a>
+        </li>
 
-            <li>
-                <a href="#inscricao" class="menu-link">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Inscrição</span>
-                </a>
-            </li>
+        <li>
+            <a href="#inscricao" class="menu-link">
+                <i class="fa-solid fa-download"></i>
+                <span>Inscrição</span>
+            </a>
+        </li>
 
-            <li>
-                <a href="#contato" class="menu-link">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>Contato</span>
-                </a>
-            </li>
-        </ul>
+        <li>
+            <a href="#contato" class="menu-link">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contato</span>
+            </a>
+        </li>
+    </ul>
 
-        <a href="#local" class="btn_route">
+    <a href="#local" class="btn_route">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Como chegar</span>
+    </a>
+
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+        <img src="~/img/logo_paroquia.png" alt="Logo Paróquia"/>
+        <div>
+            <strong>Sagrado Coração</strong>
+            <span>de Jesus</span>
+        </div>
+    </div>
+
+    <nav class="mobile-drawer-nav">
+        <a href="#inicio" class="mobile-menu-link">
+            <i class="fa-solid fa-house"></i>
+            <span>Início</span>
+        </a>
+
+        <a href="#programacao" class="mobile-menu-link">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Programação</span>
+        </a>
+
+        <a href="#horario" class="mobile-menu-link">
+            <i class="fa-regular fa-clock"></i>
+            <span>Horário</span>
+        </a>
+
+        <a href="#galeria" class="mobile-menu-link">
+            <i class="fa-solid fa-camera"></i>
+            <span>Galeria</span>
+        </a>
+
+        <a href="#inscricao" class="mobile-menu-link">
+            <i class="fa-solid fa-download"></i>
+            <span>Inscrição</span>
+        </a>
+
+        <a href="#contato" class="mobile-menu-link">
+            <i class="fa-solid fa-phone"></i>
+            <span>Contato</span>
+        </a>
+
+        <a href="#local" class="mobile-menu-link">
             <i class="fa-solid fa-location-dot"></i>
             <span>Como chegar</span>
         </a>
     </nav>
+    <div class="mobile-drawer-footer">
+        <img src="~/img/maria_dourado.png" alt="" class="drawer-maria" aria-hidden="true"/>
+
+        <p>
+            "Com Maria,<br/>
+            Jesus entra em nosso lar."
+        </p>
+    </div>
+</aside>
     
     <section class="hero-content">
         <div class="hero-text">
@@ -66,7 +127,11 @@
                 <p>“Você nunca amará Maria mais do que Jesus a amou.”</p>
                 <cite>— São Maximiliano Kolbe</cite>
             </blockquote>
-            
+
+            <a href="#local" class="hero-mobile-route">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Como chegar</span>
+            </a>
         </div>
         
         <div class="hero-image">
