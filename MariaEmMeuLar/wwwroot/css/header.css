@@ -1,10 +1,10 @@
 ﻿.hero {
     min-height: 100vh;
-    overflow: hidden;
-    background : #f8f0e3;
+    padding-top: 85px;
+    background-color: #f8f0e3;
     color: #0b356d;
+    overflow: hidden;
 }
-
 /* NAVBAR */
 
 .navbar {
@@ -13,8 +13,30 @@
     grid-template-columns: 280px 1fr 220px;
     align-items: center;
     padding: 0 45px;
-    position: relative;
-    z-index: 5;
+
+    background: transparent;
+    z-index: 999;
+
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 901px) {
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .hero {
+        padding-top: 85px;
+    }
+
+    .navbar.navbar-scrolled {
+        background: rgba(248, 240, 227, 0.94);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 22px rgba(11, 53, 109, 0.12);
+    }
 }
 
 /* LOGO */

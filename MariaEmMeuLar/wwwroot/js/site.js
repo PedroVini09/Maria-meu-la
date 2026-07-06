@@ -3,6 +3,7 @@ const mobileDrawer = document.getElementById("mobileDrawer");
 const mobileOverlay = document.getElementById("mobileOverlay");
 const mobileMenuIcon = mobileMenuToggle?.querySelector("i");
 const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+const navbar = document.querySelector(".navbar");
 
 function openMobileMenu() {
     document.body.classList.add("menu-open");
@@ -49,3 +50,14 @@ document.addEventListener("keydown", (event) => {
         closeMobileMenu();
     }
 });
+
+function handleNavbarScroll() {
+    if (window.scrollY > 40) {
+        navbar.classList.add("navbar-scrolled");
+    } else {
+        navbar.classList.remove("navbar-scrolled");
+    }
+}
+
+window.addEventListener("scroll", handleNavbarScroll);
+handleNavbarScroll();
