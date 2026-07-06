@@ -369,30 +369,30 @@
     }
 
     .hero-content {
-        align-items: center;
-        justify-content: flex-start;
-        padding: 200px 24px 64px;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 90px 24px 64px;
     }
 
     .hero-text {
-        max-width: 330px;
-        margin: 0;
-        text-align: left;
+        max-width: 340px;
+        margin: 0 auto;
+        text-align: center;
         align-self: flex-start;
-        padding-left: 6px;
+        padding-left: 0;
     }
 
     .hero-text h1 {
-        text-align: left;
+        text-align: center;
         font-size: clamp(48px, 14vw, 64px);
         line-height: 1.05;
         margin-bottom: 18px;
     }
 
     .hero-quote {
-        max-width: 280px;
-        margin: 0;
-        text-align: left;
+        max-width: 300px;
+        margin: 0 auto;
+        text-align: center;
     }
 
     .hero-quote p {
@@ -405,7 +405,7 @@
     }
 
     .hero-mobile-route {
-        margin: 28px 0 0;
+        margin: 28px auto 0;
     }
 
     .maria-img {

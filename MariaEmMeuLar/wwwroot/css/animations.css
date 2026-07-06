@@ -95,3 +95,129 @@
         transform: none;
     }
 }
+
+/* ANIMAÇÕES - SEÇÃO BEM-VINDO */
+
+.js-enabled .welcome-animate .welcome-heading,
+.js-enabled .welcome-animate .welcome-photo-area,
+.js-enabled .welcome-animate .welcome-feature,
+.js-enabled .welcome-animate .welcome-card,
+.js-enabled .welcome-animate .welcome-button,
+.js-enabled .welcome-animate .welcome-m-symbol {
+    opacity: 0;
+}
+
+.js-enabled .welcome-animate .welcome-heading {
+    transform: translateY(35px);
+}
+
+.js-enabled .welcome-animate .welcome-photo-area {
+    transform: translateX(-55px);
+}
+
+.js-enabled .welcome-animate .welcome-feature,
+.js-enabled .welcome-animate .welcome-card {
+    transform: translateY(35px);
+}
+
+.js-enabled .welcome-animate .welcome-button {
+    transform: translateY(25px);
+}
+
+.js-enabled .welcome-animate .welcome-m-symbol {
+    transform: translateX(-50%) translateY(25px);
+}
+
+/* Quando a seção aparece na tela */
+
+.welcome-animate.is-visible .welcome-heading {
+    animation: welcomeFadeUp 0.9s ease forwards;
+}
+
+.welcome-animate.is-visible .welcome-photo-area {
+    animation: welcomeFadeLeft 1s ease forwards;
+    animation-delay: 0.18s;
+}
+
+.welcome-animate.is-visible .welcome-feature:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.35s;
+}
+
+.welcome-animate.is-visible .welcome-feature:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.48s;
+}
+
+.welcome-animate.is-visible .welcome-card:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.62s;
+}
+
+.welcome-animate.is-visible .welcome-card:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.welcome-animate.is-visible .welcome-button {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.welcome-animate.is-visible .welcome-m-symbol {
+    animation: welcomeSymbolUp 0.8s ease forwards;
+    animation-delay: 1s;
+}
+
+/* Keyframes */
+
+@keyframes welcomeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes welcomeFadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-55px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes welcomeSymbolUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .welcome-animate .welcome-heading,
+    .js-enabled .welcome-animate .welcome-photo-area,
+    .js-enabled .welcome-animate .welcome-feature,
+    .js-enabled .welcome-animate .welcome-card,
+    .js-enabled .welcome-animate .welcome-button,
+    .js-enabled .welcome-animate .welcome-m-symbol {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
