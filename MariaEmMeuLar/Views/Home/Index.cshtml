@@ -1,46 +1,53 @@
 ﻿@{
+    //Define o titulo da pagina que será utilizado no layout (_layout .cshtml)
     ViewData["Title"] = "Maria em Meu Lar";
 }
+<!-- Cabecalho principal da pagina -->
 <header class="hero" id="inicio">
+    
+    <!-- Barra de navegação (navbar)-->
     <nav class="navbar">
+        <!-- Àrea da logo da paroquia-->
         <div class="logo-area">
+            <!-- Imagem da paroquia-->
             <img src="~/img/logo_paroquia.png" alt="Logo Paróquia Sagrado Coração de Jesus" class="logo-img"/>
-
+            <!-- Nome da paroquia-->
             <div class="logo-text">
                 <strong>Sagrado Coração</strong>
                 <span>de Jesus</span>
             </div>
         </div>
-
+        <!--Menu desktop da pagina-->
         <ul class="menu">
+            <!--link do inicio do menu-->
             <li>
                 <a href="#inicio" class="menu-link">
                     <i class="fa-solid fa-house"></i>
                     <span>Início</span>
                 </a>
             </li>
-
+            <!--Link da programação do menu-->
             <li>
                 <a href="#programacao" class="menu-link">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>Programação</span>
                 </a>
             </li>
-
+            <!--Link da galeria do menu-->
             <li>
                 <a href="#galeria" class="menu-link">
                     <i class="fa-solid fa-camera"></i>
                     <span>Galeria</span>
                 </a>
             </li>
-
+            <!--Link da inscrição do menu-->
             <li>
                 <a href="#inscricao" class="menu-link">
                     <i class="fa-solid fa-download"></i>
                     <span>Inscrição</span>
                 </a>
             </li>
-
+            <!--Link do contato no menu-->
             <li>
                 <a href="#contato" class="menu-link">
                     <i class="fa-solid fa-phone"></i>
@@ -48,20 +55,21 @@
                 </a>
             </li>
         </ul>
-
+        <!--Botão para localização-->
         <a href="#local" class="btn_route">
             <i class="fa-solid fa-location-dot"></i>
             <span>Como chegar</span>
         </a>
-
+        <!--Botão do menu hamburguer para versão mobile-->
         <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
-
+    <!--Fundo escurecido para menu mobile estiver aberto-->
     <div class="mobile-overlay" id="mobileOverlay"></div>
-
+    <!--Menu hamburguer estando na lateral-->
     <aside class="mobile-drawer" id="mobileDrawer">
+        <!--logo e o titulo no menu mobile-->
         <div class="mobile-drawer-header">
             <img src="~/img/logo_paroquia.png" alt="Logo Paróquia"/>
             <div>
@@ -69,7 +77,7 @@
                 <span>de Jesus</span>
             </div>
         </div>
-
+        <!--Links para o menu no mobile-->
         <nav class="mobile-drawer-nav">
             <a href="#inicio" class="mobile-menu-link">
                 <i class="fa-solid fa-house"></i>
@@ -106,6 +114,7 @@
                 <span>Como chegar</span>
             </a>
         </nav>
+        <!--Rodape do menu mobile-->
         <div class="mobile-drawer-footer">
             <img src="~/img/maria_dourado.png" alt="" class="drawer-maria" aria-hidden="true"/>
 
@@ -115,26 +124,26 @@
             </p>
         </div>
     </aside>
-    
+    <!--Titulo do maria-->
     <section class="hero-content">
         <div class="hero-text">
             <h1>
                 <span>Maria em</span>
                 <span>Meu Lar</span>
             </h1>
-
-
+            <!--Traço debaixo do titulo-->
             <div class="welcome-divider">
                 <span></span>
                 <i class="fa-solid fa-diamond"></i>
                 <span></span>
             </div>
-
+            
+            <!--frase debaixo do titulo-->
             <blockquote class="hero-quote">
                 <p>“Nunca tenha medo de amar demais a Virgem Maria.”</p>
                 <cite>— São Maximiliano Kolbe</cite>
             </blockquote>
-
+            <!--Botão de localização para aparecer no mobile-->
             <a href="#local" class="hero-mobile-route">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Como chegar</span>
@@ -144,10 +153,10 @@
         <div class="hero-image">
             <img src="~/img/maria-ilustracao.png" alt="Maria segurando uma criança" class="maria-img"/>
         </div>
-       
+
     </section>
 </header>
-
+<!--Seção de bem vindo-->
 <section class="welcome-section welcome-animate" id="sobre">
     <div class="welcome-container">
 
@@ -165,9 +174,9 @@
                 Convidamos sua família a viver a presença de Maria todos os dias.
             </p>
         </div>
-
+        <!--Grid da imagens e da informação-->
         <div class="welcome-content-grid">
-
+            
             <div class="welcome-photo-area">
                 <div class="welcome-photo-card">
                     <img src="~/img/imagem de maria e o povo no fundo.png" alt="Família reunida em oração com Maria"/>
@@ -175,8 +184,9 @@
             </div>
 
             <div class="welcome-info-area">
-
+                <!--primeira linha de informação-->
                 <div class="welcome-feature-row">
+                    <!--primeiro bloco de informação-->
                     <div class="welcome-feature">
                         <i class="fa-solid fa-hands-praying"></i>
 
@@ -188,7 +198,8 @@
                             </p>
                         </div>
                     </div>
-
+                    
+                    <!--segundo bloco de informação-->
                     <div class="welcome-feature">
                         <i class="fa-solid fa-people-roof"></i>
 
@@ -201,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!--linha de cartão-->
                 <div class="welcome-card-row">
                     <div class="welcome-card">
                         <i class="fa-solid fa-heart-circle-plus"></i>
@@ -227,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!--link de descubra mais-->
                 <a href="#programacao" class="welcome-button">
                     <span>Descubra Mais</span>
                     <i class="fa-solid fa-chevron-right"></i>
@@ -238,5 +249,54 @@
 
         <div class="welcome-m-symbol">M</div>
 
+    </div>
+</section>
+
+<section class="noticias-section noticiais-animation" id="noticias" >
+    <div class="noticias-container">
+        <div class="noticias heading">
+            <h3>Ultimas Noticas</h3>
+            
+            <div class="welcome-divider">
+                <span></span>
+                <i class="fa-solid fa-diamond"></i>
+                <span></span>
+            </div>
+            
+            <p>
+                Fique por dentro das novidades da nossa comunidade<br/>
+                e acompanhe o que Deus está realizando nas familias atraves do Maria em meu lar.
+            </p>
+        </div>
+        <!--linha de cartão-->
+        <div class="noticia-card-row">
+            <div class="noticia-card">
+                <img/>
+                
+                <i>24 de Maio, 2025</i>
+                <i>3 min de leitura</i>
+                <div>
+                    <h3>Noticia</h3>
+                    <p>
+                        Maria caminha conosco, intercede, protege e conduz cada família
+                        à luz do seu Filho.
+                    </p>
+                </div>
+                <a>ler mais</a>
+            </div>
+
+            <div class="welcome-card">
+                <img/>
+
+                <div>
+                    <h3>noticia</h3>
+                    <p>
+                        Quando a família reza unida, o lar se torna um santuário de fé,
+                        amor e perdão.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </section>
