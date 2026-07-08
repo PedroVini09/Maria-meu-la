@@ -220,3 +220,259 @@
     font-weight: 700;
     opacity: 0.9;
 }
+
+
+
+/* ===============================
+   SEÇÃO ÚLTIMAS NOTÍCIAS
+================================ */
+
+.noticias-section{
+    position: relative;
+    min-height: 100vh;
+    padding: 120px 7% 130px;
+    
+    background-color: #f8f0e3;
+    background-image: url("../img/welcome-bg.png");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    
+    overflow: hidden;
+    scroll-margin-top: 90px;
+}
+
+.noticias-section {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   CABEÇALHO DA SEÇÃO
+================================ */
+
+.noticias-heading{
+    text-align: center;
+    color: #0b356d;
+    margin-bottom: 58px;
+}
+
+.noticias-heading .section-label{
+    display: inline-block;
+    margin-bottom: 16px;
+    
+    color: #293241;
+    font-size: 42px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+}
+
+.noticias-heading h3{
+    font-size: 58px;
+    line-height: 1.05;
+    font-weight: 900;
+    margin-bottom: 18px;
+}
+
+.noticias-heading p{
+    color: #293241;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.noticias-heading .welcome-divider{
+    margin-bottom: 24px;
+}
+
+/* ===============================
+   GRID DOS CARDS
+================================ */
+
+.noticia-card-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    
+    margin-bottom: 42px;
+}
+
+/* ===============================
+   CARD DE NOTÍCIA
+================================ */
+
+
+.noticia-card{
+    overflow: hidden;
+    
+    border-radius: 24px;
+    background: rgb(255, 255, 255, 0.78);
+    border: 1px solid rgba(201, 153, 58, 0.18);
+    
+    box-shadow: 0 14px 34px rgba(11, 53, 109, 0.10);
+    backdrop-filter: blur(6px);
+    
+    transition: 0.3s ease;
+}
+
+.noticia-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px rgba(11, 53, 109, 0.16);
+}
+
+/* ===============================
+   IMAGEM DO CARD
+================================ */
+
+.noticia-imagem{
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.noticia-imagem img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.4s ease;
+}
+
+.noticia-imagem img:hover{
+    transform: scale(1.2);
+}
+
+/*tag dos cards */
+
+.noticia-tag
+.noticia-tag{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 14px;
+    color: #fff;
+    border-radius: 20px;
+    background: #c9993a;
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ===============================
+   CONTEÚDO DO CARD
+================================ */
+
+.noticia-content{
+    padding: 24px 24px 28px;
+}
+
+.noticia-meta{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    margin-bottom: 24px;
+    color: #293241;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.noticia-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.noticia-meta i {
+    font-size: 14px;
+}
+
+.noticia-content h3 {
+    margin-bottom: 14px;
+
+    color: #0b356d;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 900;
+}
+
+.noticia-content p {
+    margin-bottom: 22px;
+
+    color: #303846;
+    font-size: 15.5px;
+    line-height: 1.55;
+}
+
+/* Link Ler mais */
+.noticia-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #0b356d;
+    font-size: 15px;
+    font-weight: 900;
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.noticia-link i {
+    color: #c9993a;
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.noticia-link:hover {
+    color: #c9993a;
+}
+
+.noticia-link:hover i {
+    transform: translateX(4px);
+}
+
+/* ===============================
+   BOTÃO TODAS AS NOTÍCIAS
+================================ */
+
+.noticia-button {
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 260px;
+    height: 56px;
+
+    border-radius: 16px;
+    border: 2px solid #c9993a;
+
+    background: #0b356d;
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 900;
+    text-decoration: none;
+
+    box-shadow: 0 12px 26px rgba(11, 53, 109, 0.22);
+    transition: 0.3s ease;
+}
+
+.noticia-button i {
+    font-size: 15px;
+}
+
+.noticia-button:hover {
+    transform: translateY(-3px);
+    background: #092c5a;
+}
