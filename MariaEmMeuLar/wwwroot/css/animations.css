@@ -221,3 +221,103 @@
         animation: none;
     }
 }
+
+/* ===============================
+   ANIMAÇÃO DA SEÇÃO NOTICIAS
+================================ */
+
+
+.js-enabled .noticias-animation .noticias-heading,
+.js-enabled .noticias-animation .noticia-card,
+.js-enabled .noticias-animation .noticia-button {
+    opacity: 0;
+}
+
+.js-enabled .noticias-animation .noticias-heading {
+    transform: translateY(35px);
+}
+
+.js-enabled .noticias-animation .noticia-card {
+    transform: translateY(45px);
+}
+
+.js-enabled .noticias-animation .noticia-button {
+    transform: translateY(25px);
+}
+
+/* Quando a seção aparece na tela */
+
+.noticias-animation.is-visible .noticias-heading {
+    animation: welcomeFadeUp 0.9s ease forwards;
+}
+
+
+.noticias-animation.is-visible .noticia-card:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.62s;
+}
+
+.noticias-animation.is-visible .noticia-card:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.noticias-animation.is-visible .noticia-card:nth-child(3) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.80s;
+}
+
+.noticias-animation.is-visible .noticia-button {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+/* Keyframes */
+
+@keyframes noticiaFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes noticiaFadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-55px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes noticiaSymbolUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .noticias-animation .noticias-heading,
+    .js-enabled .noticias-animation .noticia-card,
+    .js-enabled .noticias-animation .noticia-button {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}

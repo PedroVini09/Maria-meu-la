@@ -85,3 +85,27 @@ if (welcomeSection) {
 
     welcomeObserver.observe(welcomeSection);
 }
+
+/*ANIMAÇÃO DA SEÇÃO NOTICIAS*/
+
+document.body.classList.add("js-enabled");
+
+const noticiaSection = document.querySelector(".noticias-animation");
+
+if (noticiaSection) {
+    const noticiaObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+    noticiaObserver.observe(noticiaSection);
+}

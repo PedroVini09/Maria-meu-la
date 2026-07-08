@@ -230,10 +230,10 @@
 .noticias-section{
     position: relative;
     min-height: 100vh;
-    padding: 120px 7% 130px;
+    padding: 200px 7% 130px;
     
     background-color: #f8f0e3;
-    background-image: url("../img/welcome-bg.png");
+    background-image: url("../img/imagem de noticia.png");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -245,7 +245,7 @@
 .noticias-section {
     position: relative;
     z-index: 2;
-    max-width: 1400px;
+    max-width: 2000px;
     margin: 0 auto;
 }
 
@@ -476,3 +476,6 @@
     transform: translateY(-3px);
     background: #092c5a;
 }
+
+
+
