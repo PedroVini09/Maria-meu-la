@@ -344,25 +344,6 @@
     transform: scale(1.2);
 }
 
-/*tag dos cards */
-
-.noticia-tag
-.noticia-tag{
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 7px 14px;
-    color: #fff;
-    border-radius: 20px;
-    background: #c9993a;
-    font-size: 14px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
 
 /* ===============================
    CONTEÚDO DO CARD
