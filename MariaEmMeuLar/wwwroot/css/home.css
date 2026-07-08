@@ -459,4 +459,45 @@
 }
 
 
+/* ===============================
+   SEÇÃO MISSÕES DA JUVENTUDE
+================================ */
+
+.juventude-section{
+    position: relative;
+    min-height: 100vh;
+    padding: 200px 7% 130px;
+
+    background-color: #f8f0e3;
+    background-image: url("../img/fundo_da_juventude.png");
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+    scroll-margin-top: 90px;
+}
+
+.juventude-section {
+    position: relative;
+    z-index: 2;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   CABEÇALHO
+================================ */
+
+
+.juventude-heading{
+    text-align: center;
+    color: #0b356d;
+    margin-bottom: 58px;
+}
+
+.juventude-heading .welcome-divider{
+    
+}
+
 
