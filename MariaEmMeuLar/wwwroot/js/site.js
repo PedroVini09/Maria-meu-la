@@ -109,3 +109,27 @@ if (noticiaSection) {
 
     noticiaObserver.observe(noticiaSection);
 }
+
+/*ANIMAÇÃO DA SEÇÃO MISSÕES*/
+
+document.body.classList.add("js-enabled");
+
+const juventudeSection = document.querySelector(".juventude-animation");
+
+if (juventudeSection) {
+    const juventudeObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+    juventudeObserver.observe(juventudeSection);
+}

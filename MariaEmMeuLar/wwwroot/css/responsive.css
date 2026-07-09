@@ -707,3 +707,164 @@
     }
 }
 
+/* RESPONSIVO - SEÇÃO DA JUVENTUDE */
+
+@media (max-width: 900px) {
+    .juventude-section {
+        min-height: auto;
+        padding: 90px 24px 110px;
+        background-size: cover;
+        background-position: center bottom;
+    }
+
+    .juventude-heading {
+        margin-bottom: 48px;
+    }
+
+    .juventude-label {
+        font-size: clamp(42px, 9vw, 58px);
+    }
+
+    .juventude-heading p {
+        max-width: 620px;
+        margin: 0 auto;
+        font-size: 17px;
+    }
+
+    .juventude-card-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+
+    .juventude-card,
+    .juventude-card:nth-child(4),
+    .juventude-card:nth-child(5) {
+        grid-column: auto;
+    }
+
+    .juventude-card {
+        min-height: 360px;
+    }
+
+    .juventude-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        gap: 20px;
+        padding: 34px 28px;
+    }
+
+    .juventude-content .welcome-divider {
+        justify-content: center;
+    }
+
+    .juventude-photo {
+        width: 135px;
+        height: 135px;
+    }
+
+    .juventude-content h3 {
+        font-size: 32px;
+    }
+
+    .juventude-content p {
+        font-size: 16px;
+    }
+    .juventude-imagem img {
+        width: 205%;
+        height: 205%;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .juventude-section {
+        padding: 80px 20px 100px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .juventude-heading {
+        margin-bottom: 38px;
+    }
+
+    .juventude-label {
+        font-size: 38px;
+        line-height: 1.05;
+    }
+
+    .juventude-heading p {
+        font-size: 15.5px;
+        line-height: 1.55;
+    }
+
+    .juventude-heading p br {
+        display: none;
+    }
+
+    .juventude-card-row {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 28px;
+        width: 100%;
+    }
+
+    .juventude-card,
+    .juventude-card:nth-child(4),
+    .juventude-card:nth-child(5) {
+        grid-column: 1 / -1 !important;
+        width: 100%;
+        min-height: 430px;
+        border-radius: 26px;
+    }
+
+    .juventude-content {
+        min-height: 430px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        gap: 22px;
+        padding: 34px 26px;
+    }
+
+    .juventude-content > div {
+        width: 100%;
+    }
+
+    .juventude-photo {
+        width: 130px;
+        height: 130px;
+    }
+
+    .juventude-content h3 {
+        font-size: 32px;
+        line-height: 1.05;
+    }
+
+    .juventude-content .welcome-divider {
+        justify-content: center;
+    }
+
+    .juventude-content p {
+        font-size: 15.5px;
+        line-height: 1.5;
+    }
+
+    .juventude-content p br {
+        display: none;
+    }
+
+    .juventude-link {
+        width: 100%;
+        max-width: 230px;
+    }
+
+    .juventude-imagem img {
+        width: 135%;
+        height: 130%;
+        object-fit: contain;
+        object-position: center;
+    }
+}
