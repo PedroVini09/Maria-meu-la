@@ -497,7 +497,282 @@
 }
 
 .juventude-heading .welcome-divider{
-    
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.juventude-label {
+    margin: 0 0 18px;
+
+    color: #0b356d;
+    font-size: 62px;
+    line-height: 1.05;
+    font-weight: 900;
+    text-transform: capitalize;
+}
+
+.juventude-symbol {
+    color: #c9993a;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.juventude-heading p {
+    color: #293241;
+    font-size: 20px;
+    line-height: 1.6;
+}
+/* ===============================
+   GRID DOS CARDS
+================================ */
+
+.juventude-card-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 32px;
+}
+
+.juventude-card {
+    grid-column: span 2;
+}
+
+.juventude-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.juventude-card:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+/* ===============================
+   CARD BASE
+================================ */
+
+.juventude-card {
+    position: relative;
+    min-height: 300px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 16px 34px rgba(11, 53, 109, 0.16);
+    transition: 0.35s ease;
+}
+
+.juventude-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(11, 53, 109, 0.22);
+}
+
+.juventude-imagem {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.juventude-imagem img {
+    width: 130%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+    opacity: 0.88;
+
+    transition: 0.45s ease;
+}
+
+.juventude-card:hover .juventude-imagem img {
+    transform: scale(1.01);
+}
+
+.juventude-card:nth-child(1) {
+    background-color: #082c5c;
+}
+
+.juventude-card:nth-child(2) {
+    background-color: #1c242b;
+}
+
+.juventude-card:nth-child(3) {
+    background-color: #571870;
+}
+
+.juventude-card:nth-child(4) {
+    background-color: #941c1c;
+}
+
+.juventude-card:nth-child(5) {
+    background-color: #ffffff;
+}
+
+/* camada de cor */
+.juventude-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: rgba(5, 22, 45, 0.72);
+}
+
+/* conteúdo */
+.juventude-content {
+    position: relative;
+    z-index: 3;
+
+    min-height: 300px;
+
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    align-items: center;
+    gap: 22px;
+
+    padding: 30px;
+
+    color: #ffffff;
+}
+
+.juventude-content > div {
+    min-width: 0;
+}
+
+.juventude-photo {
+    width: 118px;
+    height: 118px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 4px solid rgba(255, 255, 255, 0.92);
+    background: #ffffff;
+
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+.juventude-content h3 {
+    margin-bottom: 14px;
+
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1.05;
+    font-weight: 900;
+}
+
+.juventude-content .welcome-divider {
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+.juventude-content .welcome-divider span {
+    width: 55px;
+    background: #c9993a;
+}
+
+.juventude-content .welcome-divider i {
+    color: #c9993a;
+}
+
+.juventude-content p {
+    margin-bottom: 22px;
+
+    color: rgba(255, 255, 255, 0.94);
+    font-size: 15.5px;
+    line-height: 1.45;
+}
+
+.juventude-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-width: 170px;
+    height: 44px;
+
+    padding: 0 20px;
+
+    border: 2px solid #c9993a;
+    border-radius: 28px;
+
+    color: #f2b642;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.juventude-link:hover {
+    background: #c9993a;
+    color: #0b356d;
+    transform: translateY(-2px);
+}
+.juventude-link i {
+    font-size: 14px;
+}
+
+/* ===============================
+   CORES INDIVIDUAIS DOS CARDS
+================================ */
+
+/* Maria em Meu Lar */
+.juventude-card:nth-child(1)::after {
+    background: linear-gradient(
+            90deg,
+            rgba(8, 44, 92, 0.65),
+            rgba(8, 44, 92, 0.45)
+    );
+}
+
+.juventude-card:nth-child(2)::after {
+    background: linear-gradient(
+            90deg,
+            rgba(28, 36, 43, 0.65),
+            rgba(28, 36, 43, 0.45)
+    );
+}
+
+.juventude-card:nth-child(3)::after {
+    background: linear-gradient(
+            90deg,
+            rgba(87, 24, 112, 0.65),
+            rgba(87, 24, 112, 0.45)
+    );
+}
+
+.juventude-card:nth-child(4)::after {
+    background: linear-gradient(
+            90deg,
+            rgba(148, 28, 28, 0.65),
+            rgba(148, 28, 28, 0.45)
+    );
+}
+
+.juventude-card:nth-child(5)::after {
+    background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.70),
+            rgba(255, 255, 255, 0.45)
+    );
+}
+
+.juventude-card:nth-child(5) .juventude-content h3,
+.juventude-card:nth-child(5) .juventude-content p {
+    color: #0b356d;
+}
+
+.juventude-card:nth-child(5) .juventude-link {
+    color: #0b356d;
+    border-color: #c9993a;
+}
+
+.juventude-card:nth-child(5) .juventude-link:hover {
+    background: #0b356d;
+    color: #ffffff;
 }
 
 
