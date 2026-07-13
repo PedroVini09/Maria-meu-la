@@ -434,9 +434,60 @@
 /* ===============================
    ANIMAÇÃO DA RODAPE
 ================================ */
-.js-enabled .rodape-animation .rodape-container,
 .js-enabled .rodape-animation .rodape-brand,
-.js-enabled .rodap .welcome-card,
-.js-enabled .welcome-animate .welcome-button {
+.js-enabled .rodape-animation .rodape-link,
+.js-enabled .roodape-animation .rodape-contact,
+.js-enabled .roodape-animation .rodape-bottom{
     opacity: 0;
+}
+
+/* Quando a seção aparece na tela */
+
+
+.rodape-animation.is-visible .rodape-brand {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.15s;
+}
+
+.rodape-animation.is-visible .rodape-link{
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.32s;
+}
+
+.rodape-animation.is-visible .rodape-contact {
+    animation: welcomeFadeUp 0.8s ease 0.25s forwards;
+}
+
+.rodape-animation.is-visible .rodape-bottom {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.66s;
+}
+
+/* Keyframes */
+
+@keyframes rodapeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .rodape-animation .rodape-brand,
+    .js-enabled .rodape-animation .rodape-link,
+    .js-enabled .rodape-animation .rodape-contact,
+    .js-enabled .rodape-animation .rodape-bottom {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
