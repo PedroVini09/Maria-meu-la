@@ -141,7 +141,7 @@
 .rodape-link > .welcome-divider {
     grid-column: 1 / -1;
     justify-content: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .rodape-link > .welcome-divider span {
@@ -190,6 +190,10 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.13);
 
     transition: 0.3s ease;
+}
+
+.rodape-missoes-group {
+    transform: translateY(-40px);
 }
 
 .rodape-navegacao {
@@ -281,6 +285,36 @@
     background: #c9993a;
     color: #061d3d;
     transform: translateY(-3px);
+}
+
+.texto-final {
+    margin-top: 38px;
+}
+
+.hero-footer {
+    position: relative;
+    padding-left: 34px;
+    color: rgba(255, 255, 255, 0.86);
+}
+
+
+.hero-footer p {
+    margin-bottom: 10px;
+
+    color: rgba(255, 255, 255, 0.88);
+    font-family: Georgia, serif;
+    font-size: 20px;
+    line-height: 1.45;
+    font-style: italic;
+}
+
+.hero-footer cite {
+    display: block;
+
+    color: #f2b642;
+    font-size: 16px;
+    font-weight: 800;
+    font-style: normal;
 }
 
 /* ===============================

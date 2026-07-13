@@ -133,3 +133,27 @@ if (juventudeSection) {
 
     juventudeObserver.observe(juventudeSection);
 }
+
+/*ANIMAÇÃO DA RODAPE*/
+
+document.body.classList.add("js-enabled");
+
+const rodapeSection = document.querySelector(".rodape-animation");
+
+if (rodapeSection) {
+    const rodapeObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.25
+        }
+    );
+
+    rodapeObserver.observe(rodapeSection);
+}

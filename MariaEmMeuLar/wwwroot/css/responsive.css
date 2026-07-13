@@ -868,3 +868,250 @@
         object-position: center;
     }
 }
+
+/* ===============================
+   RESPONSIVO - RODAPÉ
+================================ */
+@media (max-width: 900px) {
+    .rodape-section {
+        min-height: auto;
+        padding: 115px 24px 0;
+
+        background-size: 100% 100%;
+        background-position: center top;
+    }
+
+    .rodape-container {
+        max-width: 760px;
+        min-height: auto;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 52px;
+
+        padding-top: 70px;
+        padding-bottom: 0;
+    }
+
+    .rodape-brand {
+        align-items: center;
+        text-align: center;
+    }
+
+    .rodape-brand > img {
+        width: 88px;
+        height: 88px;
+    }
+
+    .rodape-brand h3 {
+        font-size: 34px;
+    }
+
+    .rodape-brand .welcome-divider {
+        justify-content: center;
+    }
+
+    .rodape-brand p {
+        max-width: 420px;
+        margin: 0 auto 14px;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .rodape-brand p br {
+        display: none;
+    }
+
+    .rodape-social {
+        justify-content: center;
+        margin-top: 0;
+        margin-bottom: 18px;
+    }
+
+    .rodape-link {
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+
+        padding: 0;
+        text-align: left;
+    }
+
+    .rodape-link > .welcome-divider {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-bottom: -12px;
+    }
+
+    .rodape-link::before,
+    .rodape-link::after {
+        display: none;
+    }
+
+    .rodape-link-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rodape-link h3,
+    .rodape-link-group h3 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .rodape-contact {
+        max-width: 460px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .rodape-contact h3 {
+        font-size: 26px;
+    }
+
+    .rodape-contact p {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-route {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .texto-final {
+        margin-top: 34px;
+    }
+
+    .hero-footer {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .hero-footer::before {
+        position: static;
+        display: block;
+        margin-bottom: -20px;
+        font-size: 56px;
+    }
+
+    .hero-footer p {
+        font-size: 19px;
+    }
+
+    .rodape-bottom {
+        position: static;
+
+        margin-top: 40px;
+        padding: 24px 0;
+
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rodape-section {
+        padding: 95px 22px 0;
+        background-size: cover;
+        background-position: center top;
+    }
+
+    .rodape-container {
+        gap: 42px;
+        padding-top: 55px;
+    }
+
+    .rodape-brand > img {
+        width: 78px;
+        height: 78px;
+    }
+
+    .rodape-brand h3 {
+        font-size: 31px;
+        line-height: 1.08;
+    }
+
+    .rodape-brand p {
+        font-size: 15.5px;
+        line-height: 1.55;
+    }
+
+    .rodape-social a {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+    }
+
+    .rodape-link {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        max-width: 320px;
+    }
+
+    .rodape-link > .welcome-divider {
+        margin-bottom: -6px;
+    }
+
+    .rodape-link h3,
+    .rodape-link-group h3 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .rodape-navegacao,
+    .rodape-missoes {
+        font-size: 15.5px;
+        padding: 10px 0 10px 22px;
+    }
+
+    .rodape-contact {
+        max-width: 320px;
+    }
+
+    .rodape-contact h3 {
+        font-size: 25px;
+    }
+
+    .rodape-contact p {
+        font-size: 15.5px;
+        line-height: 1.45;
+    }
+
+    .footer-route {
+        width: 100%;
+        max-width: 260px;
+        height: 50px;
+        font-size: 15px;
+    }
+
+    .texto-final {
+        margin-top: 30px;
+    }
+
+    .hero-footer p {
+        font-size: 18px;
+        line-height: 1.45;
+    }
+
+    .hero-footer cite {
+        font-size: 15px;
+    }
+
+    .rodape-bottom {
+        margin-top: 36px;
+        padding: 22px 0;
+    }
+
+    .rodape-bottom p,
+    .rodape-bottom span {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+}

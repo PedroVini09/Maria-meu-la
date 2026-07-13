@@ -431,3 +431,12 @@
         animation: none;
     }
 }
+/* ===============================
+   ANIMAÇÃO DA RODAPE
+================================ */
+.js-enabled .rodape-animation .rodape-container,
+.js-enabled .rodape-animation .rodape-brand,
+.js-enabled .rodap .welcome-card,
+.js-enabled .welcome-animate .welcome-button {
+    opacity: 0;
+}
