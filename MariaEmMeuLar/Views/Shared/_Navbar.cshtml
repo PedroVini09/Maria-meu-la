@@ -1,0 +1,118 @@
+<nav class="navbar">
+     
+    <div class="logo-area">
+            
+        <img src="~/img/logo_da_pascom.png" alt="Logo Paróquia Sagrado Coração de Jesus" class="logo-img"/>
+           
+        <div class="logo-text">
+            <strong>Pastoral</strong>
+            <span>da Juventude</span>
+        </div>
+    </div>
+        
+    <ul class="menu">
+            
+        <li>
+            <a asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
+            </a>
+        </li>
+            
+        <li>
+            <a asp-controller="Home" asp-action="Programacao" class="menu-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Programação</span>
+            </a>
+        </li>
+           
+        <li>
+            <a asp-controller="Home" asp-action="Index" class="menu-link">
+                <i class="fa-solid fa-camera"></i>
+                <span>Galeria</span>
+            </a>
+        </li>
+            
+        <li>
+            <a asp-controller="Home" asp-action="Index"  class="menu-link">
+                <i class="fa-solid fa-download"></i>
+                <span>Inscrição</span>
+            </a>
+        </li>
+           
+        <li>
+            <a asp-controller="Home" asp-action="Index"  class="menu-link">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contato</span>
+            </a>
+        </li>
+    </ul>
+        
+    <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn_route">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Como chegar</span>
+    </a>
+        
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+</nav>
+
+ <div class="mobile-overlay" id="mobileOverlay"></div>
+   
+    <aside class="mobile-drawer" id="mobileDrawer">
+        
+        <div class="mobile-drawer-header">
+            <img src="~/img/logo_da_pascom.png" alt="Logo Paróquia"/>
+            <div>
+                <strong>Pastoral</strong>
+                <span>da Juventude</span>
+            </div>
+        </div>
+        
+        <nav class="mobile-drawer-nav">
+            <a asp-controller="Home" asp-action="Index" class="mobile-menu-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Programacao" class="mobile-menu-link">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Programação</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Index"  class="mobile-menu-link">
+                <i class="fa-regular fa-clock"></i>
+                <span>Horário</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Index"  class="mobile-menu-link">
+                <i class="fa-solid fa-camera"></i>
+                <span>Galeria</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Index"  class="mobile-menu-link">
+                <i class="fa-solid fa-download"></i>
+                <span>Inscrição</span>
+            </a>
+
+            <a asp-controller="Home" asp-action="Index"  class="mobile-menu-link">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contato</span>
+            </a>
+
+            <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="mobile-menu-link">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Como chegar</span>
+            </a>
+        </nav>
+       
+        <div class="mobile-drawer-footer">
+            <img src="~/img/maria_dourado.png" alt="" class="drawer-maria" aria-hidden="true"/>
+
+            <p>
+                "Com Maria,<br/>
+                Jesus entra em nosso lar."
+            </p>
+        </div>
+    </aside>

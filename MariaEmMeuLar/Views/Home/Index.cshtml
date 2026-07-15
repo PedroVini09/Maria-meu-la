@@ -2,148 +2,28 @@
     //Define o titulo da pagina que será utilizado no layout (_layout .cshtml)
     ViewData["Title"] = "Maria em Meu Lar";
 }
-<!-- Cabecalho principal da pagina -->
+
 <header class="hero" id="inicio">
     
-    <!-- Barra de navegação (navbar)-->
-    <nav class="navbar">
-        <!-- Àrea da logo da paroquia-->
-        <div class="logo-area">
-            <!-- Imagem da paroquia-->
-            <img src="~/img/logo_da_pascom.png" alt="Logo Paróquia Sagrado Coração de Jesus" class="logo-img"/>
-            <!-- Nome da paroquia-->
-            <div class="logo-text">
-                <strong>Pastoral</strong>
-                <span>da Juventude</span>
-            </div>
-        </div>
-        <!--Menu desktop da pagina-->
-        <ul class="menu">
-            <!--link do inicio do menu-->
-            <li>
-                <a href="#inicio" class="menu-link">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Início</span>
-                </a>
-            </li>
-            <!--Link da programação do menu-->
-            <li>
-                <a asp-controller="Home" asp-action="Programacao" class="menu-link">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span>Programação</span>
-                </a>
-            </li>
-            <!--Link da galeria do menu-->
-            <li>
-                <a href="#galeria" class="menu-link">
-                    <i class="fa-solid fa-camera"></i>
-                    <span>Galeria</span>
-                </a>
-            </li>
-            <!--Link da inscrição do menu-->
-            <li>
-                <a href="#inscricao" class="menu-link">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Inscrição</span>
-                </a>
-            </li>
-            <!--Link do contato no menu-->
-            <li>
-                <a href="#contato" class="menu-link">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>Contato</span>
-                </a>
-            </li>
-        </ul>
-        <!--Botão para localização-->
-        <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn_route">
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Como chegar</span>
-        </a>
-        <!--Botão do menu hamburguer para versão mobile-->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menu">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
-    <!--Fundo escurecido para menu mobile estiver aberto-->
-    <div class="mobile-overlay" id="mobileOverlay"></div>
-    <!--Menu hamburguer estando na lateral-->
-    <aside class="mobile-drawer" id="mobileDrawer">
-        <!--logo e o titulo no menu mobile-->
-        <div class="mobile-drawer-header">
-            <img src="~/img/logo_da_pascom.png" alt="Logo Paróquia"/>
-            <div>
-                <strong>Pastoral</strong>
-                <span>da Juventude</span>
-            </div>
-        </div>
-        <!--Links para o menu no mobile-->
-        <nav class="mobile-drawer-nav">
-            <a href="#inicio" class="mobile-menu-link">
-                <i class="fa-solid fa-house"></i>
-                <span>Início</span>
-            </a>
-
-            <a asp-controller="Home" asp-action="Programacao" class="mobile-menu-link">
-                <i class="fa-solid fa-calendar-days"></i>
-                <span>Programação</span>
-            </a>
-
-            <a href="#horario" class="mobile-menu-link">
-                <i class="fa-regular fa-clock"></i>
-                <span>Horário</span>
-            </a>
-
-            <a href="#galeria" class="mobile-menu-link">
-                <i class="fa-solid fa-camera"></i>
-                <span>Galeria</span>
-            </a>
-
-            <a href="#inscricao" class="mobile-menu-link">
-                <i class="fa-solid fa-download"></i>
-                <span>Inscrição</span>
-            </a>
-
-            <a href="#contato" class="mobile-menu-link">
-                <i class="fa-solid fa-phone"></i>
-                <span>Contato</span>
-            </a>
-
-            <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="mobile-menu-link">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>Como chegar</span>
-            </a>
-        </nav>
-        <!--Rodape do menu mobile-->
-        <div class="mobile-drawer-footer">
-            <img src="~/img/maria_dourado.png" alt="" class="drawer-maria" aria-hidden="true"/>
-
-            <p>
-                "Com Maria,<br/>
-                Jesus entra em nosso lar."
-            </p>
-        </div>
-    </aside>
-    <!--Titulo do maria-->
     <section class="hero-content">
         <div class="hero-text">
             <h1>
                 <span>Maria em</span>
                 <span>Meu Lar</span>
             </h1>
-            <!--Traço debaixo do titulo-->
+            
             <div class="welcome-divider">
                 <span></span>
                 <i class="fa-solid fa-diamond"></i>
                 <span></span>
             </div>
             
-            <!--frase debaixo do titulo-->
+            
             <blockquote class="hero-quote">
                 <p>“Nunca tenha medo de amar demais a Virgem Maria.”</p>
                 <cite>— São Maximiliano Kolbe</cite>
             </blockquote>
-            <!--Botão de localização para aparecer no mobile-->
+            
             <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="hero-mobile-route">
                 <i class="fa-solid fa-location-dot"></i>
                 <span>Como chegar</span>
@@ -156,7 +36,7 @@
 
     </section>
 </header>
-<!--Seção de bem vindo-->
+
 <section class="welcome-section welcome-animate" id="sobre">
     <div class="welcome-container">
 
@@ -174,7 +54,7 @@
                 Convidamos sua família a viver a presença de Maria todos os dias.
             </p>
         </div>
-        <!--Grid da imagens e da informação-->
+       
         <div class="welcome-content-grid">
             
             <div class="welcome-photo-area">
@@ -184,9 +64,9 @@
             </div>
 
             <div class="welcome-info-area">
-                <!--primeira linha de informação-->
+                
                 <div class="welcome-feature-row">
-                    <!--primeiro bloco de informação-->
+                    
                     <div class="welcome-feature">
                         <i class="fa-solid fa-hands-praying"></i>
 
@@ -199,7 +79,7 @@
                         </div>
                     </div>
                     
-                    <!--segundo bloco de informação-->
+                    
                     <div class="welcome-feature">
                         <i class="fa-solid fa-people-roof"></i>
 
@@ -212,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <!--linha de cartão-->
+               
                 <div class="welcome-card-row">
                     <div class="welcome-card">
                         <i class="fa-solid fa-heart-circle-plus"></i>
@@ -238,12 +118,6 @@
                         </div>
                     </div>
                 </div>
-                <!--link de descubra mais-->
-               <!-- <a href="#programacao" class="welcome-button">
-                    <span>Descubra Mais</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </a>-->
-
             </div>
         </div>
 
@@ -269,7 +143,7 @@
                 e acompanhe o que Deus está realizando nas familias atraves do Maria em meu lar.
             </p>
         </div>
-        <!--linha de cartão-->
+        
         <div class="noticia-card-row">
             <article class="noticia-card">
                 <div class="noticia-imagem">
@@ -544,105 +418,3 @@
     </div>
 </section>
 
-<footer class="rodape-section rodape-animation" id="rodape">
-    <div class="rodape-container">
-        <div class="rodape-brand">
-            <img src="~/img/logo_da_pascom.png"/>
-            <div>
-                <h3>Pastoral<br/>da Juventude</h3>
-
-                <div class="welcome-divider">
-                    <span></span>
-                    <i class="fa-solid fa-diamond"></i>
-                    <span></span>
-                </div>
-
-                <p>
-                    Uma missão de fé que leva <br/>
-                    a presença de Cristo e de Maria às<br/>
-                    famílias e jovens, fortalecendo lares<br/>
-                    na oração e no amor.
-                </p>
-            </div>
-            <div class="rodape-social">
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" >
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-            </div>
-        </div>
-        
-        <div class="rodape-link">
-            
-            <div class="welcome-divider">
-                <span></span>
-                <div class="juventude-symbol">✞</div>
-                <span></span>
-            </div>
-            <div class="rodape-link-group">
-                <h3>Navegação</h3>
-                <a href="#" class="rodape-navegacao">Inicio</a>
-                <a href="#" class="rodape-navegacao">Últimas Notícias</a>
-                <a href="#" class="rodape-navegacao">Missões da Juventude</a>
-                <a href="#" class="rodape-navegacao">Programação</a>
-                <a href="#" class="rodape-navegacao">Galeria</a>
-                <a href="#" class="rodape-navegacao">Inscrição</a>
-                <a href="#" class="rodape-navegacao">Contatos</a>
-            </div>
-           
-            <div class="rodape-link-group rodape-missoes-group">
-                <h3>Missões</h3>
-                <a href="#" class="rodape-missoes">Maria em meu lar</a>
-                <a href="#" class="rodape-missoes">Retiro Quaresmal</a>
-                <a href="#" class="rodape-missoes">Semana da Juventude</a>
-                <a href="#" class="rodape-missoes">Terço da juventude</a>
-                <a href="#" class="rodape-missoes">Segue-me jovem</a>
-            </div>
-        </div>
-        
-        <div class="rodape-contact">
-            <h3>Contato</h3>
-            
-            <p>
-                <i class="fa-solid fa-location-dot"></i>
-                Paróquia Sagrado Coração de Jesus
-            </p>
-            
-            <p>
-                <i class="fa-solid fa-envelope"></i>
-                contato@email.com.br
-            </p>
-            <p>
-                <i class="fa-brands fa-whatsapp"></i>
-                (00) 0000-0000
-            </p>
-            
-            <a href="https://www.google.com/maps/place/Par%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus/-7.2419159,-35.9134137,17402m/data=!3m1!1e3!4m15!1m8!3m7!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!2sPar%C3%B3quia+do+Sagrado+Cora%C3%A7%C3%A3o+de+Jesus!8m2!3d-7.2443361!4d-35.8805034!10e1!16s%2Fg%2F1ptxmyk09!3m5!1s0x7ac1e7b08d47d81:0xf2f47e42032f7bdc!8m2!3d-7.2443361!4d-35.8805034!16s%2Fg%2F1ptxmyk09?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D"  class="footer-route" target="_blank" rel="noopener noreferrer">
-                <i class="fa-solid fa-map-location-dot"></i>
-                Como chegar
-            </a>
-            
-            <div class="texto-final">
-                <blockquote class="hero-footer">
-                    <p>“Eis aqui a serva do Senhor,<br/>Faça-se em mim segundo a tua vontade”</p>
-                    <cite>Lucas 1,38</cite>
-                </blockquote>
-            </div>
-        </div>
-        
-        <div class="rodape-bottom">
-            <p>
-                © 2026 Pastoral da Juventude. Todos os direitos reservados.
-            </p>
-            
-            <span>
-                Pastoral da Juventude • Sagrado Coração de Jesus
-            </span>
-        </div>
-    </div>
-</footer>
