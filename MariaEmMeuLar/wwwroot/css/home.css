@@ -5,7 +5,7 @@
     min-height: 100vh;
     padding: 140px 7% 120px;
     background-color: #f8f0e3;
-    background-image: url("../img/welcome-bg.png");
+    background-image: url("../img/fundo/welcome-bg.png");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -233,7 +233,7 @@
     padding: 200px 7% 130px;
     
     background-color: #f8f0e3;
-    background-image: url("../img/imagem de noticia.png");
+    background-image: url("../img/fundo/imagem de noticia.png");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -469,7 +469,7 @@
     padding: 200px 7% 130px;
 
     background-color: #f8f0e3;
-    background-image: url("../img/fundo_da_juventude.png");
+    background-image: url("../img/fundo/fundo_da_juventude.png");
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
