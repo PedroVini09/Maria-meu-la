@@ -775,4 +775,558 @@
     color: #ffffff;
 }
 
+/* ===============================
+   PÁGINA PROGRAMAÇÃO
+================================ */
+
+.programacao-section {
+    position: relative;
+    min-height: 100vh;
+
+    padding: 120px 7% 90px;
+
+    background-color: #f7ecd9;
+    background-image: url("../img/fundo/fundo_da_juventude.png");
+    background-size: 100% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.programacao-container {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* ===============================
+   CABEÇALHO DA PÁGINA
+================================ */
+
+.programacao-heading {
+    position: relative;
+    text-align: center;
+    margin-bottom: 44px;
+}
+
+.programacao-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    margin-bottom: 16px;
+}
+
+.programacao-divider span {
+    width: 90px;
+    height: 2px;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            #c9993a,
+            transparent
+    );
+}
+
+.programacao-symbol {
+    color: #c9993a;
+    font-size: 26px;
+    font-style: normal;
+}
+
+.programacao-horario {
+    display: inline-block;
+
+    margin-bottom: 14px;
+    padding: 8px 22px;
+
+    border: 1px solid rgba(201, 153, 58, 0.45);
+    border-radius: 999px;
+
+    background: rgba(255, 250, 241, 0.6);
+
+    color: #a87917;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.programacao-heading h1 {
+    color: #061d3d;
+    font-family: Georgia, serif;
+    font-size: clamp(54px, 6vw, 92px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.programacao-heading p {
+    max-width: 690px;
+    margin: 0 auto;
+
+    color: #252525;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+/* ===============================
+   CARDS DAS MISSÕES
+================================ */
+
+.programacao-missoes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+
+    margin-bottom: 34px;
+}
+
+.programacao-missao-card {
+    min-height: 205px;
+    padding: 24px 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(201, 153, 58, 0.28);
+    border-radius: 24px;
+
+    background: rgba(255, 250, 241, 0.84);
+    box-shadow: 0 16px 32px rgba(6, 29, 61, 0.12);
+
+    cursor: pointer;
+    text-align: center;
+
+    transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease,
+            background 0.3s ease,
+            border-color 0.3s ease;
+}
+
+.programacao-missao-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 42px rgba(6, 29, 61, 0.18);
+}
+
+.programacao-card-icon {
+    width: 82px;
+    height: 82px;
+
+    object-fit: contain;
+    margin-bottom: 14px;
+
+    transition: transform 0.3s ease;
+}
+
+.programacao-missao-card:hover .programacao-card-icon {
+    transform: scale(1.08);
+}
+
+.programacao-missao-card h3 {
+    color: #061d3d;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.1;
+
+    margin-bottom: 12px;
+}
+
+.programacao-missao-card .welcome-divider {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.programacao-missao-card .welcome-divider span {
+    width: 42px;
+    height: 2px;
+    background: #c9993a;
+}
+
+.programacao-missao-card .welcome-divider i {
+    color: #c9993a;
+    font-size: 10px;
+}
+
+.programacao-missao-card strong {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 18px;
+
+    border: 1px solid #c9993a;
+    border-radius: 999px;
+
+    color: #a87917;
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* Cores dos cards */
+
+.programacao-missao-card:nth-child(2) h3 {
+    color: #4e32a8;
+}
+
+.programacao-missao-card:nth-child(3) h3 {
+    color: #08632d;
+}
+
+.programacao-missao-card:nth-child(4) h3 {
+    color: #a87917;
+}
+
+.programacao-missao-card:nth-child(5) h3 {
+    color: #064b92;
+}
+
+/* Card ativo */
+
+.programacao-missao-card.active {
+    background: linear-gradient(145deg, #061d3d, #08386f);
+    border-color: #d8a339;
+    box-shadow: 0 20px 44px rgba(6, 29, 61, 0.28);
+}
+
+.programacao-missao-card.active h3 {
+    color: #ffffff;
+}
+
+.programacao-missao-card.active strong {
+    color: #f2b642;
+    border-color: #f2b642;
+}
+
+.programacao-missao-card.active .welcome-divider span {
+    background: #f2b642;
+}
+
+.programacao-missao-card.active .welcome-divider i {
+    color: #f2b642;
+}
+
+.programacao-missao-card.active .programacao-card-icon {
+    transform: scale(1.08);
+}
+
+/* ===============================
+   CARD GRANDE DA AGENDA
+================================ */
+
+.programacao-agenda-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(201, 153, 58, 0.32);
+    border-radius: 26px;
+
+    background: rgba(255, 250, 241, 0.92);
+    box-shadow: 0 22px 46px rgba(6, 29, 61, 0.16);
+}
+
+.programacao-agenda-ilustracao {
+    position: absolute;
+    right: 38px;
+    top: 20px;
+
+    width: 250px;
+    max-width: 22vw;
+
+    opacity: 0.18;
+    z-index: 4;
+
+    pointer-events: none;
+
+    transition:
+            opacity 0.35s ease,
+            transform 0.35s ease;
+}
+
+.programacao-agenda-ilustracao.is-changing {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+}
+
+.programacao-agenda-top {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 26px 34px;
+
+    background: linear-gradient(135deg, #061d3d, #08386f);
+    color: #ffffff;
+}
+
+.programacao-agenda-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.programacao-agenda-icon {
+    width: 58px;
+    height: 58px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2b642;
+    color: #061d3d;
+
+    font-size: 24px;
+}
+
+.programacao-agenda-title h2 {
+    color: #f2b642;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.1;
+
+    margin-bottom: 4px;
+}
+
+.programacao-agenda-title p {
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.programacao-agenda-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.programacao-agenda-actions button {
+    width: 44px;
+    height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #f2b642;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: #f2b642;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.programacao-agenda-actions button:hover {
+    background: #f2b642;
+    color: #061d3d;
+    transform: translateY(-3px);
+}
+
+/* ===============================
+   DIAS E EVENTOS
+================================ */
+
+.programacao-dias {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: repeat(7, minmax(185px, 1fr));
+
+    overflow-x: auto;
+}
+
+.programacao-dias::-webkit-scrollbar {
+    height: 8px;
+}
+
+.programacao-dias::-webkit-scrollbar-track {
+    background: rgba(201, 153, 58, 0.12);
+}
+
+.programacao-dias::-webkit-scrollbar-thumb {
+    background: rgba(201, 153, 58, 0.55);
+    border-radius: 999px;
+}
+
+.programacao-dia {
+    min-width: 185px;
+    padding: 28px 20px 30px;
+
+    border-right: 1px solid rgba(201, 153, 58, 0.26);
+}
+
+.programacao-dia:last-child {
+    border-right: none;
+}
+
+.programacao-dia h3 {
+    color: #061d3d;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.2;
+
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.programacao-dia > strong {
+    display: block;
+
+    color: #a87917;
+    font-size: 18px;
+    font-weight: 900;
+
+    text-align: center;
+
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid rgba(201, 153, 58, 0.24);
+}
+
+.programacao-evento {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 12px;
+
+    padding-bottom: 22px;
+    margin-bottom: 8px;
+}
+
+.programacao-evento::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 24px;
+    bottom: -4px;
+
+    width: 2px;
+    background: rgba(201, 153, 58, 0.42);
+}
+
+.programacao-evento:last-child::before {
+    display: none;
+}
+
+.programacao-evento span {
+    position: relative;
+    z-index: 2;
+
+    width: fit-content;
+    height: fit-content;
+
+    padding: 5px 8px;
+
+    border-radius: 8px;
+
+    background: #061d3d;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.programacao-evento span::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 8px;
+
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+    background: #c9993a;
+}
+
+.programacao-evento h4 {
+    color: #061d3d;
+    font-size: 14.5px;
+    font-weight: 900;
+    line-height: 1.35;
+
+    margin-bottom: 8px;
+}
+
+.programacao-evento p {
+    color: rgba(6, 29, 61, 0.72);
+    font-size: 13.5px;
+    line-height: 1.35;
+}
+
+.programacao-evento p i {
+    color: #c9993a;
+    margin-right: 5px;
+}
+
+/* ===============================
+   AVISO
+================================ */
+
+.programacao-aviso {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 28px;
+    padding: 20px 24px;
+
+    border: 1px solid rgba(201, 153, 58, 0.28);
+    border-radius: 20px;
+
+    background: rgba(255, 250, 241, 0.78);
+    box-shadow: 0 14px 28px rgba(6, 29, 61, 0.08);
+}
+
+.programacao-aviso i {
+    width: 48px;
+    height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #061d3d;
+    color: #f2b642;
+
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.programacao-aviso p {
+    color: #252525;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
 

@@ -157,3 +157,52 @@ if (rodapeSection) {
 
     rodapeObserver.observe(rodapeSection);
 }
+
+// ===============================
+// PROGRAMAÇÃO - TROCA DE MISSÕES
+// ===============================
+
+const programacaoCards = document.querySelectorAll(".programacao-missao-card");
+const programacaoTitulo = document.getElementById("programacao-Titulo");
+const programacaoPeriodo = document.getElementById("programacaoPeriodo");
+const programacaoDias = document.getElementById("programacaoDias");
+const programcaoIlustracao = document.getElementById("programcaoIlustracao");
+
+const programacao ={
+    maria: {
+        titulo:"Maria em Meu Lar",
+        periodo:"Maio de 2026",
+        dias:[
+            {
+                dia: "segunda-feira",
+                data: "04/05",
+                eventos: [
+                    {
+                        hora:"18:30",
+                        titulo:"Celebração de envio e bênção das famílias",
+                        local:"Igreja Matriz"
+                    },
+                    {
+                        hora:"19:30",
+                        titulo:"Envio das famílias missionarios",
+                        local:"Salão Paroquial"
+                    },
+                    {
+                        hora:"20:00",
+                        titulo:"Visita da imagem aos lares"
+                        local: "Comunidades"
+                    }
+                ]
+            },
+            {
+                dia:"Terça-feira",
+                data:"04/05",
+                eventos: [
+                    {
+                        
+                    }
+                ]
+            }
+        ]
+    }
+}
