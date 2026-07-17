@@ -1043,14 +1043,14 @@
 
 .programacao-agenda-ilustracao {
     position: absolute;
-    right: 38px;
-    top: 20px;
+    right: 4%;
+    top: 10px;
 
     width: 250px;
     max-width: 22vw;
 
-    opacity: 0.18;
-    z-index: 4;
+    opacity: 0.22;
+    z-index: 1;
 
     pointer-events: none;
 
