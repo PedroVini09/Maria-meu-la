@@ -1,0 +1,493 @@
+/* ANIMAÇÕES DO CABEÇALHO */
+
+.logo-area {
+    animation: fadeDown 0.9s ease forwards;
+}
+
+.hero-text {
+    opacity: 0;
+    animation: fadeLeft 1s ease forwards;
+    animation-delay: 0.25s;
+}
+
+.maria-img {
+    --maria-x: -120px;
+
+    opacity: 0;
+    transform: translateX(var(--maria-x));
+
+    animation:
+            mariaEntrance 1.2s ease forwards,
+            mariaFloat 5s ease-in-out infinite;
+
+    animation-delay: 0.45s, 1.7s;
+}
+
+/* LOGO */
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TEXTO */
+
+@keyframes fadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ENTRADA DA MARIA */
+
+@keyframes mariaEntrance {
+    from {
+        opacity: 0;
+        transform: translateX(calc(var(--maria-x) + 80px)) translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(var(--maria-x)) translateY(0) scale(1);
+    }
+}
+
+/* MOVIMENTO SUAVE DA MARIA */
+
+@keyframes mariaFloat {
+    0% {
+        opacity: 1;
+        transform: translateX(var(--maria-x)) translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(var(--maria-x)) translateY(-8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(var(--maria-x)) translateY(0);
+    }
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-area,
+    .hero-text,
+    .maria-img {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ANIMAÇÕES - SEÇÃO BEM-VINDO */
+
+.js-enabled .welcome-animate .welcome-heading,
+.js-enabled .welcome-animate .welcome-photo-area,
+.js-enabled .welcome-animate .welcome-feature,
+.js-enabled .welcome-animate .welcome-card,
+.js-enabled .welcome-animate .welcome-button,
+.js-enabled .welcome-animate .welcome-m-symbol {
+    opacity: 0;
+}
+
+.js-enabled .welcome-animate .welcome-heading {
+    transform: translateY(35px);
+}
+
+.js-enabled .welcome-animate .welcome-photo-area {
+    transform: translateX(-55px);
+}
+
+.js-enabled .welcome-animate .welcome-feature,
+.js-enabled .welcome-animate .welcome-card {
+    transform: translateY(35px);
+}
+
+.js-enabled .welcome-animate .welcome-button {
+    transform: translateY(25px);
+}
+
+.js-enabled .welcome-animate .welcome-m-symbol {
+    transform: translateX(-50%) translateY(25px);
+}
+
+/* Quando a seção aparece na tela */
+
+.welcome-animate.is-visible .welcome-heading {
+    animation: welcomeFadeUp 0.9s ease forwards;
+}
+
+.welcome-animate.is-visible .welcome-photo-area {
+    animation: welcomeFadeLeft 1s ease forwards;
+    animation-delay: 0.18s;
+}
+
+.welcome-animate.is-visible .welcome-feature:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.35s;
+}
+
+.welcome-animate.is-visible .welcome-feature:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.48s;
+}
+
+.welcome-animate.is-visible .welcome-card:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.62s;
+}
+
+.welcome-animate.is-visible .welcome-card:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.welcome-animate.is-visible .welcome-button {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.welcome-animate.is-visible .welcome-m-symbol {
+    animation: welcomeSymbolUp 0.8s ease forwards;
+    animation-delay: 1s;
+}
+
+/* Keyframes */
+
+@keyframes welcomeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes welcomeFadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-55px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes welcomeSymbolUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .welcome-animate .welcome-heading,
+    .js-enabled .welcome-animate .welcome-photo-area,
+    .js-enabled .welcome-animate .welcome-feature,
+    .js-enabled .welcome-animate .welcome-card,
+    .js-enabled .welcome-animate .welcome-button,
+    .js-enabled .welcome-animate .welcome-m-symbol {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+/* ===============================
+   ANIMAÇÃO DA SEÇÃO NOTICIAS
+================================ */
+
+
+.js-enabled .noticias-animation .noticias-heading,
+.js-enabled .noticias-animation .noticia-card,
+.js-enabled .noticias-animation .noticia-button {
+    opacity: 0;
+}
+
+.js-enabled .noticias-animation .noticias-heading {
+    transform: translateY(35px);
+}
+
+.js-enabled .noticias-animation .noticia-card {
+    transform: translateY(45px);
+}
+
+.js-enabled .noticias-animation .noticia-button {
+    transform: translateY(25px);
+}
+
+/* Quando a seção aparece na tela */
+
+.noticias-animation.is-visible .noticias-heading {
+    animation: welcomeFadeUp 0.9s ease forwards;
+}
+
+
+.noticias-animation.is-visible .noticia-card:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.62s;
+}
+
+.noticias-animation.is-visible .noticia-card:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.noticias-animation.is-visible .noticia-card:nth-child(3) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.80s;
+}
+
+.noticias-animation.is-visible .noticia-button {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+/* Keyframes */
+
+@keyframes noticiaFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes noticiaFadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-55px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes noticiaSymbolUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .noticias-animation .noticias-heading,
+    .js-enabled .noticias-animation .noticia-card,
+    .js-enabled .noticias-animation .noticia-button {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+
+/* ===============================
+   ANIMAÇÃO DA SEÇÃO NOTICIAS
+================================ */
+
+.js-enabled .juventude-animation .juventude-heading,
+.js-enabled .juventude-animation .juventude-card,
+.js-enabled .juventude-animation .juventude-link {
+    opacity: 0;
+}
+
+.js-enabled .juventude-animation .juventude-heading {
+    transform: translateY(35px);
+}
+
+.js-enabled .juventude-animation .juventude-card {
+    transform: translateY(45px);
+}
+
+.js-enabled .juventude-animation .juventude-button {
+    transform: translateY(25px);
+}
+
+/* Quando a seção aparece na tela */
+
+.juventude-animation.is-visible .juventude-heading {
+    animation: welcomeFadeUp 0.9s ease forwards;
+}
+
+
+.juventude-animation.is-visible .juventude-card:nth-child(1) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.62s;
+}
+
+.juventude-animation.is-visible .juventude-card:nth-child(2) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.75s;
+}
+
+.juventude-animation.is-visible .juventude-card:nth-child(3) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.80s;
+}
+
+.juventude-animation.is-visible .juventude-card:nth-child(4) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.80s;
+}
+
+.juventude-animation.is-visible .juventude-card:nth-child(5) {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.80s;
+}
+
+.juventude-animation.is-visible .juventude-link {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.9s;
+}
+
+/* Keyframes */
+
+@keyframes juventudeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes juventudeFadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-55px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes juventudeSymbolUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .juventude-animation .juventude-heading,
+    .js-enabled .juventude-animation .juventude-card,
+    .js-enabled .juventude-animation .juventude-button {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+/* ===============================
+   ANIMAÇÃO DA RODAPE
+================================ */
+.js-enabled .rodape-animation .rodape-brand,
+.js-enabled .rodape-animation .rodape-link,
+.js-enabled .roodape-animation .rodape-contact,
+.js-enabled .roodape-animation .rodape-bottom{
+    opacity: 0;
+}
+
+/* Quando a seção aparece na tela */
+
+
+.rodape-animation.is-visible .rodape-brand {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.15s;
+}
+
+.rodape-animation.is-visible .rodape-link{
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.32s;
+}
+
+.rodape-animation.is-visible .rodape-contact {
+    animation: welcomeFadeUp 0.8s ease 0.25s forwards;
+}
+
+.rodape-animation.is-visible .rodape-bottom {
+    animation: welcomeFadeUp 0.8s ease forwards;
+    animation-delay: 0.66s;
+}
+
+/* Keyframes */
+
+@keyframes rodapeFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .js-enabled .rodape-animation .rodape-brand,
+    .js-enabled .rodape-animation .rodape-link,
+    .js-enabled .rodape-animation .rodape-contact,
+    .js-enabled .rodape-animation .rodape-bottom {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}

@@ -1328,5 +1328,24 @@
     font-size: 16px;
     line-height: 1.55;
 }
+/* ===============================
+   ANIMAÇÃO DA TROCA DE MISSÃO
+================================ */
 
+.programacao-dias{
+    transition:opacity 0.25s ease, transform 0.25s ease;
+}
 
+.programacao-dias.is-changing{
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+.programacao-agenda-ilustracao {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.programacao-agenda-ilustracao.is-changing{
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+}
