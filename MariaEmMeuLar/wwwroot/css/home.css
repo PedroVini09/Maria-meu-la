@@ -783,7 +783,7 @@
     position: relative;
     min-height: 100vh;
 
-    padding: 120px 7% 90px;
+    padding: 120px 3% 90px;
 
     background-color: #f7ecd9;
     background-image: url("../img/fundo/fundo_da_juventude.png");
@@ -798,7 +798,8 @@
     position: relative;
     z-index: 2;
 
-    max-width: 1500px;
+    max-width: 1750px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1049,7 +1050,7 @@
     width: 250px;
     max-width: 22vw;
 
-    opacity: 0.75;
+    opacity: 0.95;
     z-index: 1;
 
     pointer-events: none;

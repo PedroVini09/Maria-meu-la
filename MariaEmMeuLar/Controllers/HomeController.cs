@@ -14,7 +14,11 @@ public class HomeController : Controller
     public IActionResult Programacao()
     {
         return View();
-}
+    }
+    public IActionResult Galeria()
+    {
+        return View();
+    }
     public IActionResult Privacy()
     {
         return View();
