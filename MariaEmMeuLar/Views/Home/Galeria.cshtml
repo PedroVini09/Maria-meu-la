@@ -1,9 +1,188 @@
 ﻿@{
-    ViewData["Title"] = "Programação";
+    ViewData["Title"] = "Galeria";
 }
 
-<section class="galeria-section galeria-animation">
+<section class="galeria-section galeria-animation" id="galeria">
     <div class="galeria-container">
+        <div class="galeria-heading">
+            <span class="galeria-dourado">Galeria</span>
+            <h1>Momentos que<br/>ficam no coração</h1>
+            
+            <p>
+                Confira alguns registros das nossas missões,encontros,<br/>
+                orações e momentos vividos em comunidades.
+            </p>
+            
+            <div class="galeria-divider">
+                <span></span>
+                <i class="galeria-symbol">✝</i>
+                <span></span>
+            </div>
+            
+            <img src="@Url.Content("~/img/ilustração-igreja.png")"
+                 alt="Ilustração de maria"
+                 class="galeria-agenda-ilustracao"
+                 id="galeriaIlustracao"/>
+        </div>
         
+        <div class="galeria-filtro">
+            <button class="galeria-filtro-active" type="button">
+                <i class="fa-solid fa-grip"></i>
+                Todos
+            </button>
+            
+            <button class="galeria-filtro-active" type="button">
+                <i class="fa-solid fa-hands-praying"></i>
+                Maria em Meu Lar
+            </button>
+            
+            <button class="galeria-filtro-active" type="button">
+                <i class="fa-solid fa-people-group"></i>
+                Semana de Juventude
+            </button>
+            
+            <button class="galeria-filtro-active" type="button">
+                <i class="fa-solid fa-cross"></i>
+                Retiro Quaresmal
+            </button>
+            <button class="galeria-filtro-active" type="button">
+                <i class="fa-solid fa-star"></i>
+                Outros Eventos
+            </button>
+        </div>
+        
+        <div class="galeria-album">
+            <article class="galeria-album-card">
+                <img src="@Url.Content("img/Album do Maria em Meu Lar.jpeg")" alt="maria meu lar">
+                
+                <div class="galeria-album-overlock">
+                    <span class="galeria-qtd">
+                        <i class="fa-solid fa-camera"></i>
+                        26
+                    </span>
+                    
+                    <div class="galeria-album-info">
+                        <h3>Maria em Meu Lar</h3>
+                        
+                        <p>
+                            <i class="fa-solid fa-calender-days"></i>
+                            Maio de 2026
+                        </p>
+                    </div>
+                    
+                    <button type="button" class="galeria-album-btn" aria-label="abrir album Maria em meu lar">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </article>
+            
+            <article class="galeria-album-card">
+                <img src="@Url.Content("img/album_smj.jpeg")" alt="Semana da juventude">
+
+                <div class="galeria-album-overlock">
+                    <span class="galeria-qtd">
+                        <i class="fa-solid fa-camera"></i>
+                        24
+                    </span>
+
+                    <div class="galeria-album-info">
+                        <h3>Semana da Juventude</h3>
+
+                        <p>
+                            <i class="fa-solid fa-calender-days"></i>
+                            Agosto de 2026
+                        </p>
+                    </div>
+
+                    <button type="button" class="galeria-album-btn" aria-label="Abrir o album da semanda">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </article>
+            
+            <article class="galeria-album-card">
+                <img src="@Url.Content("img/album_do_retiro.png")" alt="Retiro quaresmal">
+                
+                <div class="galeria-album-overlock">
+                    <span class="galeria-qtd">
+                        <i class="fa-solid fa-camera"></i>
+                        20
+                    </span>
+                    
+                    <div class="galeria-album-info">
+                        <h3>Retiro Quaresmal</h3>
+                        
+                        <p>
+                            <i class="fa-solid fa-calender-days"></i>
+                            Março de 2026
+                        </p>
+                    </div>
+                    
+                    <button type="button" class="galeria-album-btn" aria-label="Abrir album do retiro">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </article>
+            
+            <article class="galeria-album-card">
+                <img src="@Url.Content("img/Album-Outros_eventos.jpeg")" alt="Outros Eventos">
+                
+                <div class="galeria-album-overlock">
+                    <span class="galeria-qtd">
+                        <i class="fa-solid fa-camera"></i>
+                        20
+                    </span>
+                    
+                    <div class="galeria-album-info">
+                        <h3>Outros Eventos</h3>
+                        
+                        <p>
+                            <i class="fa-solid fa-calender-days"></i>
+                            Diversos momentos
+                        </p>
+                    </div>
+                    
+                    <button type="button" class="galeria-album-btn" aria-label="Abrir album do retiro">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </article>
+        </div>
+        
+        <div class="galeria-fotos">
+            
+            <article class="galeria-foto-card">
+                <img src="@Url.Content("img/imagem_mml.jpeg")" alt="Maria em meu lar">
+            </article>
+            
+            <article class="galeria-foto-card">
+                <img src="@Url.Content("img/imagme_mml(01).jpeg")" alt="Maria em meu lar">
+            </article>
+            <article class="galeria-foto-card">
+                <img src="@Url.Content("img/imagem_semana.jpeg")" alt="Maria em meu lar">
+            </article>
+            <article class="galeria-foto-card">
+                <img src="@Url.Content("img/imagem_virgilia.CR2")" alt="Maria em meu lar">
+            </article>
+            <article class="galeria-foto-card">
+                <img src="@Url.Content("img/imagem_semana.jpeg")" alt="Maria em meu lar">
+            </article>
+        </div>
+        
+        <div class="galeria-mensagem">
+            <div class="galeria-mensagem-icon">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+            
+            <p>
+                Cada encontro, cada oração, cada sorriso...<br />
+                Tudo isso é parte da nossa missão.
+            </p>
+            
+            <blockquote>
+                “Eis aqui a serva do Senhor; faça-se em mim segundo a tua palavra.”
+                <cite>Lc 1,38</cite>
+            </blockquote>
+        </div>
     </div>
 </section>

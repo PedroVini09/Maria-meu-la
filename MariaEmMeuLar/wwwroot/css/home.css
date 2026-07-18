@@ -777,7 +777,7 @@
 
 /* ===============================
    PÁGINA PROGRAMAÇÃO
-================================ */
+================================ */ 
 
 .programacao-section {
     position: relative;
@@ -1050,7 +1050,7 @@
     width: 250px;
     max-width: 22vw;
 
-    opacity: 0.95;
+    opacity: 1.00;
     z-index: 1;
 
     pointer-events: none;
