@@ -277,6 +277,33 @@ const programacao ={
                         local:"Igreja Matriz"
                     }
                 ]
+            },
+            {
+                dia:"Sabado",
+                data:"09/05",
+                eventos: [
+                    {
+                        hora:"20:00",
+                        titulo:"Ultima visita as famílias",
+                        local:"Lares das famílias"
+                    },
+                    {
+                        hora:"21:30",
+                        titulo: "Encerramento com bênção",
+                        local:"Igreja Matriz"
+                    }
+                ]
+            },
+            {
+                dia:"Domingo",
+                data:"10/05",
+                eventos: [
+                    {
+                        hora:"21:30",
+                        titulo:"Encerramento com bênção",
+                        local:"Igreja Matriz"
+                    }
+                ]
             }
         ]
     },
@@ -307,7 +334,7 @@ const programacao ={
             },
             {
                 dia:"Terça-feira",
-                data:"11/05",
+                data:"11/08",
                 eventos: [
                     {
                         hora:"19:00",
@@ -323,7 +350,7 @@ const programacao ={
             },
             {
                 dia:"Quarta-feira",
-                data:"12/05",
+                data:"12/08",
                 eventos: [
                     {
                         hora:"19:30",
@@ -345,7 +372,7 @@ const programacao ={
         dias:[
             {
                 dia:"Sábado",
-                data:"14/05",
+                data:"14/09",
                 eventos: [
                     {
                         hora:"08:00",
