@@ -561,6 +561,177 @@ if (programacaoCards.length > 0){
 
 
 // ===============================
-// JS DA PAGINA GALERIA
+// JS DA PAGINA GALERIA- FILTRO
 // ===============================
 
+
+const galeriaFiltros = document.querySelectorAll(".galeria-filtro");
+const galeriaItens = document.querySelectorAll(".galeria-album-card,  .galeria-foto-card");
+
+if(galeriaFiltros.length > 0 && galeriaItens.length > 0){
+    galeriaFiltros.forEach((filtro) => {
+        filtro.addEventListener("click",()=>{
+            const categoriaSelecionada = filtro.dataset.filtro;
+            
+            galeriaFiltros.forEach((botao) => {
+                botao.classList.remove("active");
+            });
+            
+            filtro.classList.add("active");
+            
+            galeriaItens.forEach((item) => {
+                const categoriaDoItem = item.dataset.categoria;
+                
+                if(categoriaSelecionada === "todos" || categoriaSelecionada === categoriaDoItem){
+                    item.classList.remove("is-hidden");
+                }else{
+                    item.classList.add("is-hidden");
+                }
+            });
+        });
+    });
+}
+
+// ===============================
+// GALERIA - TELA DE DETALHE DO ÁLBUM
+// ===============================
+
+const albumCards = document.querySelectorAll(".galeria-album-card");
+
+const galeriaAlbumDetalhe = document.getElementById("galeriaAlbumDetalhe");
+const btnGaleriaVoltar = document.getElementById("btnGaleriaVoltar");
+
+const albumCategoria = document.getElementById("albumCategoria");
+const albumTitulo = document.getElementById("albumTitulo");
+const albumDescricao = document.getElementById("albumDescricao");
+const albumFotos = document.getElementById("albumFotos");
+
+const btnImprimirAlbum = document.getElementById("btnImprimirAlbum");
+
+const albunsGaleria = {
+    maria: {
+        categoria : "Missão",
+        titulo:"Maria em Meu Lar",
+        descricao: "Registros das visitas da imagem de Maria aos Lares das famílias da comunidade.",
+        fotos: [
+            {
+                src:"/img/imagem_mml.jpeg",
+                titulo:"Visita das Famílias",
+                descricao: "Registros das Familias visitada"
+            },
+            {
+            src:"/img/imagme_mml(01).jpeg",
+            titulo:"Momento de Oração",
+            descricao: "Momento de Oração do grupo na casa da Família"    
+            },
+        ]
+    },
+    semana:{
+        categoria : "Missão",
+        titulo:"Semana da Juventude",
+        descricao: "Momentos de encontro, oração, formação e convivência com os jovens da comunidade.",
+        fotos: [
+            {
+                src:"/img/imagem_semana.jpeg",
+                titulo:"Celebração da juventude",
+                descricao: "Registro especial da Semana da Juventude."
+            },
+            {
+                src:"/img/imagem_semana.png",
+                titulo:"Encontro da juventude",
+                descricao: "Jovens reunidos em um momento de partilha e missão."
+            },
+        ]
+    },
+    retiro:{
+        categoria : "Missão",
+        titulo:"Retiro Quaresmal",
+        descricao: "Registros de oração, silêncio, reflexão e espiritualidade durante o retiro.",
+        fotos: [
+            {
+                src:"/img/imagem-retiro.jpeg",
+                titulo:"Momento de espiritualidade",
+                descricao: "Registro de oração e reflexão durante o Retiro Quaresmal."
+            },
+            {
+                src:"/img/iamgem_retiro.jpeg",
+                titulo:"Encontro da juventude com Cristo",
+                descricao: "Jovens reunidos em um momento com Cristo.",
+            },
+        ]
+    },
+    outros:{
+        categoria : "Eventos",
+        titulo:"Virgilia,Terço e outros eventos",
+        descricao: "Diversos momentos vividos pela comunidade e pela pastoral.",
+        fotos: [
+            {
+                src:"/img/imagem_virgilia.jpeg",
+                titulo:"Registro da comunidade",
+                descricao: "Momento especial vivido em comunidade."
+            },
+        ]
+    }
+};
+
+function criarFotoDoAlbum(foto) {
+    return `
+        <article class="galeria-album-foto">
+            <img src="${foto.src}" alt="${foto.titulo}">
+
+            <div class="galeria-album-foto-info">
+                <h3>${foto.titulo}</h3>
+                <p>${foto.descricao}</p>
+            </div>
+        </article>
+    `;
+}
+
+
+
+function abrirAlbum(nomeAlbum) {
+    const album = albunsGaleria[nomeAlbum];
+    
+    if(!album || !galeriaAlbumDetalhe) {
+        return;
+    }
+    
+    albumCategoria.textContent = album.categoria;
+    albumTitulo.textContent = album.titulo;
+    albumDescricao.textContent = album.descricao;
+    
+    albumFotos.innerHTML = album.fotos.map(criarFotoDoAlbum).join("");
+    
+    galeriaAlbumDetalhe.classList.remove("is-hidden");
+    
+    galeriaAlbumDetalhe.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+if(albumCards.length > 0) {
+    albumCards.forEach(card => {
+        card.addEventListener("click", () => {
+            const nomeAlbum = card.dataset.album;
+            abrirAlbum(nomeAlbum);
+        });
+    });
+}
+
+if(btnGaleriaVoltar) {
+    btnGaleriaVoltar.addEventListener("click", () => {
+        galeriaAlbumDetalhe.classList.add("is-hidden"); 
+        
+        document.getElementById("galeria").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+}
+
+if(btnImprimirAlbum) {
+    btnImprimirAlbum.addEventListener("click", () => {
+        window.print();
+    });
+}

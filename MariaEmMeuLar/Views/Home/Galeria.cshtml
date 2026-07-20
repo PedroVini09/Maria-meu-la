@@ -48,7 +48,7 @@
         </div>
         
         <div class="galeria-album">
-            <article class="galeria-album-card">
+            <article class="galeria-album-card" data-categoria="maria" data-album="maria">
                 <img src="@Url.Content("~/img/Album do Maria em Meu Lar.jpeg")" alt="maria meu lar">
                 
                 <div class="galeria-album-overlay">
@@ -72,7 +72,7 @@
                 </div>
             </article>
             
-            <article class="galeria-album-card">
+            <article class="galeria-album-card" data-categoria="semana" data-album="semana">
                 <img src="@Url.Content("~/img/album_smj.jpeg")" alt="Semana da juventude">
 
                 <div class="galeria-album-overlay">
@@ -96,7 +96,7 @@
                 </div>
             </article>
             
-            <article class="galeria-album-card">
+            <article class="galeria-album-card" data-categoria="retiro" data-album="retiro">
                 <img src="@Url.Content("~/img/album_do_retiro.png")" alt="Retiro quaresmal">
                 
                 <div class="galeria-album-overlay">
@@ -120,7 +120,7 @@
                 </div>
             </article>
             
-            <article class="galeria-album-card">
+            <article class="galeria-album-card" data-categoria="outros" data-album="outros">
                 <img src="@Url.Content("~/img/Album-Outros_eventos.jpeg")" alt="Outros Eventos">
                 
                 <div class="galeria-album-overlay">
@@ -147,21 +147,27 @@
         
         <div class="galeria-fotos">
             
-            <article class="galeria-foto-card">
+            <article class="galeria-foto-card" data-categoria="maria">
                 <img src="@Url.Content("~/img/imagem_mml.jpeg")" alt="Maria em meu lar">
             </article>
             
-            <article class="galeria-foto-card">
+            <article class="galeria-foto-card" data-categoria="maria">
                 <img src="@Url.Content("~/img/imagme_mml(01).jpeg")" alt="Maria em meu lar">
             </article>
-            <article class="galeria-foto-card">
-                <img src="@Url.Content("~/img/imagem_semana.jpeg")" alt="Maria em meu lar">
+            <article class="galeria-foto-card" data-categoria="semana">
+                <img src="@Url.Content("~/img/imagem_semana.jpeg")" alt="semana da juventude">
             </article>
-            <article class="galeria-foto-card">
-                <img src="@Url.Content("~/img/imagem_virgilia.jpeg")" alt="Maria em meu lar">
+            <article class="galeria-foto-card" data-categoria="outros">
+                <img src="@Url.Content("~/img/imagem_virgilia.jpeg")" alt="outros eventos">
             </article>
-            <article class="galeria-foto-card">
-                <img src="@Url.Content("~/img/imagem_semana.jpeg")" alt="Maria em meu lar">
+            <article class="galeria-foto-card" data-categoria="retiro">
+                <img src="@Url.Content("~/img/iamgem_retiro.jpeg")" alt="retiro quaresmal">
+            </article>
+            <article class="galeria-foto-card" data-categoria="semana">
+                <img src="@Url.Content("~/img/imagem_semana.png")" alt="semana da juventude">
+            </article>
+            <article class="galeria-foto-card" data-categoria="retiro">
+                <img src="@Url.Content("~/img/imagem-retiro.jpeg")" alt="retiro quaresmal">
             </article>
         </div>
         
@@ -180,5 +186,33 @@
                 <cite>Lc 1,38</cite>
             </blockquote>
         </div>
+        
+        <section class="galeria-album-detalhe is-hidden" id="galeriaAlbumDetalhe">
+            <button type="button" class="galeria-voltar" id="btn_galeriaVoltar"> 
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar para galeria
+            </button>
+            
+            <div class="galeria-album-detalhe-topo">
+                <span class="galeria-detalhe-categoria" id="albumCategoria">Álbum</span>
+            
+                <h2 id="albumTitulo">Maria em Meu Lar</h2>
+            
+                <p id="albumDescricao">
+                    Registros especiais da missão Maria em Meu Lar
+                </p>
+            
+                <div class="galeria-album-detalhe-acoes">
+                    <button type="button" id="btnImprimirAlbum">
+                        <i class="fa-solid fa-print"></i>
+                        Imprimir / Salvar PDF
+                    </button>
+                </div>
+            </div>
+            
+            <div class="galeria-album-grade" id="albumFotos">
+                <!--- Fotos do Album entra via JS -->
+            </div>
+        </section>
     </div>
 </section>
