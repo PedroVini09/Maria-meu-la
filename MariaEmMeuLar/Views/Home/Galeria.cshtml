@@ -9,8 +9,8 @@
             <h1>Momentos que<br/>ficam no coração</h1>
             
             <p>
-                Confira alguns registros das nossas missões,encontros,<br/>
-                orações e momentos vividos em comunidades.
+                Confira alguns registros das nossas missões, encontros,<br/>
+                orações e momentos vividos em comunidade.
             </p>
             
             <div class="galeria-divider">
@@ -19,33 +19,29 @@
                 <span></span>
             </div>
             
-            <img src="@Url.Content("~/img/ilustração-igreja.png")"
-                 alt="Ilustração de maria"
-                 class="galeria-agenda-ilustracao"
-                 id="galeriaIlustracao"/>
         </div>
         
-        <div class="galeria-filtro">
-            <button class="galeria-filtro-active" type="button">
+        <div class="galeria-filtros">
+            <button class="galeria-filtro active" type="button" data-filtro="todos">
                 <i class="fa-solid fa-grip"></i>
                 Todos
             </button>
             
-            <button class="galeria-filtro-active" type="button">
+            <button class="galeria-filtro" type="button" data-filtro="maria">
                 <i class="fa-solid fa-hands-praying"></i>
                 Maria em Meu Lar
             </button>
             
-            <button class="galeria-filtro-active" type="button">
+            <button class="galeria-filtro" type="button" data-filtro="semana">
                 <i class="fa-solid fa-people-group"></i>
                 Semana de Juventude
             </button>
             
-            <button class="galeria-filtro-active" type="button">
+            <button class="galeria-filtro " type="button" data-filtro="retiro">
                 <i class="fa-solid fa-cross"></i>
                 Retiro Quaresmal
             </button>
-            <button class="galeria-filtro-active" type="button">
+            <button class="galeria-filtro" type="button" data-filtro="outros">
                 <i class="fa-solid fa-star"></i>
                 Outros Eventos
             </button>
@@ -53,9 +49,9 @@
         
         <div class="galeria-album">
             <article class="galeria-album-card">
-                <img src="@Url.Content("img/Album do Maria em Meu Lar.jpeg")" alt="maria meu lar">
+                <img src="@Url.Content("~/img/Album do Maria em Meu Lar.jpeg")" alt="maria meu lar">
                 
-                <div class="galeria-album-overlock">
+                <div class="galeria-album-overlay">
                     <span class="galeria-qtd">
                         <i class="fa-solid fa-camera"></i>
                         26
@@ -65,7 +61,7 @@
                         <h3>Maria em Meu Lar</h3>
                         
                         <p>
-                            <i class="fa-solid fa-calender-days"></i>
+                            <i class="fa-solid fa-calendar-days"></i>
                             Maio de 2026
                         </p>
                     </div>
@@ -77,9 +73,9 @@
             </article>
             
             <article class="galeria-album-card">
-                <img src="@Url.Content("img/album_smj.jpeg")" alt="Semana da juventude">
+                <img src="@Url.Content("~/img/album_smj.jpeg")" alt="Semana da juventude">
 
-                <div class="galeria-album-overlock">
+                <div class="galeria-album-overlay">
                     <span class="galeria-qtd">
                         <i class="fa-solid fa-camera"></i>
                         24
@@ -89,7 +85,7 @@
                         <h3>Semana da Juventude</h3>
 
                         <p>
-                            <i class="fa-solid fa-calender-days"></i>
+                            <i class="fa-solid fa-calendar-days"></i>
                             Agosto de 2026
                         </p>
                     </div>
@@ -101,9 +97,9 @@
             </article>
             
             <article class="galeria-album-card">
-                <img src="@Url.Content("img/album_do_retiro.png")" alt="Retiro quaresmal">
+                <img src="@Url.Content("~/img/album_do_retiro.png")" alt="Retiro quaresmal">
                 
-                <div class="galeria-album-overlock">
+                <div class="galeria-album-overlay">
                     <span class="galeria-qtd">
                         <i class="fa-solid fa-camera"></i>
                         20
@@ -113,7 +109,7 @@
                         <h3>Retiro Quaresmal</h3>
                         
                         <p>
-                            <i class="fa-solid fa-calender-days"></i>
+                            <i class="fa-solid fa-calendar-days"></i>
                             Março de 2026
                         </p>
                     </div>
@@ -125,9 +121,9 @@
             </article>
             
             <article class="galeria-album-card">
-                <img src="@Url.Content("img/Album-Outros_eventos.jpeg")" alt="Outros Eventos">
+                <img src="@Url.Content("~/img/Album-Outros_eventos.jpeg")" alt="Outros Eventos">
                 
-                <div class="galeria-album-overlock">
+                <div class="galeria-album-overlay">
                     <span class="galeria-qtd">
                         <i class="fa-solid fa-camera"></i>
                         20
@@ -137,7 +133,7 @@
                         <h3>Outros Eventos</h3>
                         
                         <p>
-                            <i class="fa-solid fa-calender-days"></i>
+                            <i class="fa-solid fa-calendar-days"></i>
                             Diversos momentos
                         </p>
                     </div>
@@ -152,20 +148,20 @@
         <div class="galeria-fotos">
             
             <article class="galeria-foto-card">
-                <img src="@Url.Content("img/imagem_mml.jpeg")" alt="Maria em meu lar">
+                <img src="@Url.Content("~/img/imagem_mml.jpeg")" alt="Maria em meu lar">
             </article>
             
             <article class="galeria-foto-card">
-                <img src="@Url.Content("img/imagme_mml(01).jpeg")" alt="Maria em meu lar">
+                <img src="@Url.Content("~/img/imagme_mml(01).jpeg")" alt="Maria em meu lar">
             </article>
             <article class="galeria-foto-card">
-                <img src="@Url.Content("img/imagem_semana.jpeg")" alt="Maria em meu lar">
+                <img src="@Url.Content("~/img/imagem_semana.jpeg")" alt="Maria em meu lar">
             </article>
             <article class="galeria-foto-card">
-                <img src="@Url.Content("img/imagem_virgilia.CR2")" alt="Maria em meu lar">
+                <img src="@Url.Content("~/img/imagem_virgilia.jpeg")" alt="Maria em meu lar">
             </article>
             <article class="galeria-foto-card">
-                <img src="@Url.Content("img/imagem_semana.jpeg")" alt="Maria em meu lar">
+                <img src="@Url.Content("~/img/imagem_semana.jpeg")" alt="Maria em meu lar">
             </article>
         </div>
         
