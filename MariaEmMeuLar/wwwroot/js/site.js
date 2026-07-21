@@ -593,145 +593,204 @@ if(galeriaFiltros.length > 0 && galeriaItens.length > 0){
 }
 
 // ===============================
-// GALERIA - TELA DE DETALHE DO ÁLBUM
+// GALERIA - MODAL DO ÁLBUM
 // ===============================
 
-const albumCards = document.querySelectorAll(".galeria-album-card");
+document.addEventListener("DOMContentLoaded", () => {
+    const albumBotoes = document.querySelectorAll(".galeria-album-btn[data-album]");
 
-const galeriaAlbumDetalhe = document.getElementById("galeriaAlbumDetalhe");
-const btnGaleriaVoltar = document.getElementById("btnGaleriaVoltar");
+    const galeriaAlbumModal = document.getElementById("galeriaAlbumModal");
+    const btnFecharAlbum = document.getElementById("btnFecharAlbum");
 
-const albumCategoria = document.getElementById("albumCategoria");
-const albumTitulo = document.getElementById("albumTitulo");
-const albumDescricao = document.getElementById("albumDescricao");
-const albumFotos = document.getElementById("albumFotos");
+    const albumModalCategoria = document.getElementById("albumModalCategoria");
+    const albumModalTitulo = document.getElementById("albumModalTitulo");
+    const albumModalDescricao = document.getElementById("albumModalDescricao");
+    const albumModalConteudo = document.getElementById("albumModalConteudo");
 
-const btnImprimirAlbum = document.getElementById("btnImprimirAlbum");
+    const albunsGaleria = {
+        maria: {
+            categoria: "Missão",
+            titulo: "Maria em Meu Lar",
+            descricao: "Registros das visitas da imagem de Maria aos lares das famílias da comunidade.",
+            secoes: [
+                {
+                    titulo: "Visitas das famílias",
+                    icone: "fa-people-roof",
+                    fotos: [
+                        {
+                            src: "/img/imagem_mml.jpeg",
+                            alt: "Visita da imagem de Maria em uma família"
+                        },
+                        {
+                            src: "/img/Album do Maria em Meu Lar.jpeg",
+                            alt: "Família recebendo a imagem de Maria"
+                        }
+                    ]
+                },
+                {
+                    titulo: "Momentos de oração",
+                    icone: "fa-hands-praying",
+                    fotos: [
+                        {
+                            src: "/img/imagme_mml(01).jpeg",
+                            alt: "Momento de oração com o terço"
+                        }
+                    ]
+                }
+            ]
+        },
 
-const albunsGaleria = {
-    maria: {
-        categoria : "Missão",
-        titulo:"Maria em Meu Lar",
-        descricao: "Registros das visitas da imagem de Maria aos Lares das famílias da comunidade.",
-        fotos: [
-            {
-                src:"/img/imagem_mml.jpeg",
-                titulo:"Visita das Famílias",
-                descricao: "Registros das Familias visitada"
-            },
-            {
-            src:"/img/imagme_mml(01).jpeg",
-            titulo:"Momento de Oração",
-            descricao: "Momento de Oração do grupo na casa da Família"    
-            },
-        ]
-    },
-    semana:{
-        categoria : "Missão",
-        titulo:"Semana da Juventude",
-        descricao: "Momentos de encontro, oração, formação e convivência com os jovens da comunidade.",
-        fotos: [
-            {
-                src:"/img/imagem_semana.jpeg",
-                titulo:"Celebração da juventude",
-                descricao: "Registro especial da Semana da Juventude."
-            },
-            {
-                src:"/img/imagem_semana.png",
-                titulo:"Encontro da juventude",
-                descricao: "Jovens reunidos em um momento de partilha e missão."
-            },
-        ]
-    },
-    retiro:{
-        categoria : "Missão",
-        titulo:"Retiro Quaresmal",
-        descricao: "Registros de oração, silêncio, reflexão e espiritualidade durante o retiro.",
-        fotos: [
-            {
-                src:"/img/imagem-retiro.jpeg",
-                titulo:"Momento de espiritualidade",
-                descricao: "Registro de oração e reflexão durante o Retiro Quaresmal."
-            },
-            {
-                src:"/img/iamgem_retiro.jpeg",
-                titulo:"Encontro da juventude com Cristo",
-                descricao: "Jovens reunidos em um momento com Cristo.",
-            },
-        ]
-    },
-    outros:{
-        categoria : "Eventos",
-        titulo:"Virgilia,Terço e outros eventos",
-        descricao: "Diversos momentos vividos pela comunidade e pela pastoral.",
-        fotos: [
-            {
-                src:"/img/imagem_virgilia.jpeg",
-                titulo:"Registro da comunidade",
-                descricao: "Momento especial vivido em comunidade."
-            },
-        ]
+        semana: {
+            categoria: "Juventude",
+            titulo: "Semana da Juventude",
+            descricao: "Momentos de encontro, oração, formação e convivência com os jovens da comunidade.",
+            secoes: [
+                {
+                    titulo: "Encontros da juventude",
+                    icone: "fa-people-group",
+                    fotos: [
+                        {
+                            src: "/img/imagem_semana.jpeg",
+                            alt: "Encontro da juventude"
+                        },
+                        {
+                            src: "/img/imagem_semana.png",
+                            alt: "Celebração da juventude"
+                        },
+                        {
+                            src: "/img/album_smj.jpeg",
+                            alt: "Registro da Semana da Juventude"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        retiro: {
+            categoria: "Retiro",
+            titulo: "Retiro Quaresmal",
+            descricao: "Registros de oração, silêncio, reflexão e espiritualidade durante o retiro.",
+            secoes: [
+                {
+                    titulo: "Momentos de espiritualidade",
+                    icone: "fa-cross",
+                    fotos: [
+                        {
+                            src: "/img/imagem-retiro.jpeg",
+                            alt: "Momento de espiritualidade no retiro"
+                        },
+                        {
+                            src: "/img/imagem_retiro.jpeg",
+                            alt: "Jovens reunidos em oração"
+                        },
+                        {
+                            src: "/img/album_do_retiro.png",
+                            alt: "Registro do Retiro Quaresmal"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        outros: {
+            categoria: "Eventos",
+            titulo: "Vigília, Terço e outros eventos",
+            descricao: "Diversos momentos vividos pela comunidade e pela pastoral.",
+            secoes: [
+                {
+                    titulo: "Registros da comunidade",
+                    icone: "fa-star",
+                    fotos: [
+                        {
+                            src: "/img/imagem_virgilia.jpeg",
+                            alt: "Registro da comunidade"
+                        },
+                        {
+                            src: "/img/Album-Outros_eventos.jpeg",
+                            alt: "Outros eventos da pastoral"
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+
+    function criarFotoModal(foto) {
+        return `
+            <article class="galeria-modal-foto">
+                <img src="${foto.src}" alt="${foto.alt}">
+
+                <a href="${foto.src}"
+                   download
+                   class="galeria-download"
+                   aria-label="Baixar imagem">
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </article>
+        `;
     }
-};
 
-function criarFotoDoAlbum(foto) {
-    return `
-        <article class="galeria-album-foto">
-            <img src="${foto.src}" alt="${foto.titulo}">
+    function criarSecaoAlbum(secao) {
+        return `
+            <section class="galeria-modal-secao">
+                <h3>
+                    <i class="fa-solid ${secao.icone}"></i>
+                    ${secao.titulo}
+                </h3>
 
-            <div class="galeria-album-foto-info">
-                <h3>${foto.titulo}</h3>
-                <p>${foto.descricao}</p>
-            </div>
-        </article>
-    `;
-}
-
-
-
-function abrirAlbum(nomeAlbum) {
-    const album = albunsGaleria[nomeAlbum];
-    
-    if(!album || !galeriaAlbumDetalhe) {
-        return;
+                <div class="galeria-modal-grid">
+                    ${secao.fotos.map(criarFotoModal).join("")}
+                </div>
+            </section>
+        `;
     }
-    
-    albumCategoria.textContent = album.categoria;
-    albumTitulo.textContent = album.titulo;
-    albumDescricao.textContent = album.descricao;
-    
-    albumFotos.innerHTML = album.fotos.map(criarFotoDoAlbum).join("");
-    
-    galeriaAlbumDetalhe.classList.remove("is-hidden");
-    
-    galeriaAlbumDetalhe.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
 
-if(albumCards.length > 0) {
-    albumCards.forEach(card => {
-        card.addEventListener("click", () => {
-            const nomeAlbum = card.dataset.album;
+    function abrirAlbum(nomeAlbum) {
+        const album = albunsGaleria[nomeAlbum];
+
+        if (!album || !galeriaAlbumModal) {
+            return;
+        }
+
+        albumModalCategoria.textContent = album.categoria;
+        albumModalTitulo.textContent = album.titulo;
+        albumModalDescricao.textContent = album.descricao;
+
+        albumModalConteudo.innerHTML = album.secoes.map(criarSecaoAlbum).join("");
+
+        galeriaAlbumModal.classList.remove("is-hidden");
+        document.body.classList.add("modal-open");
+    }
+
+    function fecharAlbum() {
+        galeriaAlbumModal.classList.add("is-hidden");
+        document.body.classList.remove("modal-open");
+    }
+
+    albumBotoes.forEach((botao) => {
+        botao.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            const nomeAlbum = botao.dataset.album;
             abrirAlbum(nomeAlbum);
         });
     });
-}
 
-if(btnGaleriaVoltar) {
-    btnGaleriaVoltar.addEventListener("click", () => {
-        galeriaAlbumDetalhe.classList.add("is-hidden"); 
-        
-        document.getElementById("galeria").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+    if (btnFecharAlbum) {
+        btnFecharAlbum.addEventListener("click", fecharAlbum);
+    }
+
+    if (galeriaAlbumModal) {
+        galeriaAlbumModal.addEventListener("click", (event) => {
+            if (event.target === galeriaAlbumModal) {
+                fecharAlbum();
+            }
         });
-    });
-}
+    }
 
-if(btnImprimirAlbum) {
-    btnImprimirAlbum.addEventListener("click", () => {
-        window.print();
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !galeriaAlbumModal.classList.contains("is-hidden")) {
+            fecharAlbum();
+        }
     });
-}
+});
