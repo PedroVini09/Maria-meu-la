@@ -1,4 +1,4 @@
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     body.menu-open {
         overflow: hidden;
     }
@@ -433,7 +433,7 @@
 
 /* RESPONSIVO - SEÇÃO BEM-VINDO */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .welcome-section {
         min-height: auto;
         padding: 80px 24px 110px;
@@ -627,7 +627,7 @@
 
 /* RESPONSIVO - SEÇÃO NOTICIAS */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .noticias-section{
         padding: 80px 20px 100px;
         background-position: center bottom;
@@ -709,7 +709,7 @@
 
 /* RESPONSIVO - SEÇÃO DA JUVENTUDE */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .juventude-section {
         min-height: auto;
         padding: 90px 24px 110px;
@@ -872,7 +872,7 @@
 /* ===============================
    RESPONSIVO - RODAPÉ
 ================================ */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .rodape-section {
         min-height: auto;
         padding: 115px 24px 0;
@@ -1113,5 +1113,747 @@
     .rodape-bottom span {
         font-size: 13px;
         line-height: 1.4;
+    }
+}
+
+/* RESPONSIVO - PAGINA PROGRAMAÇÃO*/
+
+@media (max-width: 1100px) {
+    .programacao-section {
+        padding: 100px 5% 80px;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    
+    .programacao-heading h1{
+        font-size: 68px;
+    }
+    
+    .programacao-heading p{
+        max-height: 620px;   
+        font-size: 18px;
+    }
+    
+    .programacao-agenda-ilustracao {
+        right: 3%;
+        top: 35px;
+        
+        width: 210px;
+        max-width: 24vw;
+        
+        opacity: 0.42;
+    }
+    
+    .programacao-missoes{
+        grid-template-columns: repeat(3,1fr);
+        gap: 24px;
+    }
+    
+    .programacao-missao-card{
+        min-height: 190px;
+    }
+    
+    .programacao-dias{
+        grid-template-columns: repeat(7,minmax(190px,1fr));
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .programacao-section {
+        padding: 100px 24px 70px;
+        background-size: cover;
+        background-position: center bottom;
+    }
+    
+    .programacao-heading {
+        margin-bottom: 36px;
+        padding-bottom: 130px;
+    }
+    
+    .programacao-divider span{
+        width: 64px;
+    }
+    
+    .programacao-symbol{
+        font-size: 22px;
+    }
+    
+    .programacao-horario{
+        font-size: 12px;
+        padding: 7px 18px;
+    }
+    
+    .programacao-heading h1{
+        font-size: 52px;
+        line-height: 1.05;
+    }
+    
+    .programacao-heading p{
+        max-width: 440px;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+    
+    .programacao-agenda-ilustracao {
+        right: 50%;
+        top: auto;
+        bottom: 0;
+        
+        width: 170px;
+        max-width: 54vw;
+        
+        opacity: 0.38;
+        transform: translateX(50%);
+    }
+    
+    .programacao-agenda-ilustracao.is-changing {
+        opacity: 0;
+        transform: translateX(50%) translateY(20px) scale(0.96);
+    }
+    .programacao-missoes{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+    .programacao-missao-card {
+         min-height: 178px;
+         padding: 22px 14px 18px;
+         border-radius: 22px;
+     }
+
+    .programacao-card-icon {
+        width: 68px;
+        height: 68px;
+        margin-bottom: 12px;
+    }
+
+    .programacao-missao-card h3{
+        font-size: 19px;
+    }
+    
+    .programacao-missao-card .welcome-divider span{
+        width: 34px;
+    }
+    
+    .programacao-missao-card strong{
+        font-size: 11px;
+        padding: 7px 14px;
+    }
+    
+    .programacao-agenda-card{
+        border-radius: 22px;
+    }
+    
+    .programacao-agenda-top{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+        
+        padding: 24px;
+    }
+    
+    .programacao-agenda-title{
+        align-items: center;
+    }
+    
+    .programacao-agenda-icon{
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+    }
+    
+    .programacao-agenda-title h2{
+        font-size: 32px;
+    }
+    
+    .programacao-agenda-title p{
+        font-size: 14px;
+    }
+    
+    .programacao-agenda-actions{
+        align-self: flex-end;
+    }
+    
+    .programacao-agenda-actions button{
+        width: 40px;
+        height: 40px;  
+    }
+    
+    .programacao-dias{
+        grid-template-columns: 1fr;
+        overflow-x: visible;
+    }
+    
+    .programacao-dia:last-child{
+        border-bottom: none;
+    }
+    
+    .programacao-evento{
+        grid-template-columns: 64px 1fr;
+    }
+    
+    .programacao-aviso{
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .programacao-section {
+        padding: 92px 18px 60px;
+    }
+
+    .programacao-heading {
+        margin-bottom: 32px;
+        padding-bottom: 115px;
+    }
+
+    .programacao-divider {
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .programacao-divider span {
+        width: 48px;
+    }
+
+    .programacao-heading h1 {
+        font-size: 43px;
+    }
+
+    .programacao-heading p {
+        font-size: 15.5px;
+    }
+
+    .programacao-agenda-ilustracao {
+        width: 140px;
+        max-width: 52vw;
+        opacity: 0.38;
+    }
+
+    .programacao-missoes {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .programacao-missao-card {
+        min-height: 160px;
+        padding: 22px 18px;
+    }
+
+    .programacao-card-icon {
+        width: 66px;
+        height: 66px;
+    }
+
+    .programacao-missao-card h3 {
+        font-size: 21px;
+    }
+
+    .programacao-agenda-top {
+        padding: 22px 18px;
+    }
+
+    .programacao-agenda-title {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .programacao-agenda-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .programacao-agenda-title h2 {
+        font-size: 25px;
+    }
+
+    .programacao-agenda-title p {
+        font-size: 15px;
+    }
+
+    .programacao-agenda-actions {
+        align-self: center;
+    }
+
+    .programacao-dia {
+        padding: 26px 18px;
+    }
+
+    .programacao-dia h3 {
+        font-size: 17px;
+    }
+
+    .programacao-dia > strong {
+        font-size: 17px;
+    }
+
+    .programacao-evento {
+        grid-template-columns: 58px 1fr;
+        gap: 12px;
+    }
+
+    .programacao-evento h4 {
+        font-size: 14px;
+    }
+
+    .programacao-evento p {
+        font-size: 13px;
+    }
+
+    .programacao-aviso {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        padding: 20px 18px;
+    }
+
+    .programacao-aviso i {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .programacao-aviso p {
+        font-size: 14.5px;
+    }
+}
+
+/* ===============================
+   RESPONSIVO - GALERIA
+================================ */
+
+@media (max-width: 1200px) {
+    .galeria-section {
+        padding: 115px 4% 80px;
+        background-size: cover;
+        background-position: center top;
+    }
+    
+    .galeria-container {
+        max-width: 1100px;
+    }
+    
+    .galeria-album{
+        grid-template-columns: repeat(2,1fr);
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(4,1fr);
+    }
+    
+    .galeria-modal{
+        width:min(1000px,100%);
+    }
+}
+
+@media(max-width: 900px){
+    .galeria-section {
+        padding: 105px 5% 75px;
+    }
+    
+    .galeria-heading{
+        margin-bottom: 36px;
+    }
+    
+    .galeria-heading h1 {
+        font-size: 58px;
+    }
+    
+    .galeria-heading p {
+        max-width: 620px;
+        font-size: 17px;
+    }
+    
+    .galeria-divider span{
+        width: 70px;
+    }
+    
+    .galeria-filtros{
+        gap:12px;
+        margin-bottom: 34px;
+    }
+    
+    .galeria-filtro{
+        padding: 11px 18px;
+        font-size: 14px;
+    }
+    
+    .galeria-album{
+        grid-template-columns: repeat(2,1fr);
+        gap:22px;
+    }
+    
+    .galeria-album-card{
+        min-height: 320px;
+    }
+    
+    .galeria-album-info h3 {
+        font-size: 25px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(3,1fr);
+        gap: 18px;
+    }
+    
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 2;
+    }
+    
+    .galeria-mensagem{
+        padding: 36px 34px;
+    }
+    
+    .galeria-mensagem::before,
+    .galeria-mensagem::after {
+        display: none;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 24px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:22px;
+    }
+    
+    .galeria-modal{
+        max-height:90vh;
+    }
+    
+    .galeria-modal-topo{
+        padding: 36px 32px;
+    }
+    
+    .galeria-modal-topo::after{
+        right: 36px;
+        font-size: 105px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 30px;
+    }
+    
+    .galeria-modal-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 768px){
+    .galeria-section {
+        padding: 100px 24px 70px;
+    }
+    
+    .galeria-heading h1{
+        font-size: 50px;
+        line-height: 1.05;
+    }
+    
+    .galeria-heading p{
+        font-size: 16px;
+        line-height: 1.55;
+    }
+    
+    .galeria-divider span{
+        width: 56px;
+    }
+    
+    .galeria-filtros{
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        
+        padding-bottom: 8px;
+        margin-bottom: 32px;
+    }
+    
+    .galeria-filtros::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .galeria-filtros::-webkit-scrollbar-track {
+        background: rgba(201,153,58,0.12);
+    }
+    
+    .galeria-filtros::-webkit-scrollbar-thumb {
+        background: rgba(201,153,58,0.55);
+        border-radius: 999px;
+    }
+    
+    .galeria-filtro{
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+    
+    .galeria-album{
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    
+    .galeria-album-card{
+        min-height: 310px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(2,1fr);
+        gap: 16px;
+    }
+    
+    .galeria-foto-card{
+        min-height: 190px;
+    }
+    
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 2;
+        min-height: 240px;
+    }
+    
+    .galeria-mensagem{
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+    
+    .galeria-mensagem-icon{
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 22px;
+    }
+    
+    .galeria-mensagem blockquote{
+        font-size: 15.5px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:18px;
+    }
+    
+    .galeria-modal{
+        border-radius: 24px;
+        max-height:90vh;
+    }
+    
+    .galeria-modal-fechar{
+        top: 16px;
+        right: 16px;
+        
+        width: 40px;
+        height: 40px;
+        
+        font-size: 18px;
+    }
+    
+    .galeria-modal-topo h2{
+        font-size: 38px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 28px 24px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 25px;
+    }
+    
+    .galeria-modal-secao h3 i{
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .galeria-download{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media(max-width: 560px){
+    .galeria-section {
+        padding: 92px 18px 60px;
+    }
+    
+    .galeria-heading{
+        margin-bottom: 30px;
+    }
+    
+    .galeria-heading h1 {
+        font-size: 41px;
+    }
+    
+    .galeria-heading p{
+        font-size: 15px;
+    }
+    
+    .galeria-divider span{
+        width: 42px;
+    }
+    
+    .galeria-symbol{
+        font-size: 21px;
+    }
+    
+    .galeria-filtros{
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+    
+    .galeria-filtro{
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .galeria-album-card{
+        min-height: 280px;
+        font-size: 24px;
+    }
+    
+    .galeria-album-overlay{
+        padding:20px;
+    }
+    
+    .galeria-qtd {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+    
+    .galeria-album-info p {
+        font-size: 14px;
+    }
+    
+    .galeria-album-btn{
+        width: 40px;
+        height: 40px;
+        right: 18px;
+        bottom: 20px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: 1fr;
+    }
+    
+    .galeria-foto-card,
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 1;
+        min-height: 240px;
+    }
+    
+    .galeria-mensagem{
+        padding: 28px 20px;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 20px;
+    }
+    
+    .galeria-mensagem blockquote{
+        font-size: 14.5px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:12px;
+    }
+    
+    .galeria-modal{
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 22px;
+    }
+    
+    .galeria-modal-topo{
+        padding: 34px 22px 28px;  
+    }
+    
+    .galeria-modal-topo::after{
+        right: 18px;
+        top: 34px;
+        font-size: 82px;
+    }
+    
+    .galeria-modal-topo span{
+        font-size: 11px;
+        padding: 7px 14px;
+    }
+    
+    .galeria-modal-topo p{
+        font-size: 15px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 24px 18px;
+    }
+    
+    .galeria-modal-secao{
+        margin-bottom: 34px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 22px;
+        gap: 10px;
+    }
+    
+    .galeria-modal-secao h3::after{
+        display: none;
+    }
+    
+    .galeria-modal-grid{
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .galeria-modal-foto{
+        border-radius: 18px;
+        aspect-ratio: 4 / 3;
+    }
+    
+    .galeria-download{
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media(max-width: 420px){
+    .galeria-heading h1{
+        font-size: 36px;
+    }
+    
+    .galeria-heading p br{
+        display: none;
+    }
+    
+    .galeria-album-card{
+        min-height: 255px;
+    }
+    
+    .galeria-album-info {
+        padding-right: 46px;
+    }
+    
+    .galeria-album-info h3{
+        font-size: 22px;
+    }
+    
+    .galeria-foto-card,
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        min-height: 220px;
+    }
+    
+    .galeria-modal-topo h2 {
+        font-size: 29px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 20px;
     }
 }

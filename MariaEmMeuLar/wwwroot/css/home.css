@@ -2083,3 +2083,31 @@ body.modal-open {
     font-weight: 900;
     font-style: normal;
 }
+
+
+/* ===============================
+   PAGINA DO CONTATOS
+================================ */
+
+.contatos-section {
+    position: relative;
+    min-height: 100vh;
+
+    padding: 120px 4% 90px;
+
+    background-color: #f7ecd9;
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.contatos-container {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+}
