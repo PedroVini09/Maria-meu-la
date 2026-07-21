@@ -621,10 +621,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             src: "/img/imagem_mml.jpeg",
                             alt: "Visita da imagem de Maria em uma família"
                         },
-                        {
-                            src: "/img/Album do Maria em Meu Lar.jpeg",
-                            alt: "Família recebendo a imagem de Maria"
-                        }
                     ]
                 },
                 {
@@ -657,10 +653,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             src: "/img/imagem_semana.png",
                             alt: "Celebração da juventude"
                         },
-                        {
-                            src: "/img/album_smj.jpeg",
-                            alt: "Registro da Semana da Juventude"
-                        }
                     ]
                 }
             ]
@@ -680,13 +672,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             alt: "Momento de espiritualidade no retiro"
                         },
                         {
-                            src: "/img/imagem_retiro.jpeg",
+                            src: "/img/iamgem_retiro.jpeg",
                             alt: "Jovens reunidos em oração"
                         },
-                        {
-                            src: "/img/album_do_retiro.png",
-                            alt: "Registro do Retiro Quaresmal"
-                        }
                     ]
                 }
             ]
@@ -705,10 +693,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             src: "/img/imagem_virgilia.jpeg",
                             alt: "Registro da comunidade"
                         },
-                        {
-                            src: "/img/Album-Outros_eventos.jpeg",
-                            alt: "Outros eventos da pastoral"
-                        }
                     ]
                 }
             ]
