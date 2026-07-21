@@ -1420,3 +1420,440 @@
         font-size: 14.5px;
     }
 }
+
+/* ===============================
+   RESPONSIVO - GALERIA
+================================ */
+
+@media (max-width: 1200px) {
+    .galeria-section {
+        padding: 115px 4% 80px;
+        background-size: cover;
+        background-position: center top;
+    }
+    
+    .galeria-container {
+        max-width: 1100px;
+    }
+    
+    .galeria-album{
+        grid-template-columns: repeat(2,1fr);
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(4,1fr);
+    }
+    
+    .galeria-modal{
+        width:min(1000px,100%);
+    }
+}
+
+@media(max-width: 900px){
+    .galeria-section {
+        padding: 105px 5% 75px;
+    }
+    
+    .galeria-heading{
+        margin-bottom: 36px;
+    }
+    
+    .galeria-heading h1 {
+        font-size: 58px;
+    }
+    
+    .galeria-heading p {
+        max-width: 620px;
+        font-size: 17px;
+    }
+    
+    .galeria-divider span{
+        width: 70px;
+    }
+    
+    .galeria-filtros{
+        gap:12px;
+        margin-bottom: 34px;
+    }
+    
+    .galeria-filtro{
+        padding: 11px 18px;
+        font-size: 14px;
+    }
+    
+    .galeria-album{
+        grid-template-columns: repeat(2,1fr);
+        gap:22px;
+    }
+    
+    .galeria-album-card{
+        min-height: 320px;
+    }
+    
+    .galeria-album-info h3 {
+        font-size: 25px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(3,1fr);
+        gap: 18px;
+    }
+    
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 2;
+    }
+    
+    .galeria-mensagem{
+        padding: 36px 34px;
+    }
+    
+    .galeria-mensagem::before,
+    .galeria-mensagem::after {
+        display: none;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 24px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:22px;
+    }
+    
+    .galeria-modal{
+        max-height:90vh;
+    }
+    
+    .galeria-modal-topo{
+        padding: 36px 32px;
+    }
+    
+    .galeria-modal-topo::after{
+        right: 36px;
+        font-size: 105px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 30px;
+    }
+    
+    .galeria-modal-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width: 768px){
+    .galeria-section {
+        padding: 100px 24px 70px;
+    }
+    
+    .galeria-heading h1{
+        font-size: 50px;
+        line-height: 1.05;
+    }
+    
+    .galeria-heading p{
+        font-size: 16px;
+        line-height: 1.55;
+    }
+    
+    .galeria-divider span{
+        width: 56px;
+    }
+    
+    .galeria-filtros{
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        
+        padding-bottom: 8px;
+        margin-bottom: 32px;
+    }
+    
+    .galeria-filtros::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .galeria-filtros::-webkit-scrollbar-track {
+        background: rgba(201,153,58,0.12);
+    }
+    
+    .galeria-filtros::-webkit-scrollbar-thumb {
+        background: rgba(201,153,58,0.55);
+        border-radius: 999px;
+    }
+    
+    .galeria-filtro{
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+    
+    .galeria-album{
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    
+    .galeria-album-card{
+        min-height: 310px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: repeat(2,1fr);
+        gap: 16px;
+    }
+    
+    .galeria-foto-card{
+        min-height: 190px;
+    }
+    
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 2;
+        min-height: 240px;
+    }
+    
+    .galeria-mensagem{
+        padding: 32px 24px;
+        border-radius: 24px;
+    }
+    
+    .galeria-mensagem-icon{
+        width: 52px;
+        height: 52px;
+        font-size: 22px;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 22px;
+    }
+    
+    .galeria-mensagem blockquote{
+        font-size: 15.5px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:18px;
+    }
+    
+    .galeria-modal{
+        border-radius: 24px;
+        max-height:90vh;
+    }
+    
+    .galeria-modal-fechar{
+        top: 16px;
+        right: 16px;
+        
+        width: 40px;
+        height: 40px;
+        
+        font-size: 18px;
+    }
+    
+    .galeria-modal-topo h2{
+        font-size: 38px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 28px 24px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 25px;
+    }
+    
+    .galeria-modal-secao h3 i{
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .galeria-download{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media(max-width: 560px){
+    .galeria-section {
+        padding: 92px 18px 60px;
+    }
+    
+    .galeria-heading{
+        margin-bottom: 30px;
+    }
+    
+    .galeria-heading h1 {
+        font-size: 41px;
+    }
+    
+    .galeria-heading p{
+        font-size: 15px;
+    }
+    
+    .galeria-divider span{
+        width: 42px;
+    }
+    
+    .galeria-symbol{
+        font-size: 21px;
+    }
+    
+    .galeria-filtros{
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+    
+    .galeria-filtro{
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .galeria-album-card{
+        min-height: 280px;
+        font-size: 24px;
+    }
+    
+    .galeria-album-overlay{
+        padding:20px;
+    }
+    
+    .galeria-qtd {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+    
+    .galeria-album-info p {
+        font-size: 14px;
+    }
+    
+    .galeria-album-btn{
+        width: 40px;
+        height: 40px;
+        right: 18px;
+        bottom: 20px;
+    }
+    
+    .galeria-fotos{
+        grid-template-columns: 1fr;
+    }
+    
+    .galeria-foto-card,
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        grid-column: span 1;
+        min-height: 240px;
+    }
+    
+    .galeria-mensagem{
+        padding: 28px 20px;
+    }
+    
+    .galeria-mensagem p{
+        font-size: 20px;
+    }
+    
+    .galeria-mensagem blockquote{
+        font-size: 14.5px;
+    }
+    
+    .galeria-modal-overlay {
+        padding:12px;
+    }
+    
+    .galeria-modal{
+        width: 100%;
+        max-height: 92vh;
+        border-radius: 22px;
+    }
+    
+    .galeria-modal-topo{
+        padding: 34px 22px 28px;  
+    }
+    
+    .galeria-modal-topo::after{
+        right: 18px;
+        top: 34px;
+        font-size: 82px;
+    }
+    
+    .galeria-modal-topo span{
+        font-size: 11px;
+        padding: 7px 14px;
+    }
+    
+    .galeria-modal-topo p{
+        font-size: 15px;
+    }
+    
+    .galeria-modal-conteudo{
+        padding: 24px 18px;
+    }
+    
+    .galeria-modal-secao{
+        margin-bottom: 34px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 22px;
+        gap: 10px;
+    }
+    
+    .galeria-modal-secao h3::after{
+        display: none;
+    }
+    
+    .galeria-modal-grid{
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .galeria-modal-foto{
+        border-radius: 18px;
+        aspect-ratio: 4 / 3;
+    }
+    
+    .galeria-download{
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media(max-width: 420px){
+    .galeria-heading h1{
+        font-size: 36px;
+    }
+    
+    .galeria-heading p br{
+        display: none;
+    }
+    
+    .galeria-album-card{
+        min-height: 255px;
+    }
+    
+    .galeria-album-info {
+        padding-right: 46px;
+    }
+    
+    .galeria-album-info h3{
+        font-size: 22px;
+    }
+    
+    .galeria-foto-card,
+    .galeria-foto-card:nth-child(1),
+    .galeria-foto-card:nth-child(4){
+        min-height: 220px;
+    }
+    
+    .galeria-modal-topo h2 {
+        font-size: 29px;
+    }
+    
+    .galeria-modal-secao h3{
+        font-size: 20px;
+    }
+}
