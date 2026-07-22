@@ -8,8 +8,8 @@
             <h1>Contatos</h1>
             
             <p>
-                Caso tenha duvidas sobre a nossa pastoral<br/>
-                pode entra em contato.Tiraremos a suas duvidas.
+                Caso tenha dúvidas sobre a nossa pastoral,<br/>
+                pode entrar em contato. Tiraremos as suas dúvidas.
             </p>
             
             <div class="contatos-divider">
@@ -17,6 +17,175 @@
                 <i class="contatos-symbol">✝</i>
                 <span></span>
             </div> 
+        </div>
+        
+        <div class="contatos-content">
+            
+            <div class="contatos-info">
+                
+                <div class="contatos-info-titulo">
+                    <h2>Informações de Contato</h2>
+                    <span></span>
+                </div>
+                
+                <div class="contatos-lista">
+                    
+                    <article class="contatos-item">
+                        <div class="contatos-item-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        
+                        <div>
+                            <h3>Endereço</h3>
+                            
+                            <p>
+                                Rua exemplo, 123<br />
+                                Bairro - Cidade/UF<br />
+                                CEP: 00000-000
+                            </p>
+                        </div>
+                    </article>
+                    
+                    <article class="contatos-item">
+                        <div class="contatos-item-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        
+                        <div>
+                            <h3>Telefone / WhatsApp</h3>
+                            
+                            <p>
+                                (00) 99999-9999
+                            </p>
+                        </div>
+                    </article>
+                    <article class="contatos-item">
+                        <div class="contatos-item-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        
+                        <div>
+                            <h3>E-mail</h3>
+                            
+                            <p>
+                                pjcatole.info@gmail.com
+                            </p>
+                        </div>
+                    </article>
+                    <article class="contatos-item">
+                        <div class="contatos-item-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        
+                        <div>
+                            <h3>Instagram</h3>
+                            
+                            <p>
+                                @@pjcatolecg
+                            </p>
+                        </div>
+                    </article>
+                    <article class="contatos-item">
+                        <div class="contatos-item-icon">
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+                        
+                        <div>
+                            <h3>Facebook</h3>
+                            
+                            <p>
+                                pjcatolecg
+                            </p>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="contatos-frase">
+                    <div class="contatos-frase-icon">
+                        <i class="fa-solid fa-hands-praying"></i>
+                    </div>
+                    
+                    <p>
+                        “Tudo posso naquele que me fortalece.”
+                        <strong>Filipenses 4,13</strong>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="contatos-form-card">
+                
+                <div class="contatos-form-titulo">
+                    <h2>Envie sua Dúvida ou Sugestão</h2>
+                    <span></span>
+                </div>
+                
+                <p class="contatos-form-descricao">
+                    Preencha o formulário abaixo e envie sua mensagem para nós.
+                    Responderemos o mais breve possível.
+                </p>
+                
+                <form class="contatos-form" id="formContato" method="post" action="#">
+                    
+                    <div class="contatos-form-row">
+                        
+                        <div class="contatos-campo">
+                            <label for="nome">Nome Completo</label>
+                            
+                            <div class="contatos-input-area">
+                                <i class="fa-regular fa-user"></i>
+                                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required/>
+                            </div>
+                        </div>
+                        
+                        <div class="contatos-campo">
+                            <label for="email">E-mail</label>
+                            
+                            <div class="contatos-input-area">
+                                <i class="fa-regular fa-envelope"></i>
+                                <input type="email" id="email" name="email" placeholder="Digite seu E-mail" required/>
+                            </div>
+                        </div>
+                    </div>   
+                        <div class="contatos-campo">
+                            <label for="telefone">Telefone</label>
+                            
+                            <div class="contatos-input-area">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="telefone" name="telefone" placeholder="Digite seu Numero de Telefone" required/>
+                            </div>
+                        </div>
+                        <div class="contatos-campo">
+                            <label for="assunto">Assunto</label>
+                            
+                            <div class="contatos-input-area">
+                                <i class="fa-regular fa-list"></i>
+                               
+                                <select id="assunto" name="assunto" required>
+                                    <option value="">Selecione o Assunto</option>
+                                    <option value="duvida">Duvidas</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="inscricao">Inscrição</option>
+                                    <option value="evento">Eventos</option>
+                                    <option value="outros">Outro Assunto</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="contatos-campo">
+                            <label for="mensagem">Mensagem</label>
+                            
+                            <div class="contatos-textarea-area">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                                <textarea  id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="contatos-btn-enviar">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Enviar Mensagem
+                        </button>
+                    
+                </form>
+            </div>
         </div>
     </div>
 </section>
