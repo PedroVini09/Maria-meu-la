@@ -1,8 +1,0 @@
-Mudanças a serem feitas do site:
-
-1-Mudar o nome "Maria em meu Lar" para "Pastoral da Juventude"
-2-Modificar a secão de bem vindos
-3-Adição do Cookies
-4-Aumentar a opacidade das ilustrações da pagina Programação
-5-ajustar o fundo ate o navbar das outras paginas
-6-adicionar parte de musica 
