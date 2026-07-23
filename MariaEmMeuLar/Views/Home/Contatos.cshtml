@@ -19,6 +19,21 @@
             </div> 
         </div>
         
+        @if (TempData["ContatoSucesso"] != null)
+        {
+            <div class="contatos-alerta sucesso">
+                <i class="fa-solid fa-circle-check"></i>
+                @TempData["ContatoSucesso"]
+            </div>
+        }
+        
+        @if (TempData["ContatoError"] != null)
+        {
+            <div class="contatos-alerta erro">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                @TempData["ContatoErro"]
+            </div>
+        }
         <div class="contatos-content">
             
             <div class="contatos-info">
@@ -124,8 +139,8 @@
                     Responderemos o mais breve possível.
                 </p>
                 
-                <form class="contatos-form" id="formContato" method="post" action="#">
-                    
+                <form class="contatos-form" id="formContato" method="post" asp-controller="Home" asp-action="EnviarContato">
+                    @Html.AntiForgeryToken()
                     <div class="contatos-form-row">
                         
                         <div class="contatos-campo">

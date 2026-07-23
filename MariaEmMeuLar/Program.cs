@@ -1,4 +1,14 @@
+using DotNetEnv;
+using MariaEmMeuLar.Models;
+using MariaEmMeuLar.Services;
+
+Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

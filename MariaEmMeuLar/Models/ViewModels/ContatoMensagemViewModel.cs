@@ -12,7 +12,7 @@ public class ContatoMensagemViewModel
     public string Email { get; set; } = string.Empty;
     
     [Required(ErrorMessage = "Numero de telefone é obrigatorio")]
-    public string? Telefone { get; set; }
+    public string? Telefone { get; set; } = string.Empty;
     
     [Required(ErrorMessage = "Selecione o assunto")]
     public string Assunto { get; set; } = string.Empty;

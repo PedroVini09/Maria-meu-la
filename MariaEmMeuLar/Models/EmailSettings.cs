@@ -9,5 +9,5 @@ public class EmailSettings
     public string SenderEmail { get; set; } = string.Empty;
     public string SenderPassword { get; set; } = string.Empty;
     
-    public string ReceiverName { get; set; } = string.Empty;
+    public string ReceiverEmail { get; set; } = string.Empty;
 }

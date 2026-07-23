@@ -21,6 +21,17 @@ publish/
 # NuGet
 *.nupkg
 
+#publicar
+*.publicar
+
+#.txt
+*.txt
+
+#.env
+.env
+.env.*
+!.env.example
+
 # OS
 .DS_Store
 Thumbs.db
