@@ -2327,5 +2327,164 @@ body.modal-open {
 }
 
 .contatos-frase p{
+    color:rgba(255,255,255,0.9);
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.contatos-frase strong{
+    display: block;
     
+    margin-top: 5px;
+    
+    color: #f2b642;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.contatos-form-card{
+    padding: 38px;
+}
+
+.contatos-form-descricao{
+    max-width: 680px;
+    
+    color: rgba(6,29, 61, 0.72);
+    font-size: 16px;
+    line-height: 1.55;
+    
+    margin-bottom: 28px;
+}
+
+.contatos-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contatos-form-row{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.contatos-campo{
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.contatos-campo label{
+    color: #061d3d;
+    font-size:14px;
+    font-weight: 900;
+}
+
+.contatos-input-area,
+.contatos-textarea-area{
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    
+    border: 1px solid rgba(201, 153, 58, 0.32);
+    border-radius: 18px;
+    
+    background: rgba(255, 255, 255, 0.58);
+    
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.contatos-input-area:focus-within,
+.contatos-textarea-area:focus-within{
+    border-color: #c9993a;
+    background: rgba(255,250,241,0.95);
+    box-shadow: 0 0 0 4px rgba(201, 153, 58, 0.12);
+}
+
+.contatos-input-area i,
+.contatos-textarea-area i{
+    position: absolute;
+    left: 18px;
+    
+    color: #c9993a;
+    font-size: 17px;
+}
+
+.contatos-input-area input,
+.contatos-input-area select,
+.contatos-textarea-area textarea{
+    width: 100%;
+    
+    border: none;
+    outline: none;
+    
+    background: transparent;
+    color: #061d3d;
+    
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.contatos-input-area input,
+.contatos-input-area select {
+    height: 56px;
+    padding: 0 18px 0 48px;
+}
+
+.contatos-input-area select{
+    cursor: pointer;
+    appearance: none;
+}
+
+.contatos-textarea-area{
+    align-items: flex-start;
+}
+
+.contatos-textarea-area i{
+    top: 18px;
+}
+
+.contatos-textarea-area textarea{
+    min-height: 150px;
+    padding: 18px 18px 18px 48px;
+    
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.contatos-input-area input::placeholder,
+.contatos-textarea-area textarea::placeholder{
+    color: rgba(6,29,61,0.42);
+}
+
+.contatos-btn-enviar{
+    width: fit-content;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    margin-top: 6px;
+    padding: 15px 28px;
+    
+    border: 1px solid #f2b642;
+    border-radius: 999px;
+    
+    background: linear-gradient(135deg, #061d3d, #08386f);
+    color: #f2b642;
+    
+    font-size: 15px;
+    font-weight: 900;
+    
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.contatos-btn-enviar:hover{
+    background: #f2b642;
+    color: #061d3d;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(6, 29, 61, 0.18);
 }
