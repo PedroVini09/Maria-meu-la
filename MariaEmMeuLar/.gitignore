@@ -22,10 +22,13 @@ publish/
 *.nupkg
 
 #publicar
-*.publicar
+publish/
+publicar/
+**/publicar/
 
-#.txt
+# Arquivos txt locais
 *.txt
+!**/LICENSE.txt
 
 #.env
 .env

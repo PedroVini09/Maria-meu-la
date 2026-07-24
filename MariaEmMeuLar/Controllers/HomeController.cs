@@ -32,6 +32,7 @@ public class HomeController : Controller
         return View();
     }
     
+   
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EnviarContato(ContatoMensagemViewModel model)
@@ -46,12 +47,12 @@ public class HomeController : Controller
         {
             await _emailService.EnviarMensagemContatoAsync(model);
 
-            TempData["ContatoSucesso"] = "Contato enviado com sucesso!";
+            TempData["ContatoSucesso"] = "Mensagem enviada com sucesso!";
             return RedirectToAction("Contatos");
         }
-        catch
+        catch (Exception ex)
         {
-            TempData["ContatoErro"] = "Não foi possivel enviar a  mensagem. Tente novamente mais tarde.";
+            TempData["ContatoErro"] = "Erro ao enviar e-mail: " + ex.Message;
             return RedirectToAction("Contatos");
         }
     }
