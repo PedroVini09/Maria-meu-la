@@ -844,7 +844,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <div class="inscricao-form-row">
-                    ${campoInput("Idade", "Idade", "number", "Ex:18")}
+                    ${campoIdade("Idade", "Idade", "Ex:18")}
                     ${campoInput("Comunidade / Paróquia", "Comunidade", "text", "Informe sua comunidade")}
                 </div>
 
@@ -870,7 +870,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <div class="inscricao-form-row">
-                    ${campoInput("Idade", "Idade", "number", "Ex:18")}
+                    ${campoIdade("Idade", "Idade", "Ex:18")}
                     ${campoInput("Grupo / Pastoral", "Grupo", "text", "Ex:EJC, ECC, Coroinhas...")}
                 </div>
 
@@ -927,12 +927,39 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     
     function campoInput(label, name, type, placeholder) {
+        const atributosTelefone = type === "tel"
+            ? `maxlength="15" inputmode="numeric" autocomplete="tel"`
+            : "";
+        
         return `
-            <div class="inscricao-campo">
-                <label>${label} <span>*</span></label>
-                <input type="${type}" name="${name}" placeholder="${placeholder}" required>
-            </div>
-        `;
+        <div class="inscricao-campo">
+            <label>${label} <span>*</span></label>
+            <input 
+                type="${type}" 
+                name="${name}" 
+                placeholder="${placeholder}" 
+                ${atributosTelefone}
+                required
+            >
+        </div>
+    `;
+    }
+    
+    function campoIdade(label, name, placeholder) {
+        return  `
+        <div class="inscricao-campo">
+            <label>${label} <span>*</span></label>
+            <input 
+                type="text" 
+                name="${name}" 
+                placeholder="${placeholder}" 
+                maxlength="3"
+                inputmode="numeric"
+                autocomplete="off"
+                required
+            >
+        </div>
+    `;
     }
     
     function campoTextarea(label, name, placeholder) {
@@ -954,6 +981,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 </select>
             </div>
         `;
+    }
+    
+    function aplicarMascaraTelefone(valor){
+        valor = valor.replace(/\D/g, "");
+        
+        if(valor.length > 11){
+            valor = valor.slice(0,11);
+        }
+        
+        if(valor.length <= 10){
+            return valor
+                .replace(/^(\d{2})(\d)/, "($1) $2")
+                .replace(/(\d{4})(\d)/, "$1-$2");
+        }
+        
+        return valor
+            .replace(/^(\d{2})(\d)/, "($1) $2")
+            .replace(/(\d{5})(\d)/, "$1-$2");
     }
     
     function atualizarPassos(passos) {
@@ -1009,6 +1054,36 @@ document.addEventListener("DOMContentLoaded", () => {
             ? `<i class="fa-solid fa-paper-plane"></i> Enviar inscrição`
             : `<i class="fa-solid fa-lock"></i> Inscrições encerradas`;
     }
+    
+    campos.addEventListener("input", (event) =>{
+        const campo = event.target;
+        
+        if(campo.type === "tel"){
+            campo.value = aplicarMascaraTelefone(campo.value);
+        }
+        
+        if(campo.name === "Idade"){
+            let valor = campo.value.replace(/\D/g, "");
+            
+            if(valor.length > 3){
+                valor = valor.slice(0,3);
+            }
+            
+            if(valor === ""){
+                campo.dataset.valorValido = "";
+                campo.value = "";
+                return;
+            }
+            
+            if(Number(valor) > 100 ){
+                campo.value = campo.dataset.valorValido || "";
+                return;
+            }
+            
+            campo.value=valor;
+            campo.dataset.valorValido = valor;
+        }
+    });
     
     cards.forEach(card => {
         card.addEventListener("click", () => atualizarMissao(card));
