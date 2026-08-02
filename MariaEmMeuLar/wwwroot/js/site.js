@@ -778,3 +778,244 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// ===============================
+// INSCRIÇÃO - MISSÕES DINÂMICAS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".inscricao-missao-card");
+    
+    const sobreImagem = document.getElementById("inscricaoSobreImagem");
+    const titulo = document.getElementById("inscricaoTitulo");
+    const subtitulo = document.getElementById("inscricaoSubtitulo");
+    const descricao = document.getElementById("inscricaoDescricao");
+    
+    const status = document.getElementById("inscricaoStatus");
+    const formStatus = document.getElementById("inscricaoFormStatus");
+    const campos = document.getElementById("inscricaoCampos");
+    const btnEnviar = document.getElementById("inscricaoBtnEnviar");
+    
+    if (!cards.length || !campos){
+        return;
+    }
+    
+    const missoes = {
+        maria:{
+            titulo: "Maria em Meu Lar",
+            subtitulo: "Visita da imagem de Maria ao seu lar",
+            descricao: "A imagem de Maria visita o seu lar levando bênçãos, oração e união para toda a família. Preencha o formulário para agendar essa visita especial em sua casa.",
+            aberta: true,
+            passos:[
+                ["Faça sua inscrição", "Preencha o formulário com seus dados e escolha a data."],
+                ["Confirmação","Nossa equipe entrará em contato para confirmar a visita."],
+                ["Receba Maria em seu lar","Prepare seu coração e sua casa para este momento de fé."]
+            ],
+            campos:`
+                <div class="inscricao-form-row">
+                    ${campoInput("Nome completo", "Nome", "text", "Digite seu nome completo")}
+                    ${campoInput("Telefone / WhatsApp", "Telefone", "tel", "(00) 00000-0000")}
+                </div>
+
+                ${campoInput("Endereço completo", "Endereco", "text", "Rua, número, bairro, cidade e referência")}
+
+                <div class="inscricao-form-row">
+                    ${campoInput("Data desejada", "DataDesejada", "date", "")}
+                    ${campoInput("Horário desejado", "HorarioDesejado", "time", "")}
+                </div>
+
+                ${campoTextarea("Observação", "Observacao", "Escreva alguma informação importante...")}
+            `
+        },
+        retiro: {
+            titulo: "Retiro Quaresmal",
+            subtitulo: "Momentos de oração, reflexão e renovação",
+            descricao: "Um tempo especial de encontro com Deus para fortalecer a fé, renovar o coração e viver momentos de oração.",
+            aberta: true,
+            passos:[
+                ["Faça sua inscrição", "Preencha seus dados pessoais e informe sua comunidade."],
+                ["Aguarde confirmação","A equipe organizadora entrará em contato para confirmar sua participação."],
+                ["Viva o retiro","Prepare-se para um momento de oração, silêncio e renovação espiritual."]
+            ],
+            campos:`
+                <div class="inscricao-form-row">
+                    ${campoInput("Nome completo", "Nome", "text", "Digite seu nome completo")}
+                    ${campoInput("Telefone / WhatsApp", "Telefone", "tel", "(00) 00000-0000")}
+                </div>
+
+                <div class="inscricao-form-row">
+                    ${campoInput("Idade", "Idade", "number", "Ex:18")}
+                    ${campoInput("Comunidade / Paróquia", "Comunidade", "text", "Informe sua comunidade")}
+                </div>
+
+                ${campoSelect("Já participou de outros retiros?", "JaParticipou", ["Sim", "Não"])}
+                ${campoTextarea("Observação", "Observacao", "Escreva alguma informação importante...")}
+            `
+        },
+
+        semana: {
+            titulo: "Semana da Juventude",
+            subtitulo: "Uma semana de fé, louvor e comunhão",
+            descricao: "Dias de alegria, formação, espiritualidade e unidade da juventude da nossa paróquia.",
+            aberta: true,
+            passos:[
+                ["Faça sua inscrição", "Informe seus dados e disponibilidade."],
+                ["Participe da programação","Acompanhe os dias, horários e atividades da Semana da Juventude."],
+                ["Viva esse momento ","Participe com alegria, fé e espírito de comunidade."]
+            ],
+            campos:`
+                <div class="inscricao-form-row">
+                    ${campoInput("Nome completo", "Nome", "text", "Digite seu nome completo")}
+                    ${campoInput("Telefone / WhatsApp", "Telefone", "tel", "(00) 00000-0000")}
+                </div>
+
+                <div class="inscricao-form-row">
+                    ${campoInput("Idade", "Idade", "number", "Ex:18")}
+                    ${campoInput("Grupo / Pastoral", "Grupo", "text", "Ex:EJC, ECC, Coroinhas...")}
+                </div>
+
+                ${campoSelect("Turno disponível para servir", "Turno", ["Manhã", "Tarde", "Noite"])}
+                ${campoTextarea("Observação", "Observacao", "Escreva alguma informação importante...")}
+            `
+        },
+
+        terco: {
+            titulo: "Terço da Juventude",
+            subtitulo: "Oração do terço com a juventude",
+            descricao: "Nos unimos em oração para interceder pelas famílias, pelos jovens e por toda a comunidade.",
+            aberta: true,
+            passos:[
+                ["Faça sua inscrição", "Informe seus dados e escolha como deseja participar."],
+                ["Organização dos grupos","A equipe organizará os participantes conforme disponibilidade."],
+                ["Participe da oração","Venha rezar conosco e fortalecer sua caminhada de fé."]
+            ],
+            campos:`
+                <div class="inscricao-form-row">
+                    ${campoInput("Nome completo", "Nome", "text", "Digite seu nome completo")}
+                    ${campoInput("Telefone / WhatsApp", "Telefone", "tel", "(00) 00000-0000")}
+                </div>
+
+                <div class="inscricao-form-row">
+                    ${campoSelect("Deseja participar como?", "Participacao",  ["Participante", "Leitor", "Músico", "Equipe de apoio"])}
+                    ${campoSelect("Dia disponível", "DiaDisponivel", ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"])}
+                </div>
+
+                ${campoTextarea("Observação", "Observacao", "Escreva alguma informação importante...")}
+            `
+        },
+        segue: {
+            titulo: "Segue-me Jovem",
+            subtitulo: "Formação e missão para jovens",
+            descricao: "Um caminho de formação e missão para jovens que desejam aprofundar sua fé e seguir a Cristo com alegria.",
+            aberta: false,
+            passos:[
+                ["Aguarde reabertura", "As inscrições estão encerradas no momento."],
+                ["Acompanhe os avisos","Fique atento aos canais oficiais da Pastoral da Juventude."],
+                ["Quando abrir, faça sua inscrição","As vagas são limitadas e serão liberadas pela coordenação."]
+            ],
+            campos: `
+                <div class="inscricao-fechada-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <h3>Inscrições encerradas</h3>
+                    <p>
+                        As inscrições para esta missão estão encerradas no momento.
+                        Aguarde novas informações da Pastoral da Juventude.
+                    </p>
+                </div>
+            `
+        }
+    };
+    
+    function campoInput(label, name, type, placeholder) {
+        return `
+            <div class="inscricao-campo">
+                <label>${label} <span>*</span></label>
+                <input type="${type}" name="${name}" placeholder="${placeholder}" required>
+            </div>
+        `;
+    }
+    
+    function campoTextarea(label, name, placeholder) {
+        return `
+            <div class="inscricao-campo">
+                <label>${label}</label>
+                <textarea name="${name}" rows="4" placeholder="${placeholder}"></textarea>
+            </div>
+        `;
+    }
+    
+    function campoSelect(label, name, opcoes) {
+        return `
+            <div class="inscricao-campo">
+                <label>${label} <span>*</span></label>
+                <select name="${name}" required>
+                    <option value="">Selecione</option>
+                    ${opcoes.map(opcao => `<option value="${opcao}">${opcao}</option>`).join("")}
+                </select>
+            </div>
+        `;
+    }
+    
+    function atualizarPassos(passos) {
+        const passosContainer = document.querySelector(".inscricao-passos");
+        
+        if(!passosContainer) {
+            return;
+        }
+        
+        passosContainer.innerHTML = `
+            <h3>Como funciona?</h3>
+
+            ${passos.map((passo, index) => `
+                <article>
+                    <span>${index + 1}</span>
+                    <div>
+                        <h4>${passo[0]}</h4>
+                        <p>${passo[1]}</p>
+                    </div>
+                </article>
+            `).join("")}
+        `;
+    }
+    
+    function atualizarMissao(card){
+        const nomeMissao = card.dataset.missao;
+        const missao = missoes[nomeMissao];
+        
+        if(!missao) {
+            return;
+        }
+        
+        cards.forEach(item => item.classList.remove("active"));
+        card.classList.add("active");
+        
+        titulo.textContent = missao.titulo;
+        subtitulo.textContent = missao.subtitulo;
+        descricao.textContent = missao.descricao;
+        
+        sobreImagem.src = card.dataset.img;
+        
+        campos.innerHTML = missao.campos;
+        atualizarPassos(missao.passos);
+
+        status.textContent = missao.aberta ? "Inscrições abertas" : "Inscrições encerradas";
+        formStatus.textContent = missao.aberta ? "Inscrições abertas" : "Inscrições encerradas";
+        
+        status.className = missao.aberta ? "status aberto":"status fechado";
+        formStatus.className = missao.aberta ? "status aberto":"status fechado";
+        
+        btnEnviar.disabled = !missao.aberta;
+        btnEnviar.innerHTML = missao.aberta
+            ? `<i class="fa-solid fa-paper-plane"></i> Enviar inscrição`
+            : `<i class="fa-solid fa-lock"></i> Inscrições encerradas`;
+    }
+    
+    cards.forEach(card => {
+        card.addEventListener("click", () => atualizarMissao(card));
+    });
+    const cardInicial = document.querySelector(".inscricao-missao-card.active");
+    
+    if(cardInicial) {
+        atualizarMissao(cardInicial);
+    }
+});
