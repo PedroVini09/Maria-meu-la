@@ -2488,3 +2488,593 @@ body.modal-open {
     transform: translateY(-4px);
     box-shadow: 0 16px 30px rgba(6, 29, 61, 0.18);
 }
+
+/* ===============================
+   PAGINA DE INSCRIÇÃO
+================================ */
+
+.inscricao-section{
+    position: relative;
+    min-height: 100vh;
+    padding:120px 4% 90px;
+    
+    background: #f7ecd9;
+    overflow: hidden;
+}
+.inscricao-section::before{
+    content:"";
+    
+    position: absolute;
+    top: -160px;
+    right: -160px;
+    
+    width: 420px;
+    height: 420px;
+    
+    border-radius: 50%;
+    background: rgba(201, 153, 58, 0.12);
+    filter: blur(4px);
+}
+
+.inscricao-section::after{
+    content:"✝";
+    
+    position: absolute;
+    left: 5%;
+    bottom: 7%;
+    
+    color:rgba(201, 153, 58, 0.12);
+    font-size: 180px;
+    line-height: 1;
+    
+    pointer-events: none;
+}
+
+.inscricao-container{
+    position: relative;
+    z-index: 2;
+    
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.inscricao-heading{
+    text-align: center;
+    margin-bottom: 52px;
+}
+
+.inscricao-dourado{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-bottom: 18px;
+    padding:9px 24px;
+    
+    border:1px solid rgba(201, 153, 58, 0.55);
+    border-radius: 999px;
+    
+    background: rgba(255,250,241, 0.5);
+    color: #c9993a;
+    
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.inscricao-heading h1{
+    color:#061d3d;
+    font-family: Georgia, serif;
+    font-size: clamp(58px, 6vw , 94px);
+    font-weight: 900;
+    line-height: 1.02;
+    
+    margin-bottom: 20px;
+}
+
+.inscricao-heading p{
+    max-width: 760px;
+    margin: 0 auto;
+    
+    color: #252525;
+    font-size: 19px;
+    line-height: 1.6;
+}
+
+.inscricao-divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    
+    margin-top: 26px;
+}
+
+.inscricao-divider span{
+    width: 90px;
+    height: 2px;
+    
+    background: linear-gradient(90deg,transparent,#c9993a, transparent);
+}
+
+.inscricao-symbol{
+    color: #c9993a;
+    font-size: 25px;
+    font-style: normal;
+}
+
+/* ===============================
+   TÍTULO DAS MISSÕES
+================================ */
+
+
+.inscricao-titulo-area{
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.inscricao-titulo-area h2{
+    color: #061d3d;
+    font-size:20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.inscricao-mini-divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    
+    margin-top: 12px;
+}
+
+.inscricao-mini-divider span{
+    width: 70px;
+    height: 2px;
+    
+    background: linear-gradient(90deg,transparent,#c9993a, transparent);
+}
+
+.inscricao-mini-divider i{
+    color: #c9993a;
+    font-size: 18px;
+    font-style: normal;
+}
+
+/* ===============================
+   CARDS DAS MISSÕES
+================================ */
+
+.inscricao-missoes{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    
+    margin-bottom: 34px;
+}
+
+.inscricao-missao-card{
+    min-height: 170px;
+    padding: 18px;
+    
+    display: grid;
+    grid-template-columns:78px 1fr;
+    align-items: center;
+    gap: 14px;
+    
+    border: 1px solid rgba(201, 153, 58, 0.28);
+    border-radius: 20px;
+    
+    background: rgba(255, 250, 241, 0.82);
+    box-shadow: 0 14px 30px rgba(6, 29, 61, 0.08);
+    
+    cursor: pointer;
+    text-align: left;
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.inscricao-missao-card:hover{
+    transform:translateY(-6px);
+    border-color: rgba(201, 153, 58, 0.7);
+    box-shadow: 0 20px 38px rgba(6, 29, 61, 0.14);
+}
+
+.inscricao-missao-card.active{
+    border-color:#c9993a;
+    box-shadow: 0 20px 42px rgba(201,153,58, 0.18);
+}
+.inscricao-missao-card.encerrado{
+    border-color:rgba(170,42,42, 0.28);
+}
+
+.inscricao-missao-img{
+    width: 78px;
+    height: 78px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 18px;
+    background: rgba(6, 29, 61, 0.06);
+    overflow: hidden;
+}
+
+.inscricao-missao-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.inscricao-missao-texto h3{
+    color:#061d3d;
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1.15;
+    
+    margin-bottom: 8px;
+}
+
+.inscricao-missao-texto p{
+    color: rgba(6,29,61,0.72);
+    font-size: 13px;
+    line-height: 1.35;
+    
+    margin-bottom: 12px;
+}
+
+/* ===============================
+   STATUS
+================================ */
+
+.status{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: fit-content;
+    padding: 6px 12px;
+    
+    border-radius: 999px;
+    
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.status.aberto{
+    border: 1px solid rgba(39,132,76, 0.35);
+    background: rgba(39,132,76, 0.13);
+    color: #176638;
+}
+
+.status.fechado{
+    border: 1px solid rgba(170,42,42, 0.35);
+    background: rgba(170,42,42, 0.12);
+    color: #b42323;
+}
+
+/* ===============================
+   DETALHES / FORMULÁRIO
+================================ */
+
+
+.inscricao-detalhes{
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 26px;
+    align-items: stretch;
+}
+
+.inscricao-sobre-card,
+.inscricao-form-card{
+    border: 1px solid rgba(201,153,58, 0.32);
+    border-radius: 28px;
+    
+    background: rgba(255,250,241, 0.9);
+    box-shadow: 0 22px 46px rgba(6, 29, 61, 0.12);
+}
+
+.inscricao-sobre-card{
+    padding: 30px;
+}
+
+.inscricao-sobre-topo{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    align-items: center;
+    
+    margin-bottom: 24px;
+}
+
+.inscricao-sobre-topo img{
+    width: 120px;
+    height: 120px;
+    
+    border-radius: 24px;
+    object-fit: cover;
+    
+    border: 1px solid rgba(201, 153, 58, 0.28);
+    background:#fffaf1;
+}
+
+.inscricao-sobre-topo h2{
+    color:#061d3d;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.1;
+    
+    margin: 12px 0 6px;
+}
+
+.inscricao-sobre-topo p{
+    color: #c9993a;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+#inscricaoDescricao{
+    color: rgba(6,29,61, 0.76);
+    font-size: 16px;
+    line-height: 1.6;
+    
+    margin-bottom: 28px;
+}
+
+/* ===============================
+   PASSOS
+================================ */
+
+.inscricao-passos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inscricao-passos h3{
+    color: #061d3d;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 900;
+    
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201, 153, 58, 0.35);
+}
+
+.inscricao-passos article{
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.inscricao-passos article > span{
+    width: 42px;
+    height: 42px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #c9993a;
+    color: #fffaf1;
+    
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.inscricao-passos h4{
+    color: #061d3d;
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 4px;
+}
+
+.inscricao-passos p{
+    color: rgba(6, 29, 61, 0.72);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* ===============================
+   FORMULÁRIO
+================================ */
+
+.inscricao-form-card{
+    padding: 32px;
+}
+
+.inscricao-form-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    
+    margin-bottom: 28px;
+}
+
+.inscricao-form-header h2{
+    color: #061d3d;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.inscricao-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#inscricaoCampos{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inscricao-form-row{
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap: 18px;
+}
+
+.inscricao-campo{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inscricao-campo label{
+    color: #061d3d;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.inscricao-campo label span{
+    color: #b42323;
+}
+
+.inscricao-campo input,
+.inscricao-campo select,
+.inscricao-campo textarea{
+    width: 100%;
+    
+    border: 1px solid rgba(201,153,58, 0.32);
+    border-radius: 15px;
+    outline: none;
+    
+    background:rgba(255,255,255,0.68);
+    color: #061d3d;
+    
+    font-size: 15px;
+    font-weight: 600;
+    
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.inscricao-campo input,
+.inscricao-campo select{
+    height: 54px;
+    padding: 0 16px;
+}
+
+.inscricao-campo textarea{
+    min-height: 135px;
+    padding: 16px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.inscricao-campo input:focus,
+.inscricao-campo select:focus,
+.inscricao-campo textarea:focus{
+    border-color: #c9993a;
+    background: #fffaf1;
+    box-shadow: 0 0 0 4px rgba(201,153,58, 0.12);
+}
+
+.inscricao-campo input::placeholder,
+.inscricao-campo textarea::placeholder {
+    color: rgba(6,29,61, 0.42);
+}
+
+/* ===============================
+   BOTÃO / FECHADO
+================================ */
+
+.inscricao-btn-enviar{
+    width: 100%;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+    margin-top: 4px;
+    padding: 15px 28px;
+    
+    border: 1px solid #f2b642;
+    border-radius: 16px;
+    
+    background: linear-gradient(135deg,#061d3d,#08386f);
+    color: #f2b642;
+    
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.inscricao-btn-enviar:hover{
+    background: #f2b642;
+    color: #061d3d;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(6,29,61,0.18);
+}
+
+.inscricao-btn-enviar:disabled{
+    border-color: rgba(170,42,42, 0.35);
+    background: rgba(170,42,42, 0.72);
+    color: #fff;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.inscricao-fechada-box{
+    min-height: 250px;
+    padding: 38px 28px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    
+    border: 1px solid rgba(170,42,42, 0.28);
+    border-radius: 22px;
+    
+    background: rgba(170,42,42, 0.06);
+    text-align: center;
+}
+
+.inscricao-fechada-box i {
+    width: 66px;
+    height: 66px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(170, 42, 42, 0.12);
+    color: #b42323;
+
+    font-size: 28px;
+}
+
+.inscricao-fechada-box h3 {
+    color: #b42323;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.inscricao-fechada-box p {
+    max-width: 520px;
+
+    color: rgba(6, 29, 61, 0.75);
+    font-size: 16px;
+    line-height: 1.55;
+}

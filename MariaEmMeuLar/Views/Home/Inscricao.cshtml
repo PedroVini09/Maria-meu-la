@@ -4,8 +4,159 @@
 
 <section class="inscricao-section" id="inscricao">
    <div class="inscricao-container">
+      
       <div class="inscricao-heading">
+         <span class="inscricao-dourado">Inscrição</span>
          
+         <h1>Inscrições das<br/>Missões</h1>
+         
+         <p>
+            Escolha uma missão e faça sua inscrição para viver
+            esse momento especial com a Pastoral da Juventude.
+         </p>
+         
+         <div class="inscricao-divider">
+            <span></span>
+            <i class="inscricao-symbol">✝</i>
+            <span></span>
+         </div>
+      </div>
+      
+      <div class="inscricao-titulo-area">
+         <h2>Escolha uma missão</h2>
+         
+         <div class="inscricao-mini-divider">
+            <span></span>
+            <i>✝</i>
+            <span></span>
+         </div>
+      </div>
+
+      <div class="inscricao-missoes">
+
+         <button class="inscricao-missao-card active" type="button" data-missao="maria" data-img="@Url.Content("~/img/inscricao/inscricao_maria.png")">
+            <div class="inscricao-missao-img">
+               <img src="@Url.Content("~/img/inscricao/inscricao_maria.png")" alt="imagem_card_maria"/>
+            </div>
+
+            <div class="inscricao-missao-texto">
+               <h3>Maria em Meu Lar</h3>
+               <p>Visita da imagem de Maria ao seu lar</p>
+               <span class="status aberto">Inscrições abertas</span>
+            </div>
+         </button>
+
+         <button class="inscricao-missao-card" type="button" data-missao="retiro" data-img="@Url.Content("~/img/inscricao/inscricao_retiro.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_eucaristia.png")">
+            <div class="inscricao-missao-img">
+               <img src="@Url.Content("~/img/inscricao/inscricao_retiro.png")" alt="imagem_card_retiro"/>
+            </div>
+
+            <div class="inscricao-missao-texto">
+               <h3>Retiro Quaresmal</h3>
+               <p>Momentos de oração, reflexão e renovação</p>
+               <span class="status aberto">Inscrições abertas</span>
+            </div>
+         </button>
+         <button class="inscricao-missao-card" type="button" data-missao="semana" data-img="@Url.Content("~/img/inscricao/inscricao_semana.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_acutis.png")">
+            <div class="inscricao-missao-img">
+               <img src="@Url.Content("~/img/inscricao/inscricao_semana.png")" alt="imagem_card_semana"/>
+            </div>
+
+            <div class="inscricao-missao-texto">
+               <h3>Semana da Juventude</h3>
+               <p>Uma semana de fé, louvor e comunhão</p>
+               <span class="status aberto">Inscrições abertas</span>
+            </div>
+         </button>
+
+         <button class="inscricao-missao-card" type="button" data-missao="terco" data-img="@Url.Content("~/img/inscricao/inscricao_terco.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_terco.png")">
+            <div class="inscricao-missao-img">
+               <img src="@Url.Content("~/img/inscricao/inscricao_terco.png")" alt="imagem_card_terco"/>
+            </div>
+
+            <div class="inscricao-missao-texto">
+               <h3>Terço da Juventude</h3>
+               <p>Oração do terço com a juventude</p>
+               <span class="status aberto">Inscrições abertas</span>
+            </div>
+         </button>
+
+         <button class="inscricao-missao-card encerrado" type="button" data-missao="segue" data-img="@Url.Content("~/img/inscricao/inscricao_segue.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_segue-me.png")">
+            <div class="inscricao-missao-img">
+               <img src="@Url.Content("~/img/inscricao/inscricao_segue.png")" alt="imagem_card_segue"/>
+            </div>
+
+            <div class="inscricao-missao-texto">
+               <h3>Segue-me Jovem</h3>
+               <p>Formação e missão para jovens</p>
+               <span class="status fechado">Inscrições encerradas</span>
+            </div>
+         </button>
+      </div>
+
+      <div class="inscricao-detalhes">
+         <div class="inscricao-sobre-card">
+            <div class="inscricao-sobre-topo">
+               <img id="inscricaoSobreImagem" src="@Url.Content("~/img/inscricao/inscricao_maria.png")" alt="Imagem da missão"/>
+
+               <div>
+                  <span id="inscricaoStatus" class="status aberto">Inscrições abertas</span>
+                  <h2 id="inscricaoTitulo">Maria em Meu Lar</h2>
+                  <p id="inscricaoSubtitulo">Visita da imagem de Maria ao seu lar</p>
+               </div>
+            </div>
+
+            <p id="inscricaoDescricao">
+               A imagem de Maria visita o seu lar levando bênçãos, oração e união para toda a família.
+               Preencha o formulário ao lado para agendar essa visita especial em sua casa.
+            </p>
+
+            <div class="inscricao-passos">
+               <h3>Como funciona?</h3>
+
+               <article>
+                  <span>1</span>
+                  <div>
+                     <h4>Faça sua inscrição</h4>
+                     <p>Preencha o formulário com seus dados e escolha a data.</p>
+                  </div>
+               </article>
+
+               <article>
+                  <span>2</span>
+                  <div>
+                     <h4>Confirmação</h4>
+                     <p>Nossa equipe entrará em contato para confirmar a visita.</p>
+                  </div>
+               </article>
+
+               <article>
+                  <span>3</span>
+                  <div>
+                     <h4>Receba Maria em seu lar</h4>
+                     <p>Prepare seu coração e sua casa para este momento de fé.</p>
+                  </div>
+               </article>
+            </div>
+         </div>
+
+         <div class="inscricao-form-card">
+            <div class="inscricao-form-header">
+               <h2>Formulário de inscrição</h2>
+               <span id="inscricaoFormStatus" class="status aberto">Inscrições abertas</span>
+            </div>
+
+            <form class="inscricao-form" id="formInscricao" method="post" action="#">
+               <div id="inscricaoCampos">
+                  <!--Campos a serem colocados via JS-->
+               </div>
+
+               <button type="submit" class="inscricao-btn-enviar" id="inscricaoBtnEnviar">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  Enviar Inscrição
+               </button>
+            </form>
+         </div>
       </div>
    </div>
 </section>
