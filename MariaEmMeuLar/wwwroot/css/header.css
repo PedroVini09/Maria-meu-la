@@ -1,7 +1,9 @@
 ﻿.hero {
     min-height: 100vh;
     padding-top: 85px;
-    background-color: #f8f0e3;
+    background: radial-gradient(circle at 15% 20%, rgba(212,160,51,0.12),transparent 28%),
+   radial-gradient(circle at 85% 25%, rgba(200, 32, 39,0.08), transparent 30%),
+    linear-gradient(180deg,#fffaf1 0%,#f7ecd9 100%);
     color: #0b356d;
     overflow: hidden;
 }
@@ -187,37 +189,53 @@
 }
 
 .hero-text h1{
+    color: #0b356d;
     font-size: 78px;
     font-weight: 900;
     line-height: 1.15;
     margin-bottom: 22px;
 }
-
-.hero-text h1 span{
-    display: block;
-}
-
-.hero-quote{
+.hero-text blockquote{
     max-width: 560px;
-    margin:0 auto;
+    margin: 0 auto;
+    
     color: #0b356d;
-}
-
-.hero-quote p{
     font-size: 24px;
     font-weight: 500;
-    line-height: 1.25;
-    margin-bottom: 8px;
+    line-height: 1.35;
     text-wrap: balance;
 }
 
-.hero-quote cite{
+.hero-text blockquote strong{
     display: block;
+    margin-top: 10px;
+
+    color: #c82027;
     font-size: 22px;
-    font-style: normal;
-    font-weight: 700;
+    font-weight: 800;
 }
 
+.hero-text h1 span{
+    display: block;
+    color: #0b356d;
+}
+
+.hero-text h1 strong{
+    color: #c82027;
+    display: block;
+    font-weight: 900;
+}
+.welcome-divider span{
+    background: linear-gradient(90deg,  #d4a033 );
+}
+
+.welcome-divider span:last-child{
+    background: linear-gradient(90deg,  #d4a033);
+}
+
+.welcome-divider i {
+    color: #d4a033;
+}
 .hero-text p{
     font-size: 24px;
     font-weight: 400;
