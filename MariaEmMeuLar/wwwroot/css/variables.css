@@ -60,7 +60,7 @@
     max-width: 55%;
     height: auto;
 
-    opacity: 0.32;
+    opacity: 0.90;
     object-fit: contain;
     mix-blend-mode: multiply;
 
@@ -518,4 +518,137 @@
     font-weight: 900;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+.missao-final-grid{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 28px;
+    align-items: center;
+    
+    margin-bottom: 80px;
+}
+
+.missao-info-box,
+.missao-quote-final,
+.missao-cta-final{
+    border: 1px solid rgba(212, 160, 51, 0.32);
+    border-radius: 30px;
+    
+    background: rgba(255,250,241,0.88);
+    box-shadow: 0 20px 40px rgba(11, 53, 109, 0.10);
+}
+
+.missao-info-box{
+    padding: 36px;
+}
+
+.missao-info-box h2{
+    margin-bottom: 26px;
+}
+
+.missao-info-box ul{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    
+    margin: 0;
+    padding: 0;
+    
+    list-style: none;
+}
+
+.missao-info-box li{
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    align-items: flex-start;
+    
+    color: #37474f;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.missao-info-box li i {
+    color: #c82027;
+    font-size: 20px;
+    margin-top: 3px;
+}
+
+.missao-info-box li strong{
+    color: #0b356d;
+    font-weight: 900;
+}
+
+.missao-final-direita{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.missao-quote-final{
+    position: relative;
+    overflow: hidden;
+    
+    padding: 34px 36px;
+    
+    background: radial-gradient(circle at 95% 20%, rgba(212,160,51, 0.14), transparent 34%), rgba(255,250,241,0.9);
+    
+    text-align: center;
+}
+
+.missao-quote-final::before{
+    content: "“";
+    position: absolute;
+    left: 24px;
+    top: -12px;
+    
+    color: rgba(212, 160, 51, 0.32);
+    font-size: 120px;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.missao-quote-final p{
+    position: relative;
+    z-index: 2;
+    
+    max-height: 620px;
+    margin: 0 auto 14px;
+    
+    color: #0b356d;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.25;
+}
+
+.missao-quote-final strong{
+    position: relative;
+    z-index: 2;
+    
+    max-height: 620px;
+    margin: 0 auto 14px;
+    
+    color: #0b356d;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.missao-cta-final{
+    padding: 36px;
+    text-align: center;
+}
+
+.missao-cta-final h2{
+    margin-bottom: 18px;
+}
+
+.missao-cta-final p{
+    max-height: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.missao-cta-final .missao-btn{
+    margin-top:12px;
 }

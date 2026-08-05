@@ -2146,3 +2146,238 @@
         padding: 18px;
     }
 }
+
+@media(max-width:1100px){
+    .missao-hero{
+        padding:80px 6% 60px;
+    }
+    
+    .missao-hero-bg img{
+        max-width: 62%;
+        opacity: 0.28;
+    }
+    
+    .missao-bloco,
+    .missao-importancia-maria,
+    .missao-final-grid{
+        grid-template-columns: 1fr;
+    }
+    
+    .missao-card-image img{
+        max-width: 620px;
+        min-height: auto;
+        height: auto;
+    }
+    
+    .missao-cards-6{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:900px){
+    .missao-page{
+        padding-top: 85px;
+    }
+    
+    .missao-hero{
+        min-height: auto;
+        padding: 90px 6% 80px;
+    }
+    
+    .missao-hero::after{
+        background: linear-gradient(
+                180deg,
+                rgba(255, 250, 241, 0.92) 0%,
+                rgba(255, 250, 241, 0.86) 55%,
+                rgba(255, 250, 241, 0.70) 100%
+        );
+    }
+    
+    .missao-hero-bg{
+        justify-content: center;
+        align-items: flex-end;
+    }
+    
+    .missao-hero-bg img{
+        width: 620px;
+        max-width: 92%;
+        opacity: 0.18;
+    }
+    
+    .missao-hero-texto{
+        max-width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .missao-hero-texto p{
+        margin-left:auto;
+        margin-right: auto;
+        font-size: 19px;
+    }
+    
+    .missao-divider{
+        justify-content: center;
+    }
+    
+    .missao-container{
+        padding: 35px 5% 80px;
+    }
+    .missao-card-grande,
+    .missao-section-centro,
+    .missao-card-texto,
+    .missao-info-box,
+    .missao-quote-final,
+    .missao-cta-final {
+        border-radius: 26px;
+    }
+
+    .missao-card-grande,
+    .missao-section-centro,
+    .missao-card-texto,
+    .missao-info-box,
+    .missao-cta-final {
+        padding: 28px;
+    }
+
+    .missao-passos,
+    .missao-cards-3,
+    .missao-cards-6 {
+        grid-template-columns: 1fr;
+    }
+
+    .missao-passos,
+    .missao-cards-3,
+    .missao-cards-6 {
+        grid-template-columns: 1fr;
+    }
+
+    .missao-imagem-lateral img {
+        height: auto;
+        max-height: 420px;
+    }
+
+    .missao-card-imagem img {
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 650px) {
+    .missao-hero {
+        padding: 70px 20px 60px;
+    }
+
+    .missao-label,
+    .missao-topico {
+        font-size: 12px;
+        padding: 7px 16px;
+        letter-spacing: 1.5px;
+    }
+
+    .missao-hero-texto h1 {
+        font-size: clamp(48px, 15vw, 68px);
+    }
+
+    .missao-hero-texto p {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    .missao-divider span {
+        width: 64px;
+    }
+
+    .missao-container {
+        padding: 28px 18px 70px;
+    }
+
+    .missao-card-grande,
+    .missao-section-centro,
+    .missao-card-texto,
+    .missao-info-box,
+    .missao-cta-final {
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .missao-texto h2,
+    .missao-card-texto h2,
+    .missao-section-centro h2,
+    .missao-info-box h2,
+    .missao-cta-final h2 {
+        font-size: clamp(30px, 10vw, 42px);
+    }
+
+    .missao-texto p,
+    .missao-card-texto p,
+    .missao-section-centro > p,
+    .missao-cta-final p {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    .missao-imagem-lateral img,
+    .missao-card-imagem img {
+        border-radius: 22px;
+    }
+
+    .missao-passos article,
+    .missao-cards-3 article,
+    .missao-cards-6 article {
+        padding: 28px 20px 24px;
+    }
+
+    .missao-frase-biblica {
+        font-size: 19px;
+        padding: 20px;
+    }
+
+    .missao-info-box li {
+        grid-template-columns: 28px 1fr;
+        font-size: 15px;
+    }
+
+    .missao-quote-final {
+        padding: 28px 22px;
+    }
+
+    .missao-quote-final p {
+        font-size: 24px;
+    }
+
+    .missao-btn {
+        width: 100%;
+        padding: 14px 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .missao-hero-texto h1 {
+        font-size: 44px;
+    }
+
+    .missao-hero-bg img {
+        max-width: 115%;
+        opacity: 0.14;
+    }
+
+    .missao-card-grande,
+    .missao-section-centro,
+    .missao-card-texto,
+    .missao-info-box,
+    .missao-cta-final {
+        padding: 18px;
+    }
+
+    .missao-passos article > span,
+    .missao-cards-3 i,
+    .missao-cards-6 i {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .missao-quote-final p {
+        font-size: 21px;
+    }
+}
