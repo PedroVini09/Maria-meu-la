@@ -42,6 +42,12 @@ public class HomeController : Controller
         return View();
     }
     
+    public IActionResult MissaoSemana()
+    {
+        return View();
+    }
+
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EnviarContato(ContatoMensagemViewModel model)
