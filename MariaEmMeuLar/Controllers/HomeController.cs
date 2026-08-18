@@ -47,6 +47,20 @@ public class HomeController : Controller
         return View();
     }
 
+     public IActionResult MissaoTerco()
+    {
+        return View();
+    }
+
+    public IActionResult MissaoRetiro()
+    {
+        return View();
+    }
+
+    public IActionResult MissaoSegue()
+    {
+        return View();
+    }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
