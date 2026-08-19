@@ -652,3 +652,95 @@
 .missao-cta-final .missao-btn{
     margin-top:12px;
 }
+
+/* ===============================
+   AJUSTE HERO - SEMANA DA JUVENTUDE
+================================ */
+
+.missao-semana .missao-hero-bg {
+    justify-content: center;
+    align-items: center;
+}
+
+.missao-semana .missao-hero-bg img {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    opacity: 0.62;
+    mix-blend-mode: multiply;
+
+    filter: none;
+}
+
+/* ===============================
+   AJUSTE HERO - TERCO DA JUVENTUDE
+================================ */
+
+.missao-terco .missao-hero-bg {
+    justify-content: center;
+    align-items: center;
+}
+
+.missao-terco .missao-hero-bg img {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    opacity: 0.62;
+    mix-blend-mode: multiply;
+
+    filter: none;
+}
+
+/* ===============================
+   AJUSTE HERO - RETIRO QUARESMAL
+================================ */
+
+.missao-retiro .missao-hero-bg {
+    justify-content: center;
+    align-items: center;
+}
+
+.missao-retiro .missao-hero-bg img {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    opacity: 0.62;
+    mix-blend-mode: multiply;
+
+    filter: none;
+}
+
+/* ===============================
+   AJUSTE HERO - SEGUE-ME
+================================ */
+
+.missao-segue .missao-hero-bg {
+    justify-content: center;
+    align-items: center;
+}
+
+.missao-segue .missao-hero-bg img {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    opacity: 0.62;
+    mix-blend-mode: multiply;
+
+    filter: none;
+}
