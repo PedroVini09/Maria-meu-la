@@ -1,10 +1,16 @@
 using DotNetEnv;
 using MariaEmMeuLar.Models;
 using MariaEmMeuLar.Services;
+using MariaEmMeuLar.Data;
+using Microsoft.EntityFrameworkCore;
 
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 

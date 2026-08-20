@@ -40,3 +40,5 @@ publicar/
 Thumbs.db
 
 
+# .json
+appsettings.Development.json
