@@ -11,7 +11,7 @@ namespace MariaEmMeuLar.Models
         [MaxLength(120)]
         public string Nome { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "O campo Idade é obrigatório.")]
+        [Range(10,100, ErrorMessage = "Informe uma idade válida.")]
         public int Idade { get; set; }
 
         [Required(ErrorMessage = "O campo Email é obrigatório.")]
@@ -24,6 +24,7 @@ namespace MariaEmMeuLar.Models
         public string Telefone { get; set; } = string.Empty;
 
        [Required]
+       [Range(1, int.MaxValue, ErrorMessage = "O campo Missão é obrigatório.")]
        public int MissaoId { get; set; }
 
        public Missao? Missao { get; set; }

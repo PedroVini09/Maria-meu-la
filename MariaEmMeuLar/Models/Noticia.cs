@@ -11,6 +11,7 @@ namespace MariaEmMeuLar.Models
         [MaxLength(150)]
         public string Titulo { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "O campo Resumo é obrigatório")]
         [MaxLength(300)]
         public string Resumo { get; set; } = string.Empty;
 
@@ -33,6 +34,7 @@ namespace MariaEmMeuLar.Models
         public bool Destaque { get; set; } = true;
 
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Selecione um usuário administrador.")]
         public int UsuarioAdminId { get; set; }
         public UsuarioAdmin? UsuarioAdmin { get; set; }
     }

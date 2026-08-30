@@ -23,7 +23,8 @@ namespace MariaEmMeuLar.Models
         public bool Ativa { get; set; } = true;
 
         
-        public int MissaoId { get; set; }
+       
+        public int? MissaoId { get; set; }
         public Missao? Missao { get; set; }
     }
 }
