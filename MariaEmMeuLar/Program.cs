@@ -21,6 +21,34 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+app.MapGet("/teste-banco", async (AppDbContext db) =>
+{
+    try
+    {
+        var missoes = await db.Missoes.CountAsync();
+        var inscricoes = await db.Inscricoes.CountAsync();
+        var programacoes = await db.Programacoes.CountAsync();
+        var galerias = await db.Galerias.CountAsync();
+        var contatos = await db.Contatos.CountAsync();
+        var noticias = await db.Noticias.CountAsync();
+        var usuariosAdmin = await db.UsuariosAdmin.CountAsync();
+        return Results.Ok(new
+        {
+            Mensagem = "Conexão com o banco de dados bem-sucedida.",
+            Missoes = missoes,
+            Inscricoes = inscricoes,
+            Programacoes = programacoes,
+            Galeria = galerias,
+            Contatos = contatos,
+            Noticias = noticias,
+            UsuariosAdmin = usuariosAdmin
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem("Erro ao acessar o banco de dados.", ex.Message);
+    }
+});
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

@@ -23,11 +23,12 @@ namespace MariaEmMeuLar.Models
         [MaxLength(20)]
         public string Telefone { get; set; } = string.Empty;
 
-       
-        [Required(ErrorMessage = "A missão é obrigatória.")]
-        [MaxLength(80)]
-        public string Missao { get; set; } = string.Empty;
+       [Required]
+       public int MissaoId { get; set; }
 
+       public Missao? Missao { get; set; }
+
+       
         [MaxLength(500)]
         public string? Observacao { get; set; }
 
