@@ -12,9 +12,9 @@ namespace MariaEmMeuLar.Models
         public string Nome { get; set; } = string.Empty;
 
         [Range(10,100, ErrorMessage = "Informe uma idade válida.")]
-        public int Idade { get; set; }
+        public int? Idade { get; set; }
 
-        [Required(ErrorMessage = "O campo Email é obrigatório.")]
+        
         [EmailAddress(ErrorMessage = "O campo Email deve ser um endereço de email válido.")]
         [MaxLength(120)]
         public string? Email { get; set; }
@@ -23,7 +23,7 @@ namespace MariaEmMeuLar.Models
         [MaxLength(20)]
         public string Telefone { get; set; } = string.Empty;
 
-       [Required]
+       
        [Range(1, int.MaxValue, ErrorMessage = "O campo Missão é obrigatório.")]
        public int MissaoId { get; set; }
 
