@@ -1,7 +1,0 @@
-﻿services:
-  mariaemmeular:
-    image: mariaemmeular
-    build:
-      context: .
-      dockerfile: MariaEmMeuLar/Dockerfile
-

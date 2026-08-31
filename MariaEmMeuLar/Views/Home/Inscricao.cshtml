@@ -1,3 +1,4 @@
+@model MariaEmMeuLar.Models.Inscricao
 @{
    ViewData["Title"] = "Inscrição";
 }
@@ -146,7 +147,8 @@
                <span id="inscricaoFormStatus" class="status aberto">Inscrições abertas</span>
             </div>
 
-            <form class="inscricao-form" id="formInscricao" method="post" action="#">
+            <form class="inscricao-form" id="formInscricao" asp-controller="Home" asp-action="Inscricao" method="post">
+               <input  type="hidden" asp-for="MissaoId" id="MissaoId"/>
                <div id="inscricaoCampos">
                   <!--Campos a serem colocados via JS-->
                </div>

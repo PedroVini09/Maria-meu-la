@@ -3,15 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 using MariaEmMeuLar.Models;
 using MariaEmMeuLar.Models.ViewModels;
 using MariaEmMeuLar.Services;
+using MariaEmMeuLar.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MariaEmMeuLar.Controllers;
 
 public class HomeController : Controller
 {
     private readonly IEmailService _emailService;
-    public HomeController(IEmailService emailService)
+    private readonly AppDbContext _context;
+    public HomeController(IEmailService emailService, AppDbContext context)
     {
         _emailService = emailService;
+        _context = context;
     }
     public IActionResult Index()
     {
@@ -26,12 +31,58 @@ public class HomeController : Controller
     {
         return View();
     }
-    
-    public IActionResult Inscricao()
-    { 
+
+    // public IActionResult Inscricao()
+    // { 
+    //     return View();
+    // }
+    [HttpGet]
+    public async Task<IActionResult> Inscricao()
+    {
+        var missoes = await _context.Missoes
+        .Where(m => m.Ativa)
+        .OrderBy(m => m.Nome)
+        .ToListAsync();
+
+        ViewBag.Missoes = new SelectList(missoes, "Id", "Nome");
+
         return View();
     }
-    
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Inscricao(Inscricao inscricao)
+    {
+        var missaoExiste = await _context.Missoes
+          .AnyAsync(m => m.Id == inscricao.MissaoId && m.Ativa);
+
+        if (!missaoExiste)
+        {
+            ModelState.AddModelError(nameof(inscricao.MissaoId),"Selecione uma missão.");
+        }
+
+        if (!ModelState.IsValid)
+        {
+            var missoes = await _context.Missoes
+            .Where(m => m.Ativa)
+            .OrderBy(m => m.Nome)
+            .ToListAsync();
+
+            ViewBag.Missoes = new SelectList(missoes,"Id","Nome",inscricao.MissaoId);
+
+            return View(inscricao);
+        }
+
+        inscricao.Status = "Pendente";
+        inscricao.DataInscricao = DateTime.Now;
+
+        _context.Inscricoes.Add(inscricao);
+        await _context.SaveChangesAsync();
+
+        TempData["Sucesso"] = "Inscrição realizado com sucesso!";
+
+        return RedirectToAction(nameof(Inscricao));
+    }
     public IActionResult Contatos()
     {
         return View();
@@ -95,4 +146,6 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+
+    
 }
