@@ -40,11 +40,13 @@ public class HomeController : Controller
     public async Task<IActionResult> Inscricao()
     {
         var missoes = await _context.Missoes
-        .Where(m => m.Ativa)
-        .OrderBy(m => m.Nome)
-        .ToListAsync();
+            .Where(m => m.Ativa)
+            .ToListAsync();
 
-        ViewBag.Missoes = new SelectList(missoes, "Id", "Nome");
+        ViewBag.MissaoIds = missoes.ToDictionary(
+            m => m.Nome,
+            m => m.Id
+        );
 
         return View();
     }
@@ -54,21 +56,26 @@ public class HomeController : Controller
     public async Task<IActionResult> Inscricao(Inscricao inscricao)
     {
         var missaoExiste = await _context.Missoes
-          .AnyAsync(m => m.Id == inscricao.MissaoId && m.Ativa);
+            .AnyAsync(m => m.Id == inscricao.MissaoId && m.Ativa);
 
         if (!missaoExiste)
         {
-            ModelState.AddModelError(nameof(inscricao.MissaoId),"Selecione uma missão.");
+            ModelState.AddModelError(
+                nameof(inscricao.MissaoId),
+                "Selecione uma missão."
+            );
         }
 
         if (!ModelState.IsValid)
         {
             var missoes = await _context.Missoes
-            .Where(m => m.Ativa)
-            .OrderBy(m => m.Nome)
-            .ToListAsync();
+                .Where(m => m.Ativa)
+                .ToListAsync();
 
-            ViewBag.Missoes = new SelectList(missoes,"Id","Nome",inscricao.MissaoId);
+            ViewBag.MissaoIds = missoes.ToDictionary(
+                m => m.Nome,
+                m => m.Id
+            );
 
             return View(inscricao);
         }
@@ -79,7 +86,7 @@ public class HomeController : Controller
         _context.Inscricoes.Add(inscricao);
         await _context.SaveChangesAsync();
 
-        TempData["Sucesso"] = "Inscrição realizado com sucesso!";
+        TempData["Sucesso"] = "Inscrição realizada com sucesso!";
 
         return RedirectToAction(nameof(Inscricao));
     }

@@ -795,6 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const formStatus = document.getElementById("inscricaoFormStatus");
     const campos = document.getElementById("inscricaoCampos");
     const btnEnviar = document.getElementById("inscricaoBtnEnviar");
+    const missaoIdInput = document.getElementById("MissaoId");
     
     if (!cards.length || !campos){
         return;
@@ -907,22 +908,32 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Segue-me Jovem",
             subtitulo: "Formação e missão para jovens",
             descricao: "Um caminho de formação e missão para jovens que desejam aprofundar sua fé e seguir a Cristo com alegria.",
+
             aberta: false,
-            passos:[
-                ["Aguarde reabertura", "As inscrições estão encerradas no momento."],
-                ["Acompanhe os avisos","Fique atento aos canais oficiais da Pastoral da Juventude."],
-                ["Quando abrir, faça sua inscrição","As vagas são limitadas e serão liberadas pela coordenação."]
+
+            passos: [
+                ["Faça sua inscrição", "Preencha seus dados para participar."],
+                ["Aguarde a confirmação", "Nossa equipe entrará em contato com você."],
+                ["Viva essa experiência", "Prepare-se para um momento de formação, fé e missão."]
             ],
+
             campos: `
-                <div class="inscricao-fechada-box">
-                    <i class="fa-solid fa-lock"></i>
-                    <h3>Inscrições encerradas</h3>
-                    <p>
-                        As inscrições para esta missão estão encerradas no momento.
-                        Aguarde novas informações da Pastoral da Juventude.
-                    </p>
-                </div>
-            `
+        <div class="inscricao-form-row">
+            ${campoInput("Nome completo", "Nome", "text", "Digite seu nome completo")}
+            ${campoInput("Telefone / WhatsApp", "Telefone", "tel", "(00) 00000-0000")}
+        </div>
+
+        <div class="inscricao-form-row">
+            ${campoIdade("Idade", "Idade", "Ex: 18")}
+            ${campoInput("Comunidade / Paróquia", "Comunidade", "text", "Informe sua comunidade")}
+        </div>
+
+        ${campoTextarea(
+                "Observação",
+                "Observacao",
+                "Escreva alguma informação importante..."
+            )}
+    `
         }
     };
     
@@ -1025,10 +1036,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
     function atualizarMissao(card){
         const nomeMissao = card.dataset.missao;
+        const missaoId = card.dataset.missaoId;
+
         const missao = missoes[nomeMissao];
         
         if(!missao) {
             return;
+        }
+
+        if (missaoIdInput) {
+            missaoIdInput.value = missaoId;
         }
         
         cards.forEach(item => item.classList.remove("active"));
@@ -1040,7 +1057,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
         sobreImagem.src = card.dataset.img;
         
-        campos.innerHTML = missao.campos;
+        if (missao.aberta) {
+            campos.innerHTML = missao.campos;
+        } else {
+            campos.innerHTML = `
+        <div class="inscricao-fechada-box">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Inscrições encerradas</h3>
+            <p>
+                As inscrições para esta missão estão encerradas no momento.
+                Aguarde novas informações da Pastoral da Juventude.
+            </p>
+        </div>
+    `;
+        }
         atualizarPassos(missao.passos);
 
         status.textContent = missao.aberta ? "Inscrições abertas" : "Inscrições encerradas";

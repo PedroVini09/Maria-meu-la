@@ -1,6 +1,15 @@
 @model MariaEmMeuLar.Models.Inscricao
 @{
    ViewData["Title"] = "Inscrição";
+
+   var missaoIds =
+       (Dictionary<string, int>)ViewBag.MissaoIds;
+}
+@if (TempData["Sucesso"] != null)
+{
+   <div class="alerta-sucesso">
+      @TempData["Sucesso"]
+   </div>
 }
 
 <section class="inscricao-section" id="inscricao">
@@ -35,7 +44,9 @@
 
       <div class="inscricao-missoes">
 
-         <button class="inscricao-missao-card active" type="button" data-missao="maria" data-img="@Url.Content("~/img/inscricao/inscricao_maria.png")">
+         <button class="inscricao-missao-card active" type="button" data-missao="maria" 
+          data-missao-id="@(missaoIds["Maria em Meu Lar"])"
+          data-img="@Url.Content("~/img/inscricao/inscricao_maria.png")">
             <div class="inscricao-missao-img">
                <img src="@Url.Content("~/img/inscricao/inscricao_maria.png")" alt="imagem_card_maria"/>
             </div>
@@ -47,7 +58,10 @@
             </div>
          </button>
 
-         <button class="inscricao-missao-card" type="button" data-missao="retiro" data-img="@Url.Content("~/img/inscricao/inscricao_retiro.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_eucaristia.png")">
+         <button class="inscricao-missao-card" type="button" data-missao="retiro"
+                 data-missao-id="@(missaoIds["Retiro Quaresmal"])"
+                 data-img="@Url.Content("~/img/inscricao/inscricao_retiro.png")"
+                 data-hero="@Url.Content("~/img/programacao_ilustracao_eucaristia.png")">
             <div class="inscricao-missao-img">
                <img src="@Url.Content("~/img/inscricao/inscricao_retiro.png")" alt="imagem_card_retiro"/>
             </div>
@@ -58,7 +72,10 @@
                <span class="status aberto">Inscrições abertas</span>
             </div>
          </button>
-         <button class="inscricao-missao-card" type="button" data-missao="semana" data-img="@Url.Content("~/img/inscricao/inscricao_semana.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_acutis.png")">
+         <button class="inscricao-missao-card" type="button" data-missao="semana"
+                 data-missao-id="@(missaoIds["Semana da Juventude"])"
+                 data-img="@Url.Content("~/img/inscricao/inscricao_semana.png")"
+                 data-hero="@Url.Content("~/img/programacao_ilustracao_acutis.png")">
             <div class="inscricao-missao-img">
                <img src="@Url.Content("~/img/inscricao/inscricao_semana.png")" alt="imagem_card_semana"/>
             </div>
@@ -70,7 +87,10 @@
             </div>
          </button>
 
-         <button class="inscricao-missao-card" type="button" data-missao="terco" data-img="@Url.Content("~/img/inscricao/inscricao_terco.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_terco.png")">
+         <button class="inscricao-missao-card" type="button" data-missao="terco"
+                 data-missao-id="@(missaoIds["Terço da Juventude"])"
+                 data-img="@Url.Content("~/img/inscricao/inscricao_terco.png")"
+                 data-hero="@Url.Content("~/img/programacao_ilustracao_terco.png")">
             <div class="inscricao-missao-img">
                <img src="@Url.Content("~/img/inscricao/inscricao_terco.png")" alt="imagem_card_terco"/>
             </div>
@@ -82,7 +102,10 @@
             </div>
          </button>
 
-         <button class="inscricao-missao-card encerrado" type="button" data-missao="segue" data-img="@Url.Content("~/img/inscricao/inscricao_segue.png")" data-hero="@Url.Content("~/img/programacao_ilustracao_segue-me.png")">
+         <button class="inscricao-missao-card encerrado" type="button" data-missao="segue"
+                 data-missao-id="@(missaoIds["Segue-me Jovem"])"
+                 data-img="@Url.Content("~/img/inscricao/inscricao_segue.png")"
+                 data-hero="@Url.Content("~/img/programacao_ilustracao_segue-me.png")">
             <div class="inscricao-missao-img">
                <img src="@Url.Content("~/img/inscricao/inscricao_segue.png")" alt="imagem_card_segue"/>
             </div>
