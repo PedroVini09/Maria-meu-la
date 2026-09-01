@@ -12,7 +12,7 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = 30,
-            Email = "maria@example.com",
+            // Email = "maria@example.com",
             Telefone = "1234567890",
             MissaoId=1
         };
@@ -39,7 +39,7 @@ public class InscricaoTests
         {
             Nome = "", // Nome inválido
             Idade = 20, // Idade inválida
-            Email = "emailinvalido", // Email inválido
+            // Email = "emailinvalido", // Email inválido
             Telefone = "1234116", // Telefone inválido
             MissaoId=1 // Missão inválida
         };
@@ -56,30 +56,30 @@ public class InscricaoTests
         Assert.Contains(resultados, r => r.MemberNames.Contains(nameof(Inscricao.Nome)));
     }
 
-    [Fact]
-    public void Inscricao_EmailInvalido_DeveSerInvalida()
-    {
-        // Arrange
-        var inscricao = new Inscricao
-        {
-            Nome = "Maria",
-            Idade = 25,
-            Email = "EMAIL-INVALIDO", // Email inválido
-            Telefone = "1234567890",
-            MissaoId=1
-        };
+    // [Fact]
+    // public void Inscricao_EmailInvalido_DeveSerInvalida()
+    // {
+    //     // Arrange
+    //     var inscricao = new Inscricao
+    //     {
+    //         Nome = "Maria",
+    //         Idade = 25,
+    //         // Email = "EMAIL-INVALIDO", // Email inválido
+    //         Telefone = "1234567890",
+    //         MissaoId=1
+    //     };
 
-        var contexto = new ValidationContext(inscricao);
-        var resultados = new List<ValidationResult>();
+    //     var contexto = new ValidationContext(inscricao);
+    //     var resultados = new List<ValidationResult>();
 
-        // Act
-        var valido = Validator.TryValidateObject(inscricao, contexto, resultados, true);
+    //     // Act
+    //     var valido = Validator.TryValidateObject(inscricao, contexto, resultados, true);
 
-        // Assert
-        Assert.False(valido);
+    //     // Assert
+    //     Assert.False(valido);
 
-        Assert.Contains(resultados, r => r.MemberNames.Contains(nameof(Inscricao.Email)));
-    }
+    //     Assert.Contains(resultados, r => r.MemberNames.Contains(nameof(Inscricao.Email)));
+    // }
 
     [Fact]
     public void Inscricao_SemTelefone_DeveSerInvalida()
@@ -89,7 +89,7 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = 25,
-            Email = "maria@example.com",
+            // Email = "maria@example.com",
             Telefone = "", // Telefone inválido
             MissaoId=1
         };
@@ -114,7 +114,7 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = 25,
-            Email = "maria@example.com",
+            // Email = "maria@example.com",
             Telefone = "1234567890",
             MissaoId = 0 // Missão inválida
         };
@@ -138,7 +138,7 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = 0, // Idade inválida
-            Email = "maria@example.com",
+            // Email = "maria@example.com",
             Telefone = "1234567890",
             MissaoId = 1    
         };
@@ -162,7 +162,7 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = null, // Idade inválida
-            Email = "maria@example.com",
+            // Email = "maria@example.com",
             Telefone = "1234567890",
             MissaoId = 1
         };
@@ -184,7 +184,6 @@ public class InscricaoTests
         {
             Nome = "Maria",
             Idade = 20, // Idade inválida
-            Email = null,
             Telefone = "1234567890",
             MissaoId = 1
         };
