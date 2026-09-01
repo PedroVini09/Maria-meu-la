@@ -154,4 +154,48 @@ public class InscricaoTests
 
         Assert.Contains(resultados, r => r.MemberNames.Contains(nameof(Inscricao.Idade)));
     }
+
+    [Fact]
+    public void Inscricao_SemIdade_DeveSerInvalida()
+    {
+        var inscricao = new Inscricao
+        {
+            Nome = "Maria",
+            Idade = null, // Idade inválida
+            Email = "maria@example.com",
+            Telefone = "1234567890",
+            MissaoId = 1
+        };
+
+        var contexto = new ValidationContext(inscricao);
+        var resultados = new List<ValidationResult>();
+
+        // Act
+        var valido = Validator.TryValidateObject(inscricao, contexto, resultados, true);
+
+        // Assert
+        Assert.True(valido);
+    }
+
+    [Fact]
+    public void Inscricao_SemEmail_DeveSerInvalida()
+    {
+        var inscricao = new Inscricao
+        {
+            Nome = "Maria",
+            Idade = 20, // Idade inválida
+            Email = null,
+            Telefone = "1234567890",
+            MissaoId = 1
+        };
+
+        var contexto = new ValidationContext(inscricao);
+        var resultados = new List<ValidationResult>();
+
+        // Act
+        var valido = Validator.TryValidateObject(inscricao, contexto, resultados, true);
+
+        // Assert
+       Assert.True(valido);
+    }
 }
