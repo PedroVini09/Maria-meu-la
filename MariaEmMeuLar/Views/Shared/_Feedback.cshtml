@@ -1,0 +1,27 @@
+@if (TempData["Sucesso"] != null)
+{
+    <div class="feedback feedback-sucesso">
+        <div class="feedback-conteudo">
+            <strong>Sucesso!</strong>
+            <span>@TempData["Sucesso"]</span>
+        </div>
+
+        <button type="button" class="feedback-fechar" onclick="this.parentElement.remove()">
+            ×
+        </button>
+    </div>
+}
+
+@if (TempData["Erro"] != null)
+{
+    <div class="feedback feedback-erro">
+        <div class="feedback-conteudo">
+            <strong>Ops!</strong>
+            <span>@TempData["Erro"]</span>
+        </div>
+
+        <button type="button" class="feedback-fechar" onclick="this.parentElement.remove()">
+            ×
+        </button>
+    </div>
+}

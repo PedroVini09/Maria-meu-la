@@ -2,6 +2,8 @@
     ViewData["Title"] = "Contato";
 }
 
+<partial name="_Feedback" />
+
 <section class="contatos-section" id="contatos">
     <div class="contatos-container">
         <div class="contatos-heading">
@@ -18,22 +20,7 @@
                 <span></span>
             </div> 
         </div>
-        
-        @if (TempData["ContatoSucesso"] != null)
-        {
-            <div class="contatos-alerta sucesso">
-                <i class="fa-solid fa-circle-check"></i>
-                @TempData["ContatoSucesso"]
-            </div>
-        }
-        
-        @if (TempData["ContatoErro"] != null)
-        {
-            <div class="contatos-alerta erro">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                @TempData["ContatoErro"]
-            </div>
-        }
+
         <div class="contatos-content">
             
             <div class="contatos-info">

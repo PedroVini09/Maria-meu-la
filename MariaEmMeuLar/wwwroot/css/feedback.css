@@ -1,0 +1,51 @@
+.feedback{
+position: fixed;
+top: 100px;
+right: 25px;
+width: min(420px, calc(100% - 40px));
+padding: 18px 20px;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 16px;
+
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+z-index: 9999;
+}
+
+.feedback-sucesso{
+    background: #ecfdf3;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+
+.feedback-erro{
+    background: #fef1f2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+}
+
+.feedback-conteudo{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.feedback-conteudo strong{
+    font-size: 16px;
+}
+
+.feedback-conteudo span{
+    font-size: 14px;
+}
+
+.feedback-fechar{
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    color: inherit;
+}

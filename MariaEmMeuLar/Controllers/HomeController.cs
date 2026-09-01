@@ -6,6 +6,7 @@ using MariaEmMeuLar.Services;
 using MariaEmMeuLar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MariaEmMeuLar.Controllers;
 
@@ -13,10 +14,13 @@ public class HomeController : Controller
 {
     private readonly IEmailService _emailService;
     private readonly AppDbContext _context;
-    public HomeController(IEmailService emailService, AppDbContext context)
+
+    private readonly ILogger<HomeController> _logger;
+    public HomeController(IEmailService emailService, AppDbContext context, ILogger<HomeController> logger)
     {
         _emailService = emailService;
         _context = context;
+        _logger = logger;
     }
     public IActionResult Index()
     {
@@ -39,14 +43,7 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Inscricao()
     {
-        var missoes = await _context.Missoes
-            .Where(m => m.Ativa)
-            .ToListAsync();
-
-        ViewBag.MissaoIds = missoes.ToDictionary(
-            m => m.Nome,
-            m => m.Id
-        );
+        await CarregarMissoesAsync();
 
         return View();
     }
@@ -68,27 +65,65 @@ public class HomeController : Controller
 
         if (!ModelState.IsValid)
         {
-            var missoes = await _context.Missoes
-                .Where(m => m.Ativa)
-                .ToListAsync();
 
-            ViewBag.MissaoIds = missoes.ToDictionary(
-                m => m.Nome,
-                m => m.Id
-            );
+            await CarregarMissoesAsync();
+
+            TempData["Erro"] = "Verifique os dados informados.";
+
+            return View(inscricao);
+            // var missoes = await _context.Missoes
+            //     .Where(m => m.Ativa)
+            //     .ToListAsync();
+
+            // ViewBag.MissaoIds = missoes.ToDictionary(
+            //     m => m.Nome,
+            //     m => m.Id
+            // );
+
+            // return View(inscricao);
+        }
+
+        try
+        {
+            inscricao.Status = "Pendente";
+            inscricao.DataInscricao = DateTime.Now;
+
+            _context.Inscricoes.Add(inscricao);
+            await _context.SaveChangesAsync();
+
+            TempData["Sucesso"] = "Inscrição realizada com sucesso!";
+
+            return RedirectToAction(nameof(Inscricao));
+        }
+        catch(DbUpdateException ex)
+        {
+            _logger.LogError(ex, "Error ao salvar inscrição no banco.");
+
+            await CarregarMissoesAsync();
+
+            TempData["Sucesso"] = "Sua Inscrição foi enviada com Sucesso";
+            
+            return RedirectToAction(nameof(Inscricao));
+        }
+        catch(Exception ex)
+        {
+            _logger.LogError( ex ," Erro inesperado ao processar inscrição");
+
+            await CarregarMissoesAsync();
+
+            TempData["Erro"] = "Ocorreu um erro inesperado. Tente novamente.";
 
             return View(inscricao);
         }
+    }
 
-        inscricao.Status = "Pendente";
-        inscricao.DataInscricao = DateTime.Now;
+    private async Task CarregarMissoesAsync()
+    {
+        var missoes = await _context.Missoes
+          .Where(m => m.Ativa)
+          .ToListAsync();
 
-        _context.Inscricoes.Add(inscricao);
-        await _context.SaveChangesAsync();
-
-        TempData["Sucesso"] = "Inscrição realizada com sucesso!";
-
-        return RedirectToAction(nameof(Inscricao));
+        ViewBag.MissaoIds = missoes.ToDictionary(m => m.Nome, m=> m.Id);
     }
     public IActionResult Contatos()
     {
@@ -126,7 +161,7 @@ public class HomeController : Controller
     {
         if (!ModelState.IsValid)
         {
-            TempData["ContatoErro"] = "Preencha todos os campos corretamente.";
+            TempData["Erro"] = "Preencha todos os campos corretamente.";
             return RedirectToAction("Contatos");
         }
 
@@ -134,12 +169,15 @@ public class HomeController : Controller
         {
             await _emailService.EnviarMensagemContatoAsync(model);
 
-            TempData["ContatoSucesso"] = "Mensagem enviada com sucesso!";
+            TempData["Sucesso"] = "Mensagem enviada com sucesso!";
             return RedirectToAction("Contatos");
         }
         catch (Exception ex)
         {
-            TempData["ContatoErro"] = "Erro ao enviar e-mail: " + ex.Message;
+          _logger.LogError(ex, "Erro ao enviar mensagem pelo formulario de contato.");
+
+          TempData["Erro"]= "Não foi possivel enviar sua mensagem. Tente novamente";
+          
             return RedirectToAction("Contatos");
         }
     }

@@ -5,12 +5,8 @@
    var missaoIds =
        (Dictionary<string, int>)ViewBag.MissaoIds;
 }
-@if (TempData["Sucesso"] != null)
-{
-   <div class="alerta-sucesso">
-      @TempData["Sucesso"]
-   </div>
-}
+
+<partial name="_Feedback"/>
 
 <section class="inscricao-section" id="inscricao">
    <div class="inscricao-container">
