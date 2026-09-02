@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Painel Admin</title>
+
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Pastoral da Juventude</h2>
+                <p>Painel Administrativo</p>
+            </div>
+
+            <nav class="admin-menu">
+                <a asp-controller="Admin" asp-action="Index">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a asp-controller="Admin" asp-action="Inscricoes">
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>Inscrições</span>
+                </a>
+
+                <a asp-controller="Admin" asp-action="Programacoes">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Programação</span>
+                </a>
+
+                <a asp-controller="Admin" asp-action="Noticias">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <span>Notícias</span>
+                </a>
+
+                <a asp-controller="Admin" asp-action="Galeria">
+                    <i class="fa-solid fa-image"></i>
+                    <span>Galeria</span>
+                </a>
+
+                <a asp-controller="Admin" asp-action="Usuarios">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Usuários</span>
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <form asp-controller="Auth" asp-action="Logout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="admin-logout-btn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Sair
+                    </button>
+                </form>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <h1>@ViewData["Title"]</h1>
+            </header>
+
+            <main class="admin-content">
+                @RenderBody()
+            </main>
+        </div>
+
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

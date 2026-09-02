@@ -1,0 +1,178 @@
+/* =========================
+   ADMIN LAYOUT
+========================= */
+
+.admin-body {
+    margin: 0;
+    background: #f4f6f9;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    width: 260px;
+    background: #0b3f7a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 18px;
+    box-sizing: border-box;
+}
+
+.admin-logo h2 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.admin-logo p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 35px;
+}
+
+.admin-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 14px;
+    border-radius: 10px;
+    transition: 0.2s ease;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.admin-menu a:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.admin-sidebar-footer {
+    margin-top: auto;
+    padding-top: 25px;
+}
+
+.admin-logout-btn {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #d9534f;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.admin-logout-btn:hover {
+    background: #c9302c;
+}
+
+.admin-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-topbar {
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+.admin-topbar h1 {
+    margin: 0;
+    font-size: 22px;
+    color: #222;
+}
+
+.admin-content {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.admin-page-title {
+    margin-bottom: 25px;
+}
+
+.admin-page-title h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #1f2937;
+}
+
+.admin-page-title p {
+    margin: 0;
+    color: #6b7280;
+}
+
+.admin-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.admin-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #374151;
+}
+
+.admin-card strong {
+    font-size: 28px;
+    color: #0b3f7a;
+}
+
+/* Responsivo */
+@media (max-width: 1000px) {
+    .admin-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100%;
+    }
+
+    .admin-cards {
+        grid-template-columns: 1fr;
+    }
+}

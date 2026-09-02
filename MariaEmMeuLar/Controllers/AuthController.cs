@@ -85,7 +85,7 @@ namespace MariaEmMeuLar.Controllers
                        ? DateTimeOffset.UtcNow.AddMinutes(60) : null
                 });
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Admin");
             }
             catch(Exception ex)
             {
