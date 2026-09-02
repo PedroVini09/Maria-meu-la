@@ -1,0 +1,50 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model MariaEmMeuLar.Models.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login Administrativo";
+    Layout = "_LayoutAuth";
+}
+
+<section class="login-section">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-titulo">
+                <img src="~/img/logo_da_pascom.png" alt="Pastoral da Juventude" class="login-logo"/>
+                <div>
+                    <h1>Área Administrativa</h1>
+                    <p>Entre com suas credenciais para continuar.</p>
+                </div>
+            </div>
+        </div>
+
+        <form asp-controller="Auth" asp-action="Login" method="post" class="login-form">
+            <div asp-validation-summary="ModelOnly" class="login-validacao"></div>
+            <div class="login-campo">
+                <label asp-for="Email">E-mail</label>
+
+                <input asp-for="Email" type="email" placeholder="Digite seu e-mail" autocomplete="email"/>
+
+                <span asp-validation-for="Email" class="login-erro"></span>
+            </div>
+
+            <div class="login-campo">
+                <label asp-for="Password">Senha</label>
+
+                <input asp-for="Password" type="password" placeholder="Digite sua senha" autocomplete="current-password" />
+                 <span asp-validation-for="Password" class="login-erro"></span>
+            </div>
+
+            <div class="login-opcoes">
+                <label>
+                    <input asp-for="LembrarMe"/>
+                    Lembra-me
+                </label>
+            </div>
+
+            <button type="submit" class="login-btn">
+                Entrar
+            </button>
+        </form>
+    </div>
+</section>
