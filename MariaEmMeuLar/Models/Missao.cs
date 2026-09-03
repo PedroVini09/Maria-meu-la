@@ -24,5 +24,7 @@ namespace MariaEmMeuLar.Models
         public ICollection<Programacao> Programacoes { get; set; } = new List<Programacao>();
 
         public ICollection<Galeria> Galerias { get; set; } = new List<Galeria>();
+
+        public bool InscricoesAbertas { get; set; } = true;
     }
 }

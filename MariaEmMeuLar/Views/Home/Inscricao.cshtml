@@ -4,6 +4,9 @@
 
    var missaoIds =
        (Dictionary<string, int>)ViewBag.MissaoIds;
+ 
+   var missaoStatus =
+    (Dictionary<string, bool>)ViewBag.MissaoStatus;
 }
 
 <partial name="_Feedback"/>
@@ -40,78 +43,144 @@
 
       <div class="inscricao-missoes">
 
-         <button class="inscricao-missao-card active" type="button" data-missao="maria" 
-          data-missao-id="@(missaoIds["Maria em Meu Lar"])"
-          data-img="@Url.Content("~/img/inscricao/inscricao_maria.png")">
+         <!-- MARIA EM MEU LAR -->
+         <button class="inscricao-missao-card" type="button" data-missao="maria"
+                 data-missao-id="@(missaoIds["Maria em Meu Lar"])"
+                 data-aberta="@(missaoStatus["Maria em Meu Lar"] ? "true" : "false")"
+                 data-img="@Url.Content("~/img/inscricao/inscricao_maria.png")">
+
             <div class="inscricao-missao-img">
-               <img src="@Url.Content("~/img/inscricao/inscricao_maria.png")" alt="imagem_card_maria"/>
+               <img src="@Url.Content("~/img/inscricao/inscricao_maria.png")" alt="imagem_card_maria" />
             </div>
 
             <div class="inscricao-missao-texto">
+
                <h3>Maria em Meu Lar</h3>
+
                <p>Visita da imagem de Maria ao seu lar</p>
-               <span class="status aberto">Inscrições abertas</span>
+
+               <span class="status @(missaoStatus["Maria em Meu Lar"] ? "aberto" : "fechado")">
+                  @(missaoStatus["Maria em Meu Lar"]
+                      ? "Inscrições abertas"
+                      : "Inscrições encerradas")
+               </span>
+
             </div>
+
          </button>
 
+
+         <!-- RETIRO QUARESMAL -->
          <button class="inscricao-missao-card" type="button" data-missao="retiro"
                  data-missao-id="@(missaoIds["Retiro Quaresmal"])"
+                 data-aberta="@(missaoStatus["Retiro Quaresmal"] ? "true" : "false")"
                  data-img="@Url.Content("~/img/inscricao/inscricao_retiro.png")"
                  data-hero="@Url.Content("~/img/programacao_ilustracao_eucaristia.png")">
+
             <div class="inscricao-missao-img">
-               <img src="@Url.Content("~/img/inscricao/inscricao_retiro.png")" alt="imagem_card_retiro"/>
+               <img src="@Url.Content("~/img/inscricao/inscricao_retiro.png")" alt="imagem_card_retiro" />
             </div>
 
             <div class="inscricao-missao-texto">
+
                <h3>Retiro Quaresmal</h3>
+
                <p>Momentos de oração, reflexão e renovação</p>
-               <span class="status aberto">Inscrições abertas</span>
+
+               <span class="status @(missaoStatus["Retiro Quaresmal"] ? "aberto" : "fechado")">
+                  @(missaoStatus["Retiro Quaresmal"]
+                      ? "Inscrições abertas"
+                      : "Inscrições encerradas")
+               </span>
+
             </div>
+
          </button>
+
+
+         <!-- SEMANA DA JUVENTUDE -->
          <button class="inscricao-missao-card" type="button" data-missao="semana"
                  data-missao-id="@(missaoIds["Semana da Juventude"])"
+                 data-aberta="@(missaoStatus["Semana da Juventude"] ? "true" : "false")"
                  data-img="@Url.Content("~/img/inscricao/inscricao_semana.png")"
                  data-hero="@Url.Content("~/img/programacao_ilustracao_acutis.png")">
+
             <div class="inscricao-missao-img">
-               <img src="@Url.Content("~/img/inscricao/inscricao_semana.png")" alt="imagem_card_semana"/>
+               <img src="@Url.Content("~/img/inscricao/inscricao_semana.png")" alt="imagem_card_semana" />
             </div>
 
             <div class="inscricao-missao-texto">
+
                <h3>Semana da Juventude</h3>
+
                <p>Uma semana de fé, louvor e comunhão</p>
-               <span class="status aberto">Inscrições abertas</span>
+
+               <span class="status @(missaoStatus["Semana da Juventude"] ? "aberto" : "fechado")">
+                  @(missaoStatus["Semana da Juventude"]
+                      ? "Inscrições abertas"
+                      : "Inscrições encerradas")
+               </span>
+
             </div>
+
          </button>
 
+
+         <!-- TERÇO DA JUVENTUDE -->
          <button class="inscricao-missao-card" type="button" data-missao="terco"
                  data-missao-id="@(missaoIds["Terço da Juventude"])"
+                 data-aberta="@(missaoStatus["Terço da Juventude"] ? "true" : "false")"
                  data-img="@Url.Content("~/img/inscricao/inscricao_terco.png")"
                  data-hero="@Url.Content("~/img/programacao_ilustracao_terco.png")">
+
             <div class="inscricao-missao-img">
-               <img src="@Url.Content("~/img/inscricao/inscricao_terco.png")" alt="imagem_card_terco"/>
+               <img src="@Url.Content("~/img/inscricao/inscricao_terco.png")" alt="imagem_card_terco" />
             </div>
 
             <div class="inscricao-missao-texto">
+
                <h3>Terço da Juventude</h3>
+
                <p>Oração do terço com a juventude</p>
-               <span class="status aberto">Inscrições abertas</span>
+
+               <span class="status @(missaoStatus["Terço da Juventude"] ? "aberto" : "fechado")">
+                  @(missaoStatus["Terço da Juventude"]
+                      ? "Inscrições abertas"
+                      : "Inscrições encerradas")
+               </span>
+
             </div>
+
          </button>
 
-         <button class="inscricao-missao-card encerrado" type="button" data-missao="segue"
+
+         <!-- SEGUE-ME JOVEM -->
+         <button class="inscricao-missao-card" type="button" data-missao="segue"
                  data-missao-id="@(missaoIds["Segue-me Jovem"])"
+                 data-aberta="@(missaoStatus["Segue-me Jovem"] ? "true" : "false")"
                  data-img="@Url.Content("~/img/inscricao/inscricao_segue.png")"
                  data-hero="@Url.Content("~/img/programacao_ilustracao_segue-me.png")">
+
             <div class="inscricao-missao-img">
-               <img src="@Url.Content("~/img/inscricao/inscricao_segue.png")" alt="imagem_card_segue"/>
+               <img src="@Url.Content("~/img/inscricao/inscricao_segue.png")" alt="imagem_card_segue" />
             </div>
 
             <div class="inscricao-missao-texto">
+
                <h3>Segue-me Jovem</h3>
+
                <p>Formação e missão para jovens</p>
-               <span class="status fechado">Inscrições encerradas</span>
+
+               <span class="status @(missaoStatus["Segue-me Jovem"] ? "aberto" : "fechado")">
+                  @(missaoStatus["Segue-me Jovem"]
+                      ? "Inscrições abertas"
+                      : "Inscrições encerradas")
+               </span>
+
             </div>
+
          </button>
+
       </div>
 
       <div class="inscricao-detalhes">

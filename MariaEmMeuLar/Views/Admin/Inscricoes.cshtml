@@ -1,0 +1,144 @@
+@model IEnumerable<MariaEmMeuLar.Models.Inscricao>
+
+@{
+    ViewData["Title"] = "Inscrições";
+
+    var controleMissoes =
+      ViewBag.ControleMissoes as List<MariaEmMeuLar.Models.Missao>;
+}
+
+<div class="admin-page-title">
+    <h2>Inscrições</h2>
+    <p>Lista de inscrições realizadas.</p>
+</div>
+
+<div class="controle-inscricoes">
+
+    <div class="controle-inscricoes-header">
+        <h3>Controle de Inscrições</h3>
+        <p>Abra ou encerre as inscrições de cada missão.</p>
+    </div>
+
+    <div class="controle-missoes-grid">
+
+        @if (controleMissoes != null)
+        {
+            @foreach (var missao in controleMissoes)
+            {
+                <div class="controle-missao-card">
+
+                    <div>
+                        <strong>@missao.Nome</strong>
+
+                        @if (missao.InscricoesAbertas)
+                        {
+                            <span class="status-inscricao aberta">
+                                Inscrições abertas
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="status-inscricao fechada">
+                                Inscrições fechadas
+                            </span>
+                        }
+                    </div>
+
+                    <form asp-controller="Admin" asp-action="AlternarInscricoesMissao" asp-route-id="@missao.Id" method="post">
+
+                        @if (missao.InscricoesAbertas)
+                        {
+                            <button type="submit" class="btn-fechar-inscricao">
+                                Fechar
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn-abrir-inscricao">
+                                Abrir
+                            </button>
+                        }
+
+                    </form>
+
+                </div>
+            }
+        }
+
+    </div>
+
+</div>
+
+<div class="inscricoes-filtros">
+    <form asp-controller="Admin" asp-action="Inscricoes" method="get">
+
+        <div class="inscricoes-filtro-campo">
+
+            <label for="missaoId">
+                Filtrar por Missão
+            </label>
+
+            <select id="missaoId" name="missaoId" asp-items="ViewBag.Missoes" onchange="this.form.submit()">
+
+                <option value="">
+                    Todas as Missões
+                </option>
+
+            </select>
+
+        </div>
+
+    </form>
+</div>
+<div class="admin-table-container">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Missão</th>
+                <th>Telefone</th>
+                <th>Data de Inscrição</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="admin-table-empty">Nenhuma inscrição encontrada.</td>
+                </tr>
+            }else{
+                @foreach (var inscricao in Model)
+                {
+                    <tr>
+                        <td>
+                            <strong>@inscricao.Nome</strong><br />
+                        </td>
+                        <td>@(inscricao.Missao?.Nome ?? "Missão não especificada")</td>
+                        <td>@inscricao.Telefone</td>
+                        <td>@inscricao.DataInscricao.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td><span class="admin-status">@inscricao.Status</span></td>
+                        <td><div>
+                            <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@inscricao.Id" class="admin-btn-detalhes">
+                                Detalhes
+                            </a>
+
+                            <a asp-controller="Admin" asp-action="EditarInscricao" asp-route-id="@inscricao.Id" class="admin-btn-editar">
+                                Editar
+                            </a>
+                            <form asp-controller="Admin" asp-action="ExcluirInscricao" asp-route-id="@inscricao.Id" method="post" class="admin-form-excluir">
+                                <button type="submit" class="admin-btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta inscrição?');">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div></td>
+                    </tr>
+                }
+            }
+           
+        </tbody>
+    </table>
+
+</div>

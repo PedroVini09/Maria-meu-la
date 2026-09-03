@@ -1,0 +1,253 @@
+@model MariaEmMeuLar.Models.ViewModels.EditarInscricaoViewModel
+
+@{
+    ViewData["Title"] = "Editar Inscrição";
+}
+
+<div class="admin-page-title">
+    <h2>Editar Inscrição</h2>
+    <p>@Model.MissaoNome</p>
+</div>
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="EditarInscricao" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+        <!-- CAMPOS GERAIS -->
+        <div class="admin-form-grid">
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+                    <label asp-for="Nome">Nome</label>
+
+                    <input asp-for="Nome" />
+
+                    <span asp-validation-for="Nome" class="login-validacao"></span>
+                </div>
+
+                <div class="admin-form-campo">
+                    <label asp-for="Telefone">Telefone</label>
+
+                    <input asp-for="Telefone" />
+
+                    <span asp-validation-for="Telefone" class="login-validacao"></span>
+                </div>
+
+                @if (Model.Idade.HasValue ||
+                     Model.MissaoNome == "Retiro Quaresmal" ||
+                     Model.MissaoNome == "Semana da Juventude" ||
+                     Model.MissaoNome == "Segue-me Jovem")
+                {
+                    <div class="admin-form-campo">
+                        <label asp-for="Idade">Idade</label>
+
+                        <input asp-for="Idade" type="number" />
+
+                        <span asp-validation-for="Idade" class="login-validacao"></span>
+                    </div>
+                }
+
+                <div class="admin-form-campo">
+                    <label asp-for="Status">Status</label>
+
+                    <select asp-for="Status">
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em análise">Em análise</option>
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Cancelada">Cancelada</option>
+                    </select>
+
+                    <span asp-validation-for="Status" class="login-validacao"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- MARIA -->
+        @if (Model.MissaoNome == "Maria em Meu Lar")
+        {
+            <div class="admin-form-secao">
+
+                <h3>Dados da visita</h3>
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-form-campo admin-form-full">
+                        <label asp-for="Endereco">
+                            Endereço
+                        </label>
+
+                        <input asp-for="Endereco" />
+                    </div>
+
+
+                    <div class="admin-form-campo">
+                        <label asp-for="DataDesejada">
+                            Data desejada
+                        </label>
+
+                        <input asp-for="DataDesejada" type="date" />
+                    </div>
+
+
+                    <div class="admin-form-campo">
+                        <label asp-for="HorarioDesejado">
+                            Horário desejado
+                        </label>
+
+                        <input asp-for="HorarioDesejado" type="time" />
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+
+        <!-- RETIRO -->
+        @if (Model.MissaoNome == "Retiro Quaresmal")
+        {
+            <div class="admin-form-secao">
+
+                <h3>Dados do Retiro</h3>
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-form-campo">
+                        <label asp-for="Comunidade">
+                            Comunidade
+                        </label>
+
+                        <input asp-for="Comunidade" />
+                    </div>
+
+
+                    <div class="admin-form-campo">
+
+                        <label asp-for="JaParticipou">
+                            Já participou?
+                        </label>
+
+                        <select asp-for="JaParticipou">
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+        <!-- SEMANA -->
+        @if (Model.MissaoNome == "Semana da Juventude")
+        {
+            <div class="admin-form-secao">
+
+                <h3>Dados da Semana da Juventude</h3>
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-form-campo">
+                        <label asp-for="Grupo">Grupo</label>
+                        <input asp-for="Grupo" />
+                    </div>
+
+                    <div class="admin-form-campo">
+                        <label asp-for="Turno">Turno</label>
+                        <input asp-for="Turno" />
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+
+        <!-- TERÇO -->
+        @if (Model.MissaoNome == "Terço da Juventude")
+        {
+            <div class="admin-form-secao">
+
+                <h3>Dados do Terço</h3>
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-form-campo">
+                        <label asp-for="Participacao">
+                            Participação
+                        </label>
+
+                        <input asp-for="Participacao" />
+                    </div>
+
+                    <div class="admin-form-campo">
+                        <label asp-for="DiaDisponivel">
+                            Dia disponível
+                        </label>
+
+                        <input asp-for="DiaDisponivel" />
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+
+        <!-- SEGUE-ME -->
+        @if (Model.MissaoNome == "Segue-me Jovem")
+        {
+            <div class="admin-form-secao">
+
+                <h3>Dados do Segue-me Jovem</h3>
+
+                <div class="admin-form-campo">
+                    <label asp-for="Comunidade">
+                        Comunidade
+                    </label>
+
+                    <input asp-for="Comunidade" />
+                </div>
+
+            </div>
+        }
+
+
+        <!-- OBSERVAÇÃO -->
+        <div class="admin-form-secao">
+            <div class="admin-form-campo">
+
+                <label asp-for="Observacao">
+                    Observação
+                </label>
+
+                <textarea asp-for="Observacao" rows="5"></textarea>
+
+            </div>
+        </div>
+
+
+        <!-- BOTÕES -->
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@Model.Id" class="admin-btn-voltar">
+                Cancelar
+            </a>
+
+            <button type="submit" class="admin-btn-salvar">
+                Salvar alterações
+            </button>
+
+        </div>
+
+    </form> @* ← ESTE PRECISA EXISTIR *@
+
+</div>

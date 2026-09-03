@@ -806,7 +806,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Maria em Meu Lar",
             subtitulo: "Visita da imagem de Maria ao seu lar",
             descricao: "A imagem de Maria visita o seu lar levando bênçãos, oração e união para toda a família. Preencha o formulário para agendar essa visita especial em sua casa.",
-            aberta: true,
+           
             passos:[
                 ["Faça sua inscrição", "Preencha o formulário com seus dados e escolha a data."],
                 ["Confirmação","Nossa equipe entrará em contato para confirmar a visita."],
@@ -832,7 +832,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Retiro Quaresmal",
             subtitulo: "Momentos de oração, reflexão e renovação",
             descricao: "Um tempo especial de encontro com Deus para fortalecer a fé, renovar o coração e viver momentos de oração.",
-            aberta: true,
+            
             passos:[
                 ["Faça sua inscrição", "Preencha seus dados pessoais e informe sua comunidade."],
                 ["Aguarde confirmação","A equipe organizadora entrará em contato para confirmar sua participação."],
@@ -858,7 +858,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Semana da Juventude",
             subtitulo: "Uma semana de fé, louvor e comunhão",
             descricao: "Dias de alegria, formação, espiritualidade e unidade da juventude da nossa paróquia.",
-            aberta: true,
+            
             passos:[
                 ["Faça sua inscrição", "Informe seus dados e disponibilidade."],
                 ["Participe da programação","Acompanhe os dias, horários e atividades da Semana da Juventude."],
@@ -884,7 +884,7 @@ document.addEventListener("DOMContentLoaded", () => {
             titulo: "Terço da Juventude",
             subtitulo: "Oração do terço com a juventude",
             descricao: "Nos unimos em oração para interceder pelas famílias, pelos jovens e por toda a comunidade.",
-            aberta: true,
+            
             passos:[
                 ["Faça sua inscrição", "Informe seus dados e escolha como deseja participar."],
                 ["Organização dos grupos","A equipe organizará os participantes conforme disponibilidade."],
@@ -909,7 +909,7 @@ document.addEventListener("DOMContentLoaded", () => {
             subtitulo: "Formação e missão para jovens",
             descricao: "Um caminho de formação e missão para jovens que desejam aprofundar sua fé e seguir a Cristo com alegria.",
 
-            aberta: false,
+            
 
             passos: [
                 ["Faça sua inscrição", "Preencha seus dados para participar."],
@@ -1038,49 +1038,67 @@ document.addEventListener("DOMContentLoaded", () => {
         const nomeMissao = card.dataset.missao;
         const missaoId = card.dataset.missaoId;
 
+        const inscricoesAbertas =
+            card.dataset.aberta === "true";
+
         const missao = missoes[nomeMissao];
-        
-        if(!missao) {
-            return;
-        }
+
+        if (!missao) return;
 
         if (missaoIdInput) {
             missaoIdInput.value = missaoId;
         }
-        
+
         cards.forEach(item => item.classList.remove("active"));
         card.classList.add("active");
-        
+
         titulo.textContent = missao.titulo;
         subtitulo.textContent = missao.subtitulo;
         descricao.textContent = missao.descricao;
-        
-        sobreImagem.src = card.dataset.img;
-        
-        if (missao.aberta) {
-            campos.innerHTML = missao.campos;
-        } else {
-            campos.innerHTML = `
-        <div class="inscricao-fechada-box">
-            <i class="fa-solid fa-lock"></i>
-            <h3>Inscrições encerradas</h3>
-            <p>
-                As inscrições para esta missão estão encerradas no momento.
-                Aguarde novas informações da Pastoral da Juventude.
-            </p>
-        </div>
-    `;
+
+        if (card.dataset.img) {
+            sobreImagem.src = card.dataset.img;
         }
+
+        status.textContent = inscricoesAbertas
+            ? "Inscrições abertas"
+            : "Inscrições encerradas";
+
+        status.className = inscricoesAbertas
+            ? "status aberto"
+            : "status fechado";
+
+        formStatus.textContent = inscricoesAbertas
+            ? "Inscrições abertas"
+            : "Inscrições encerradas";
+
+        formStatus.className = inscricoesAbertas
+            ? "status aberto"
+            : "status fechado";
+
+        if (inscricoesAbertas) {
+
+            campos.innerHTML = missao.campos;
+
+        } else {
+
+            campos.innerHTML = `
+            <div class="inscricao-fechada-box">
+                <strong>Inscrições encerradas</strong>
+
+                <p>
+                    No momento, as inscrições para esta missão
+                    estão fechadas.
+                </p>
+            </div>
+        `;
+        }
+
         atualizarPassos(missao.passos);
 
-        status.textContent = missao.aberta ? "Inscrições abertas" : "Inscrições encerradas";
-        formStatus.textContent = missao.aberta ? "Inscrições abertas" : "Inscrições encerradas";
-        
-        status.className = missao.aberta ? "status aberto":"status fechado";
-        formStatus.className = missao.aberta ? "status aberto":"status fechado";
-        
-        btnEnviar.disabled = !missao.aberta;
-        btnEnviar.innerHTML = missao.aberta
+        btnEnviar.disabled = !inscricoesAbertas;
+
+        btnEnviar.innerHTML = inscricoesAbertas
             ? `<i class="fa-solid fa-paper-plane"></i> Enviar inscrição`
             : `<i class="fa-solid fa-lock"></i> Inscrições encerradas`;
     }
@@ -1118,9 +1136,11 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach(card => {
         card.addEventListener("click", () => atualizarMissao(card));
     });
-    const cardInicial = document.querySelector(".inscricao-missao-card.active");
-    
-    if(cardInicial) {
+    const cardInicial =
+        document.querySelector(".inscricao-missao-card.active")
+        || cards[0];
+
+    if (cardInicial) {
         atualizarMissao(cardInicial);
     }
 });

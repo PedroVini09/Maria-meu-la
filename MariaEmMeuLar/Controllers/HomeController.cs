@@ -5,8 +5,6 @@ using MariaEmMeuLar.Models.ViewModels;
 using MariaEmMeuLar.Services;
 using MariaEmMeuLar.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MariaEmMeuLar.Controllers;
 
@@ -52,14 +50,20 @@ public class HomeController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Inscricao(Inscricao inscricao)
     {
-        var missaoExiste = await _context.Missoes
-            .AnyAsync(m => m.Id == inscricao.MissaoId && m.Ativa);
+        var missao = await _context.Missoes.AsNoTracking().FirstOrDefaultAsync( m => m.Id == inscricao.MissaoId);
 
-        if (!missaoExiste)
+        if (missao == null || !missao.Ativa)
         {
             ModelState.AddModelError(
                 nameof(inscricao.MissaoId),
-                "Selecione uma missão."
+                "Selecione uma missão válida."
+            );
+        }
+        else if (!missao.InscricoesAbertas)
+        {
+            ModelState.AddModelError(
+                nameof(inscricao.MissaoId),
+                "As inscrições para esta missão estão fechadas."
             );
         }
 
@@ -119,11 +123,12 @@ public class HomeController : Controller
 
     private async Task CarregarMissoesAsync()
     {
-        var missoes = await _context.Missoes
-          .Where(m => m.Ativa)
-          .ToListAsync();
+        var missoes = await _context.Missoes.Where(m => m.Ativa).AsNoTracking() .ToListAsync();
 
-        ViewBag.MissaoIds = missoes.ToDictionary(m => m.Nome, m=> m.Id);
+        ViewBag.MissaoIds = missoes.ToDictionary(  m => m.Nome,  m => m.Id);
+
+        ViewBag.MissaoStatus = missoes.ToDictionary( m => m.Nome, m => m.InscricoesAbertas );
+
     }
     public IActionResult Contatos()
     {

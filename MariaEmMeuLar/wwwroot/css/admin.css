@@ -176,3 +176,429 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+    INSCRIÇÕES
+========================= */
+
+.admin-table-container {
+    background: #fff;
+    border-radius: 14px;
+    overflow-x: auto;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 16px 18px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-table th {
+    background: #f8fafc;
+    font-size: 13px;
+    color: #667085;
+    text-transform: uppercase;
+}
+
+.admin-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.admin-status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+
+    background: #fff7ed;
+    color: #c2410c;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-btn-detalhes {
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    background: #0b3f7a;
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.admin-btn-detalhes:hover {
+    opacity: .9;
+}
+
+.admin-table-empty {
+    text-align: center !important;
+    padding: 35px !important;
+    color: #667085;
+}
+
+.inscricoes-filtro {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.inscricoes-filtro-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.inscricoes-filtro-campo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.inscricoes-filtro-campo select{
+    min-width: 280px;
+    padding: 11px 14px;
+
+    background: #fff;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.inscricoes-filtro-campo select:focus {
+    outline: none;
+    border-color: #0b3f7a;
+}
+.inscricao-detalhes-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+}
+
+.inscricao-detalhes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.inscricao-detalhes-header h3 {
+    margin: 7px 0 0;
+    font-size: 25px;
+}
+
+.inscricao-detalhes-missao {
+    color: #0b3f7a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.inscricao-detalhes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.detalhe-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 16px;
+
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+.detalhe-item span {
+    color: #667085;
+    font-size: 13px;
+}
+
+.detalhe-item strong {
+    color: #1f2937;
+    font-size: 15px;
+}
+
+.detalhe-item-grande {
+    grid-column: 1 / -1;
+}
+
+.inscricao-detalhes-secao {
+    margin-top: 28px;
+}
+
+.inscricao-detalhes-secao h4 {
+    margin: 0 0 15px;
+
+    font-size: 17px;
+    color: #0b3f7a;
+}
+
+.detalhe-observacao {
+    padding: 18px;
+
+    background: #f8fafc;
+    border-radius: 10px;
+
+    line-height: 1.6;
+}
+
+.inscricao-detalhes-acoes {
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-btn-voltar {
+    padding: 10px 18px;
+
+    background: #e5e7eb;
+    color: #374151;
+
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+@media (max-width: 700px) {
+    .inscricao-detalhes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detalhe-item-grande {
+        grid-column: auto;
+    }
+}
+
+.admin-form-card {
+    background: #fff;
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.admin-form-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.admin-form-campo label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.admin-form-campo input,
+.admin-form-campo select,
+.admin-form-campo textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+
+    font-size: 14px;
+    background: #fff;
+}
+
+.admin-form-campo input:focus,
+.admin-form-campo select:focus,
+.admin-form-campo textarea:focus {
+    outline: none;
+    border-color: #0b3f7a;
+}
+
+.admin-form-full {
+    grid-column: 1 / -1;
+}
+
+.admin-form-secao {
+    margin-top: 28px;
+}
+
+.admin-form-secao h3 {
+    color: #0b3f7a;
+    margin-bottom: 16px;
+}
+
+.admin-form-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.admin-btn-salvar,
+.admin-btn-editar {
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-btn-salvar {
+    background: #0b3f7a;
+    color: white;
+}
+
+.admin-btn-editar {
+    background: #e9f2ff;
+    color: #0b3f7a;
+}
+
+.admin-acoes {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 700px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-form-full {
+        grid-column: auto;
+    }
+}
+.admin-form-excluir {
+    margin: 0;
+}
+
+.admin-btn-excluir {
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 12px;
+
+    background: #fee2e2;
+    color: #b91c1c;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-btn-excluir:hover {
+    background: #fecaca;
+}
+
+.controle-inscricoes {
+    margin-bottom: 30px;
+}
+
+.controle-inscricoes-header {
+    margin-bottom: 15px;
+}
+
+.controle-inscricoes-header h3 {
+    margin: 0 0 5px;
+    color: #1f2937;
+}
+
+.controle-inscricoes-header p {
+    margin: 0;
+    color: #667085;
+}
+
+.controle-missoes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.controle-missao-card {
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .05);
+}
+
+.controle-missao-card>div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.status-inscricao {
+    width: fit-content;
+
+    padding: 5px 9px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-inscricao.aberta {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-inscricao.fechada {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.btn-abrir-inscricao,
+.btn-fechar-inscricao {
+    border: none;
+    border-radius: 8px;
+
+    padding: 9px 14px;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-abrir-inscricao {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.btn-fechar-inscricao {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+@media (max-width: 900px) {
+    .controle-missoes-grid {
+        grid-template-columns: 1fr;
+    }
+}
