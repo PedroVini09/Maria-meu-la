@@ -1,0 +1,116 @@
+@model MariaEmMeuLar.Models.ViewModels.NovaMissaoViewModel
+
+@{
+    ViewData["Title"] = "Nova Missão";
+}
+
+<div class="admin-page-title">
+    <h2>Nova Missão</h2>
+    <p>Cadastre uma nova missão no sistema.</p>
+</div>
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="NovaMissao" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+
+        <!-- DADOS DA MISSÃO -->
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-cross"></i>
+                Dados da Missão
+            </h3>
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Nome">
+                    Nome da missão
+                </label>
+
+                <input asp-for="Nome" placeholder="Ex: Vigília da Juventude" />
+
+                <span asp-validation-for="Nome" class="login-validacao">
+                </span>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Descricao">
+                    Descrição
+                </label>
+
+                <textarea asp-for="Descricao" rows="5" placeholder="Descrição da missão..."></textarea>
+
+                <span asp-validation-for="Descricao" class="login-validacao">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONFIGURAÇÕES -->
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-gear"></i>
+                Configurações
+            </h3>
+
+            <div class="nova-missao-opcoes">
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="Ativa" type="checkbox" />
+
+                    <span>
+                        Missão ativa
+                    </span>
+
+                </label>
+
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="InscricoesAbertas" type="checkbox" />
+
+                    <span>
+                        Inscrições abertas
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTÕES -->
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="ControleInscricoes" class="admin-btn-cancelar">
+
+                <i class="fa-solid fa-xmark"></i>
+                Cancelar
+
+            </a>
+
+
+            <button type="submit" class="admin-btn-salvar">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Cadastrar missão
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

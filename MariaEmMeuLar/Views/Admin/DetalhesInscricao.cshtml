@@ -9,12 +9,13 @@
     <p>Informações completas da inscrição realizada.</p>
 </div>
 
-<div class="inscricao-detalhes-card">
+<div class="admin-detalhes-card">
 
-    <div class="inscricao-detalhes-header">
+    <div class="admin-detalhes-header">
+
         <div>
-            <span class="inscricao-detalhes-missao">
-                @(Model.Missao?.Nome ?? "Missão não especificada")
+            <span class="admin-detalhes-missao">
+                @Model.Missao?.Nome
             </span>
 
             <h3>@Model.Nome</h3>
@@ -23,34 +24,44 @@
         <span class="admin-status">
             @Model.Status
         </span>
+
     </div>
 
 
-    <div class="inscricao-detalhes-grid">
+    <div class="admin-detalhes-secao">
 
-        <div class="detalhe-item">
-            <span>Nome</span>
-            <strong>@Model.Nome</strong>
-        </div>
+        <h4>
+            <i class="fa-solid fa-user"></i>
+            Dados do participante
+        </h4>
 
-        <div class="detalhe-item">
-            <span>Telefone</span>
-            <strong>@Model.Telefone</strong>
-        </div>
+        <div class="admin-detalhes-grid">
 
-        @if (Model.Idade.HasValue)
-        {
-            <div class="detalhe-item">
-                <span>Idade</span>
-                <strong>@Model.Idade anos</strong>
+            <div class="admin-detalhes-item">
+                <span>Nome</span>
+                <strong>@Model.Nome</strong>
             </div>
-        }
 
-        <div class="detalhe-item">
-            <span>Data da inscrição</span>
-            <strong>
-                @Model.DataInscricao.ToString("dd/MM/yyyy HH:mm")
-            </strong>
+            <div class="admin-detalhes-item">
+                <span>Telefone</span>
+                <strong>@Model.Telefone</strong>
+            </div>
+
+            @if (Model.Idade.HasValue)
+            {
+                <div class="admin-detalhes-item">
+                    <span>Idade</span>
+                    <strong>@Model.Idade anos</strong>
+                </div>
+            }
+
+            <div class="admin-detalhes-item">
+                <span>Data da inscrição</span>
+                <strong>
+                    @Model.DataInscricao.ToString("dd/MM/yyyy HH:mm")
+                </strong>
+            </div>
+
         </div>
 
     </div>
@@ -59,34 +70,28 @@
     @* MARIA EM MEU LAR *@
     @if (Model.Missao?.Nome == "Maria em Meu Lar")
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
-            <h4>Dados da visita</h4>
+            <h4>Dados da Maria em Meu Lar</h4>
 
-            <div class="inscricao-detalhes-grid">
+            <div class="admin-detalhes-grid">
 
-                <div class="detalhe-item detalhe-item-grande">
+                <div class="admin-detalhes-item admin-detalhes-item-largo">
                     <span>Endereço</span>
-                    <strong>
-                        @(Model.Endereco ?? "Não informado")
-                    </strong>
+                    <strong>@Model.Endereco</strong>
                 </div>
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Data desejada</span>
                     <strong>
-                        @(Model.DataDesejada.HasValue
-                            ? Model.DataDesejada.Value.ToString("dd/MM/yyyy")
-                            : "Não informada")
+                        @(Model.DataDesejada?.ToString("dd/MM/yyyy") ?? "-")
                     </strong>
                 </div>
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Horário desejado</span>
                     <strong>
-                        @(Model.HorarioDesejado.HasValue
-                            ? Model.HorarioDesejado.Value.ToString(@"hh\:mm")
-                            : "Não informado")
+                        @(Model.HorarioDesejado?.ToString(@"hh\:mm") ?? "-")
                     </strong>
                 </div>
 
@@ -96,27 +101,23 @@
     }
 
 
-    @* RETIRO QUARESMAL *@
+    @* RETIRO *@
     @if (Model.Missao?.Nome == "Retiro Quaresmal")
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
-            <h4>Dados do Retiro</h4>
+            <h4>Dados do Retiro Quaresmal</h4>
 
-            <div class="inscricao-detalhes-grid">
+            <div class="admin-detalhes-grid">
 
-                <div class="detalhe-item">
-                    <span>Comunidade</span>
-                    <strong>
-                        @(Model.Comunidade ?? "Não informada")
-                    </strong>
+                <div class="admin-detalhes-item">
+                    <span>Comunidade / Paróquia</span>
+                    <strong>@Model.Comunidade</strong>
                 </div>
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Já participou?</span>
-                    <strong>
-                        @(Model.JaParticipou ?? "Não informado")
-                    </strong>
+                    <strong>@Model.JaParticipou</strong>
                 </div>
 
             </div>
@@ -125,27 +126,23 @@
     }
 
 
-    @* SEMANA DA JUVENTUDE *@
+    @* SEMANA *@
     @if (Model.Missao?.Nome == "Semana da Juventude")
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
             <h4>Dados da Semana da Juventude</h4>
 
-            <div class="inscricao-detalhes-grid">
+            <div class="admin-detalhes-grid">
 
-                <div class="detalhe-item">
-                    <span>Grupo</span>
-                    <strong>
-                        @(Model.Grupo ?? "Não informado")
-                    </strong>
+                <div class="admin-detalhes-item">
+                    <span>Grupo / Pastoral</span>
+                    <strong>@Model.Grupo</strong>
                 </div>
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Turno</span>
-                    <strong>
-                        @(Model.Turno ?? "Não informado")
-                    </strong>
+                    <strong>@Model.Turno</strong>
                 </div>
 
             </div>
@@ -154,27 +151,23 @@
     }
 
 
-    @* TERÇO DA JUVENTUDE *@
+    @* TERÇO *@
     @if (Model.Missao?.Nome == "Terço da Juventude")
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
-            <h4>Dados do Terço</h4>
+            <h4>Dados do Terço da Juventude</h4>
 
-            <div class="inscricao-detalhes-grid">
+            <div class="admin-detalhes-grid">
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Participação</span>
-                    <strong>
-                        @(Model.Participacao ?? "Não informada")
-                    </strong>
+                    <strong>@Model.Participacao</strong>
                 </div>
 
-                <div class="detalhe-item">
+                <div class="admin-detalhes-item">
                     <span>Dia disponível</span>
-                    <strong>
-                        @(Model.DiaDisponivel ?? "Não informado")
-                    </strong>
+                    <strong>@Model.DiaDisponivel</strong>
                 </div>
 
             </div>
@@ -183,20 +176,18 @@
     }
 
 
-    @* SEGUE-ME JOVEM *@
+    @* SEGUE-ME *@
     @if (Model.Missao?.Nome == "Segue-me Jovem")
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
             <h4>Dados do Segue-me Jovem</h4>
 
-            <div class="inscricao-detalhes-grid">
+            <div class="admin-detalhes-grid">
 
-                <div class="detalhe-item">
-                    <span>Comunidade</span>
-                    <strong>
-                        @(Model.Comunidade ?? "Não informada")
-                    </strong>
+                <div class="admin-detalhes-item">
+                    <span>Comunidade / Paróquia</span>
+                    <strong>@Model.Comunidade</strong>
                 </div>
 
             </div>
@@ -207,11 +198,11 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.Observacao))
     {
-        <div class="inscricao-detalhes-secao">
+        <div class="admin-detalhes-secao">
 
             <h4>Observação</h4>
 
-            <div class="detalhe-observacao">
+            <div class="admin-observacao">
                 @Model.Observacao
             </div>
 
@@ -219,10 +210,20 @@
     }
 
 
-    <div class="inscricao-detalhes-acoes">
+    <div class="admin-detalhes-acoes">
 
-        <a asp-controller="Admin" asp-action="Inscricoes" class="admin-btn-voltar">
+        <a asp-action="Inscricoes" class="admin-btn-voltar">
+
+            <i class="fa-solid fa-arrow-left"></i>
             Voltar
+
+        </a>
+
+        <a asp-action="EditarInscricao" asp-route-id="@Model.Id" class="admin-btn-editar-detalhes">
+
+            <i class="fa-solid fa-pen"></i>
+            Editar inscrição
+
         </a>
 
     </div>

@@ -19,7 +19,8 @@
         </div>
 
         <!-- CAMPOS GERAIS -->
-        <div class="admin-form-grid">
+        <div class="admin-form-secao">
+            <h3><i class="fa-solid fa-user"></i>Dados Gerais</h3>
             <div class="admin-form-grid">
 
                 <div class="admin-form-campo">
@@ -46,7 +47,7 @@
                     <div class="admin-form-campo">
                         <label asp-for="Idade">Idade</label>
 
-                        <input asp-for="Idade" type="number" />
+                        <input asp-for="Idade" type="number" min="10" max="100" />
 
                         <span asp-validation-for="Idade" class="login-validacao"></span>
                     </div>
@@ -74,7 +75,7 @@
         {
             <div class="admin-form-secao">
 
-                <h3>Dados da visita</h3>
+                <h3> <i class="fa-solid fa-house"></i>Dados da visita</h3>
 
                 <div class="admin-form-grid">
 
@@ -84,6 +85,7 @@
                         </label>
 
                         <input asp-for="Endereco" />
+                        <span asp-validation-for="Endereco" class="login-validacao"></span>
                     </div>
 
 
@@ -115,13 +117,13 @@
         {
             <div class="admin-form-secao">
 
-                <h3>Dados do Retiro</h3>
+                <h3> <i class="fa-solid fa-cross"></i>Dados do Retiro</h3>
 
                 <div class="admin-form-grid">
 
                     <div class="admin-form-campo">
                         <label asp-for="Comunidade">
-                            Comunidade
+                            Comunidade / Paroquia
                         </label>
 
                         <input asp-for="Comunidade" />
@@ -135,6 +137,7 @@
                         </label>
 
                         <select asp-for="JaParticipou">
+                            <option value="">Selecione</option>
                             <option value="Sim">Sim</option>
                             <option value="Não">Não</option>
                         </select>
@@ -151,18 +154,23 @@
         {
             <div class="admin-form-secao">
 
-                <h3>Dados da Semana da Juventude</h3>
+                <h3> <i class="fa-solid fa-users"></i>Dados da Semana da Juventude</h3>
 
                 <div class="admin-form-grid">
 
                     <div class="admin-form-campo">
-                        <label asp-for="Grupo">Grupo</label>
+                        <label asp-for="Grupo">Grupo/Pastoral</label>
                         <input asp-for="Grupo" />
                     </div>
 
                     <div class="admin-form-campo">
                         <label asp-for="Turno">Turno</label>
-                        <input asp-for="Turno" />
+                        <select asp-for="Turno">
+                            <option value="">Selecione</option>
+                            <option value="Manhã">Manhã</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noite">Noite</option>
+                        </select>
                     </div>
 
                 </div>
@@ -176,7 +184,7 @@
         {
             <div class="admin-form-secao">
 
-                <h3>Dados do Terço</h3>
+                <h3><i class="fa-solid fa-hands-praying"></i>Dados do Terço</h3>
 
                 <div class="admin-form-grid">
 
@@ -185,7 +193,13 @@
                             Participação
                         </label>
 
-                        <input asp-for="Participacao" />
+                        <select asp-for="Participacao">
+                            <option value="">Selecione</option>
+                            <option value="Participante">Participante</option>
+                            <option value="Leitor">Leitor</option>
+                            <option value="Músico">Músico</option>
+                            <option value="Equipe de apoio">Equipe de apoio</option>
+                        </select>
                     </div>
 
                     <div class="admin-form-campo">
@@ -193,7 +207,16 @@
                             Dia disponível
                         </label>
 
-                        <input asp-for="DiaDisponivel" />
+                        <select asp-for="DiaDisponivel">
+                            <option value="">Selecione</option>
+                            <option value="Segunda-feira">Segunda-feira</option>
+                            <option value="Terça-feira">Terça-feira</option>
+                            <option value="Quarta-feira">Quarta-feira</option>
+                            <option value="Quinta-feira">Quinta-feira</option>
+                            <option value="Sexta-feira">Sexta-feira</option>
+                            <option value="Sábado">Sábado</option>
+                            <option value="Domingo">Domingo</option>
+                        </select>
                     </div>
 
                 </div>
@@ -207,14 +230,23 @@
         {
             <div class="admin-form-secao">
 
-                <h3>Dados do Segue-me Jovem</h3>
+                <h3>
+                    <i class="fa-solid fa-people-group"></i>
+                    Dados do Segue-me Jovem
+                </h3>
 
-                <div class="admin-form-campo">
-                    <label asp-for="Comunidade">
-                        Comunidade
-                    </label>
+                <div class="admin-form-grid">
 
-                    <input asp-for="Comunidade" />
+                    <div class="admin-form-campo admin-form-full">
+
+                        <label asp-for="Comunidade">
+                            Comunidade / Paróquia
+                        </label>
+
+                        <input asp-for="Comunidade" />
+
+                    </div>
+
                 </div>
 
             </div>
@@ -223,31 +255,41 @@
 
         <!-- OBSERVAÇÃO -->
         <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-note-sticky"></i>
+                Observação
+            </h3>
+
             <div class="admin-form-campo">
 
                 <label asp-for="Observacao">
                     Observação
                 </label>
 
-                <textarea asp-for="Observacao" rows="5"></textarea>
+                <textarea asp-for="Observacao" rows="5">
+                </textarea>
+
+                <span asp-validation-for="Observacao" class="login-validacao">
+                </span>
 
             </div>
-        </div>
 
+        </div>
 
         <!-- BOTÕES -->
         <div class="admin-form-acoes">
 
-            <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@Model.Id" class="admin-btn-voltar">
-                Cancelar
+            <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@Model.Id" class="admin-btn-cancelar">
+                <i class="fa-solid fa-xmark"></i> Cancelar
             </a>
 
             <button type="submit" class="admin-btn-salvar">
-                Salvar alterações
+                <i class="fa-solid fa-floppy-disk"></i> Salvar alterações
             </button>
 
         </div>
 
-    </form> @* ← ESTE PRECISA EXISTIR *@
+    </form>
 
 </div>

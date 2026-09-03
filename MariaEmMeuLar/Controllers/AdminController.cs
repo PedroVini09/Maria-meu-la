@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MariaEmMeuLar.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MariaEmMeuLar.Models.ViewModels;
+using MariaEmMeuLar.Models;
 
 namespace MariaEmMeuLar.Controllers
 {
@@ -41,7 +42,6 @@ namespace MariaEmMeuLar.Controllers
             var missoes = await _context.Missoes.AsNoTracking().OrderBy(m => m.Nome).ToListAsync();
             var controleMissoes = await _context.Missoes.AsNoTracking().OrderBy(m => m.Nome).ToListAsync();
             ViewBag.Missoes = new SelectList(missoes, "Id", "Nome", missaoId);
-            ViewBag.ControleMissoes = controleMissoes;
             return View(inscricoes);
         }
 
@@ -319,7 +319,7 @@ namespace MariaEmMeuLar.Controllers
                         ? $"Inscrições de {missao.Nome} foram abertas."
                         : $"Inscrições de {missao.Nome} foram fechadas.";
 
-                return RedirectToAction(nameof(Inscricoes));
+                return RedirectToAction(nameof(ControleInscricoes));
             }
             catch (DbUpdateException ex)
             {
@@ -345,8 +345,486 @@ namespace MariaEmMeuLar.Controllers
                 TempData["Erro"] =
                     "Ocorreu um erro inesperado.";
 
-                return RedirectToAction(nameof(Inscricoes));
+                return RedirectToAction(nameof(ControleInscricoes));
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> NovaInscricao()
+        {
+
+            var missoes = await _context.Missoes
+                .Where(m => m.Ativa)
+                .AsNoTracking()
+                .OrderBy(m => m.Nome)
+                .ToListAsync();
+
+            ViewBag.Missoes = new SelectList(
+                missoes,
+                "Id",
+                "Nome"
+            );
+
+            return View(new NovaInscricaoViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NovaInscricao(
+    NovaInscricaoViewModel model)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m =>
+                    m.Id == model.MissaoId &&
+                    m.Ativa);
+
+            if (missao == null)
+            {
+                ModelState.AddModelError(
+                    nameof(model.MissaoId),
+                    "Selecione uma missão válida."
+                );
+            }
+
+
+            // ===============================
+            // VALIDAR STATUS
+            // ===============================
+
+            string[] statusPermitidos =
+            {
+        "Pendente",
+        "Em análise",
+        "Confirmada",
+        "Cancelada"
+    };
+
+            if (!statusPermitidos.Contains(model.Status))
+            {
+                ModelState.AddModelError(
+                    nameof(model.Status),
+                    "Selecione um status válido."
+                );
+            }
+
+
+            // ===============================
+            // VALIDAÇÕES POR MISSÃO
+            // ===============================
+
+            if (missao != null)
+            {
+                switch (missao.Nome)
+                {
+                    case "Maria em Meu Lar":
+
+                        if (string.IsNullOrWhiteSpace(model.Endereco))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Endereco),
+                                "Informe o endereço."
+                            );
+                        }
+
+                        if (!model.DataDesejada.HasValue)
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.DataDesejada),
+                                "Informe a data desejada."
+                            );
+                        }
+
+                        if (!model.HorarioDesejado.HasValue)
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.HorarioDesejado),
+                                "Informe o horário desejado."
+                            );
+                        }
+
+                        break;
+
+
+                    case "Retiro Quaresmal":
+
+                        if (!model.Idade.HasValue)
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Idade),
+                                "Informe a idade."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.Comunidade))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Comunidade),
+                                "Informe a comunidade."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.JaParticipou))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.JaParticipou),
+                                "Informe se já participou de outro retiro."
+                            );
+                        }
+
+                        break;
+
+
+                    case "Semana da Juventude":
+
+                        if (!model.Idade.HasValue)
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Idade),
+                                "Informe a idade."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.Grupo))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Grupo),
+                                "Informe o grupo ou pastoral."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.Turno))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Turno),
+                                "Informe o turno."
+                            );
+                        }
+
+                        break;
+
+
+                    case "Terço da Juventude":
+
+                        if (string.IsNullOrWhiteSpace(model.Participacao))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Participacao),
+                                "Informe como a pessoa participará."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.DiaDisponivel))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.DiaDisponivel),
+                                "Informe o dia disponível."
+                            );
+                        }
+
+                        break;
+
+
+                    case "Segue-me Jovem":
+
+                        if (!model.Idade.HasValue)
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Idade),
+                                "Informe a idade."
+                            );
+                        }
+
+                        if (string.IsNullOrWhiteSpace(model.Comunidade))
+                        {
+                            ModelState.AddModelError(
+                                nameof(model.Comunidade),
+                                "Informe a comunidade."
+                            );
+                        }
+
+                        break;
+                }
+            }
+
+
+            // ===============================
+            // SE HOUVER ERRO
+            // ===============================
+
+            if (!ModelState.IsValid)
+            {
+                await CarregarMissoesNovaInscricaoAsync(
+                    model.MissaoId
+                );
+
+                return View(model);
+            }
+
+
+            try
+            {
+                // ===============================
+                // DADOS GERAIS
+                // ===============================
+
+                var inscricao = new Inscricao
+                {
+                    Nome = model.Nome.Trim(),
+                    Telefone = model.Telefone.Trim(),
+                    Idade = model.Idade,
+
+                    MissaoId = model.MissaoId,
+
+                    Status = model.Status,
+                    Observacao = model.Observacao?.Trim(),
+
+                    DataInscricao = DateTime.Now
+                };
+
+
+                // ===============================
+                // DADOS ESPECÍFICOS
+                // ===============================
+
+                switch (missao!.Nome)
+                {
+                    case "Maria em Meu Lar":
+
+                        inscricao.Endereco =
+                            model.Endereco?.Trim();
+
+                        inscricao.DataDesejada =
+                            model.DataDesejada;
+
+                        inscricao.HorarioDesejado =
+                            model.HorarioDesejado;
+
+                        break;
+
+
+                    case "Retiro Quaresmal":
+
+                        inscricao.Comunidade =
+                            model.Comunidade?.Trim();
+
+                        inscricao.JaParticipou =
+                            model.JaParticipou;
+
+                        break;
+
+
+                    case "Semana da Juventude":
+
+                        inscricao.Grupo =
+                            model.Grupo?.Trim();
+
+                        inscricao.Turno =
+                            model.Turno;
+
+                        break;
+
+
+                    case "Terço da Juventude":
+
+                        inscricao.Participacao =
+                            model.Participacao;
+
+                        inscricao.DiaDisponivel =
+                            model.DiaDisponivel;
+
+                        break;
+
+
+                    case "Segue-me Jovem":
+
+                        inscricao.Comunidade =
+                            model.Comunidade?.Trim();
+
+                        break;
+                }
+
+
+                // ===============================
+                // SALVAR
+                // ===============================
+
+                _context.Inscricoes.Add(inscricao);
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    "Inscrição cadastrada com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(DetalhesInscricao),
+                    new { id = inscricao.Id }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao cadastrar inscrição manual."
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível cadastrar a inscrição."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao cadastrar inscrição manual."
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao cadastrar a inscrição."
+                );
+            }
+
+
+            await CarregarMissoesNovaInscricaoAsync(
+                model.MissaoId
+            );
+
+            return View(model);
+        }
+
+        private async Task CarregarMissoesNovaInscricaoAsync(int? missaoId = null)
+        {
+            var missoes = await _context.Missoes
+                .Where(m => m.Ativa)
+                .AsNoTracking()
+                .OrderBy(m => m.Nome)
+                .ToListAsync();
+
+            ViewBag.Missoes = new SelectList(
+                missoes,
+                "Id",
+                "Nome",
+                missaoId
+            );
+        }
+
+        [HttpGet]
+        public async Task<IActionResult>ControleInscricoes()
+        {
+            var missoes = await _context.Missoes
+                .AsNoTracking()
+                .OrderBy(m => m.Nome)
+                .ToListAsync();
+
+            return View(missoes);
+        }
+
+        [HttpGet]
+        public IActionResult NovaMissao()
+        {
+            return View(new NovaMissaoViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NovaMissao(
+    NovaMissaoViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var nome = model.Nome.Trim();
+
+                // Evita cadastrar duas missões com o mesmo nome
+                var nomeJaExiste = await _context.Missoes
+                    .AsNoTracking()
+                    .AnyAsync(m => m.Nome == nome);
+
+                if (nomeJaExiste)
+                {
+                    ModelState.AddModelError(
+                        nameof(model.Nome),
+                        "Já existe uma missão cadastrada com esse nome."
+                    );
+
+                    return View(model);
+                }
+
+
+                var missao = new Missao
+                {
+                    Nome = nome,
+
+                    Descricao = string.IsNullOrWhiteSpace(model.Descricao)
+                        ? null
+                        : model.Descricao.Trim(),
+
+                    Ativa = model.Ativa,
+
+                    InscricoesAbertas = model.InscricoesAbertas
+                };
+
+
+                _context.Missoes.Add(missao);
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    "Missão cadastrada com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(ControleInscricoes)
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao cadastrar nova missão."
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível cadastrar a missão."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao cadastrar nova missão."
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao cadastrar a missão."
+                );
+            }
+
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GerenciarMissao()
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .OrderBy(m => m.Nome)
+                .ToListAsync();
+
+            return View(missao);
         }
     }
 }
+

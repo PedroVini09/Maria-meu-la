@@ -2,143 +2,152 @@
 
 @{
     ViewData["Title"] = "Inscrições";
-
-    var controleMissoes =
-      ViewBag.ControleMissoes as List<MariaEmMeuLar.Models.Missao>;
 }
 
 <div class="admin-page-title">
     <h2>Inscrições</h2>
     <p>Lista de inscrições realizadas.</p>
 </div>
+   
+    <div class="inscricoes-toolbar">
 
-<div class="controle-inscricoes">
+        <!--Filtro-->
+        <form asp-controller="Admin" asp-action="Inscricoes" method="get" class="inscricoes-filtro-form">
+            <div class="inscricoes-filtro-campo">
+                <label for="missaoId">Filtrar por Missão</label>
+                <select id="missaoId" name="missaoId" asp-items="ViewBag.Missoes" onchange="this.form.submit()">
+                    <option value="">Todas as Missões</option>
+                </select>
+            </div>
+        </form>
 
-    <div class="controle-inscricoes-header">
-        <h3>Controle de Inscrições</h3>
-        <p>Abra ou encerre as inscrições de cada missão.</p>
-    </div>
+        <!--Botões-->
+        <div class="inscricoes-toolbar-acoes">
+            <a asp-controller="Admin" asp-action="NovaInscricao" class="inscricoes-btn-inserir">
+                <i class="fa-solid fa-plus"></i>
+                Inserir
+            </a>
 
-    <div class="controle-missoes-grid">
+            <button type="button" id="btnEditarInscricao" class="admin-btn-editar-topo"disabled>
+                <i class="fa-solid fa-pen"></i>
+                Editar
 
-        @if (controleMissoes != null)
-        {
-            @foreach (var missao in controleMissoes)
-            {
-                <div class="controle-missao-card">
+            </button>
 
-                    <div>
-                        <strong>@missao.Nome</strong>
-
-                        @if (missao.InscricoesAbertas)
-                        {
-                            <span class="status-inscricao aberta">
-                                Inscrições abertas
-                            </span>
-                        }
-                        else
-                        {
-                            <span class="status-inscricao fechada">
-                                Inscrições fechadas
-                            </span>
-                        }
-                    </div>
-
-                    <form asp-controller="Admin" asp-action="AlternarInscricoesMissao" asp-route-id="@missao.Id" method="post">
-
-                        @if (missao.InscricoesAbertas)
-                        {
-                            <button type="submit" class="btn-fechar-inscricao">
-                                Fechar
-                            </button>
-                        }
-                        else
-                        {
-                            <button type="submit" class="btn-abrir-inscricao">
-                                Abrir
-                            </button>
-                        }
-
-                    </form>
-
-                </div>
-            }
-        }
-
-    </div>
-
-</div>
-
-<div class="inscricoes-filtros">
-    <form asp-controller="Admin" asp-action="Inscricoes" method="get">
-
-        <div class="inscricoes-filtro-campo">
-
-            <label for="missaoId">
-                Filtrar por Missão
-            </label>
-
-            <select id="missaoId" name="missaoId" asp-items="ViewBag.Missoes" onchange="this.form.submit()">
-
-                <option value="">
-                    Todas as Missões
-                </option>
-
-            </select>
-
+            <button type="button" id="btnExcluirInscricao" class="admin-btn-excluir-topo" disabled>
+                <i class="fa-solid fa-trash"></i>
+                Excluir
+            </button>
         </div>
+    </div>
 
-    </form>
-</div>
-<div class="admin-table-container">
-    <table class="admin-table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Missão</th>
-                <th>Telefone</th>
-                <th>Data de Inscrição</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @if (!Model.Any())
-            {
+    <div class="admin-table-container">
+        <table class="admin-table">
+            <thead>
                 <tr>
-                    <td colspan="6" class="admin-table-empty">Nenhuma inscrição encontrada.</td>
+                    <th class="col-selecao"></th>
+                    <th>Nome</th>
+                    <th>Missão</th>
+                    <th>Telefone</th>
+                    <th>Data de Inscrição</th>
+                    <th>Status</th>
+                    <th>Detalhes</th>
                 </tr>
-            }else{
-                @foreach (var inscricao in Model)
+            </thead>
+            <tbody>
+
+                @if (!Model.Any())
                 {
                     <tr>
-                        <td>
-                            <strong>@inscricao.Nome</strong><br />
-                        </td>
-                        <td>@(inscricao.Missao?.Nome ?? "Missão não especificada")</td>
-                        <td>@inscricao.Telefone</td>
-                        <td>@inscricao.DataInscricao.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td><span class="admin-status">@inscricao.Status</span></td>
-                        <td><div>
-                            <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@inscricao.Id" class="admin-btn-detalhes">
-                                Detalhes
-                            </a>
-
-                            <a asp-controller="Admin" asp-action="EditarInscricao" asp-route-id="@inscricao.Id" class="admin-btn-editar">
-                                Editar
-                            </a>
-                            <form asp-controller="Admin" asp-action="ExcluirInscricao" asp-route-id="@inscricao.Id" method="post" class="admin-form-excluir">
-                                <button type="submit" class="admin-btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta inscrição?');">
-                                    Excluir
-                                </button>
-                            </form>
-                        </div></td>
+                        <td colspan="7" class="admin-table-empty">Nenhuma inscrição encontrada.</td>
                     </tr>
                 }
-            }
-           
-        </tbody>
-    </table>
+                else
+                {
+                    @foreach (var inscricao in Model)
+                    {
+                        <tr class="inscricao-linha">
+                            <!--Seleção-->
+                            <td class="col-selecao">
+                                <input type="radio" name="inscricaoSelecionada" value="@inscricao.Id" class="inscricao-radio" />
+                            </td>
+                            <td>
+                                <strong>@inscricao.Nome</strong><br />
+                            </td>
+                            <td>@(inscricao.Missao?.Nome ?? "Missão não especificada")</td>
+                            <td>@inscricao.Telefone</td>
+                            <td>@inscricao.DataInscricao.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td><span class="admin-status">@inscricao.Status</span></td>
+                            <td>
+                                    <a asp-controller="Admin" asp-action="DetalhesInscricao" asp-route-id="@inscricao.Id"
+                                       class="admin-btn-detalhes">
+                                        Detalhes
+                                    </a>
+                            </td>
+                        </tr>
+                    }
+                }
 
-</div>
+            </tbody>
+        </table>
+    </div>
+
+    <!--FORMULÁRIO OCULTO DE EXCLUSÃO-->
+
+    <form id="formExcluirInscricao" asp-controller="Admin" asp-action="ExcluirInscricao" method="post" style="display:none;">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="id" id="excluirInscricaoId" />
+    </form>
+
+    @section Scripts {
+        <script >
+
+            const radios = document.querySelectorAll('.inscricao-radio');
+
+            const btnEditar = document.getElementById('btnEditarInscricao');
+            const btnExcluir = document.getElementById('btnExcluirInscricao');
+
+            let selectedInscricaoId = null;
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    selectedInscricaoId = radio.value;
+
+                    //habilitar botões de editar e excluir
+                    btnEditar.disabled = false;
+                    btnExcluir.disabled = false;
+
+                    //remove seleção visual anterior
+                    document.querySelectorAll('.inscricao-linha').forEach(row => {
+                                row.classList.remove('selecionada');
+                    });
+
+                    //destaca linha atual selecionada
+                    radio.closest('.inscricao-linha').classList.add('selecionada');
+                });
+            });
+
+            //Botão Editar
+            btnEditar.addEventListener('click', () => {
+                if (!selectedInscricaoId){
+                            return;
+                } 
+
+                    window.location.href = `/Admin/EditarInscricao/${selectedInscricaoId}`;
+            });
+
+            //Botão Excluir
+            btnExcluir.addEventListener('click', () => {
+                if (!selectedInscricaoId) {
+                    return;
+                }
+
+                const confirmacao = confirm("Tem certeza que deseja excluir esta inscrição? Esta ação não pode ser desfeita.");
+                if (!confirmacao) {
+                    return;
+                }
+                        document.getElementById('excluirInscricaoId').value = selectedInscricaoId;
+                        document.getElementById('formExcluirInscricao').submit();
+            });
+        </script>
+    }

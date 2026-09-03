@@ -1,0 +1,101 @@
+@model IEnumerable<MariaEmMeuLar.Models.Missao>
+
+@{
+    ViewData["Title"] = "Controle de Inscrições";
+}
+
+
+<div class="admin-page-title controle-page-header">
+
+    <div>
+
+        <h2>Controle de Inscrições</h2>
+
+        <p>
+            Abra ou encerre as inscrições de cada missão.
+        </p>
+
+    </div>
+
+
+    <a asp-controller="Admin" asp-action="NovaMissao" class="inscricoes-btn-inserir">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Nova Missão
+
+    </a>
+
+</div>
+
+
+<div class="controle-inscricoes">
+
+    <div class="controle-missoes-grid">
+
+        @foreach (var missao in Model)
+        {
+            <div class="controle-missao-card">
+
+                <div class="controle-missao-info">
+
+                    <strong>
+                        @missao.Nome
+                    </strong>
+
+
+                    @if (missao.InscricoesAbertas)
+                    {
+                        <span class="status-inscricao aberta">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Inscrições abertas
+
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-inscricao fechada">
+
+                            <i class="fa-solid fa-circle-xmark"></i>
+
+                            Inscrições fechadas
+
+                        </span>
+                    }
+
+                </div>
+
+
+                <form asp-controller="Admin" asp-action="AlternarInscricoesMissao" asp-route-id="@missao.Id" method="post">
+
+                    @if (missao.InscricoesAbertas)
+                    {
+                        <button type="submit" class="btn-fechar-inscricao">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            Fechar
+
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn-abrir-inscricao">
+
+                            <i class="fa-solid fa-lock-open"></i>
+
+                            Abrir
+
+                        </button>
+                    }
+
+                </form>
+
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -26,11 +26,141 @@
                     <span>Dashboard</span>
                 </a>
 
-                <a asp-controller="Admin" asp-action="Inscricoes">
-                    <i class="fa-solid fa-file-signature"></i>
-                    <span>Inscrições</span>
-                </a>
+                <!--Submenu de Inscrições-->
+                @{
+                    var actionAtual = ViewContext.RouteData.Values["action"]?.ToString();
 
+                    // SUBMENU INSCRIÇÕES
+                    var inscricoesAberto =
+                        actionAtual == "Inscricoes" ||
+                        actionAtual == "NovaInscricao" ||
+                        actionAtual == "EditarInscricao" ||
+                        actionAtual == "DetalhesInscricao" ||
+                        actionAtual == "ControleInscricoes" ||
+                        actionAtual == "ExportarInscricoes";
+
+
+                    // SUBMENU MISSÕES
+                    var missoesAberto =
+                        actionAtual == "GerenciarMissoes" ||
+                        actionAtual == "NovaMissao" ||
+                        actionAtual == "EditarMissao" ||
+                        actionAtual == "HistoriaMissoes";
+                }
+
+                <div class="admin-nav-grupo">
+
+                    <button type="button" class="admin-nav-toggle @(inscricoesAberto ? "aberto" : "")"
+                            data-submenu="submenuInscricoes">
+
+                        <span>
+                            <i class="fa-solid fa-file-pen"></i>
+                            Inscrições
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down admin-nav-seta"></i>
+
+                    </button>
+
+
+                    <div id="submenuInscricoes" class="admin-submenu @(inscricoesAberto ? "aberto" : "")">
+
+                        <a asp-controller="Admin" asp-action="Inscricoes" class="admin-submenu-link @(actionAtual == "Inscricoes" ||
+                                                                 actionAtual == "NovaInscricao" ||
+                                                                 actionAtual == "EditarInscricao" ||
+                                                                 actionAtual == "DetalhesInscricao"
+                                                                 ? "active" : "")">
+
+                            <i class="fa-solid fa-list"></i>
+                            Listar Inscrições
+
+                        </a>
+
+
+                        <a asp-controller="Admin" asp-action="ControleInscricoes" class="admin-submenu-link @(actionAtual == "ControleInscricoes" ||
+                                                                 actionAtual == "NovaMissao"
+                                                                 ? "active" : "")">
+
+                            <i class="fa-solid fa-sliders"></i>
+                            Ativação de Inscrições
+
+                        </a>
+
+
+                        <a asp-controller="Admin" asp-action="ExportarInscricoes" class="admin-submenu-link @(actionAtual == "ExportarInscricoes"
+                                                                 ? "active" : "")">
+
+                            <i class="fa-solid fa-file-excel"></i>
+                            Exportação
+
+                        </a>
+
+                    </div>
+
+                </div>
+                <!-- SUBMENU DE MISSÕES -->
+
+                <div class="admin-nav-grupo">
+
+                    <button type="button" class="admin-nav-toggle @(missoesAberto ? "aberto" : "")"
+                            data-submenu="submenuMissoes">
+
+                        <span>
+                            <i class="fa-solid fa-church"></i>
+                            Missões
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down admin-nav-seta"></i>
+
+                    </button>
+
+
+                    <div id="submenuMissoes" class="admin-submenu @(missoesAberto ? "aberto" : "")">
+
+
+                        <!-- GERENCIAR MISSÕES -->
+
+                        <a asp-controller="Admin" asp-action="GerenciarMissoes" class="admin-submenu-link
+                            @(actionAtual == "GerenciarMissoes" ||
+                             actionAtual == "EditarMissao"
+                             ? "active" : "")">
+
+                            <i class="fa-solid fa-list-check"></i>
+
+                            Gerenciar Missões
+
+                        </a>
+
+
+                        <!-- NOVA MISSÃO -->
+
+                        <a asp-controller="Admin" asp-action="NovaMissao" class="admin-submenu-link
+                            @(actionAtual == "NovaMissao"
+                             ? "active" : "")">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nova Missão
+
+                        </a>
+
+
+                        <!-- HISTÓRIA -->
+
+                        <a asp-controller="Admin" asp-action="HistoriaMissoes" class="admin-submenu-link
+                            @(actionAtual == "HistoriaMissoes"
+                             ? "active" : "")">
+
+                            <i class="fa-solid fa-book-open"></i>
+
+                            História das Missões
+
+                        </a>
+
+                    </div>
+
+                </div>
+                
                 <a asp-controller="Admin" asp-action="Programacoes">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span>Programação</span>
@@ -76,6 +206,35 @@
     </div>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+            document.querySelectorAll(".admin-nav-toggle")
+                .forEach(botao => {
+
+                    botao.addEventListener("click", () => {
+
+                        const submenuId =
+                            botao.dataset.submenu;
+
+                        const submenu =
+                            document.getElementById(submenuId);
+
+                        if (!submenu) {
+                            return;
+                        }
+
+                        const aberto =
+                            submenu.classList.toggle("aberto");
+
+                        botao.classList.toggle(
+                            "aberto",
+                            aberto
+                        );
+
+                    });
+
+                });
+    </script>
 </body>
 
 </html>

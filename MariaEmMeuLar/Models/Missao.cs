@@ -13,7 +13,7 @@ namespace MariaEmMeuLar.Models
 
 
         [MaxLength(500)]
-        public string Descricao { get; set; } = string.Empty;
+        public string? Descricao { get; set; } = string.Empty;
 
         public bool Ativa { get; set; } = true;
 

@@ -181,96 +181,44 @@
     INSCRIÇÕES
 ========================= */
 
-.admin-table-container {
-    background: #fff;
-    border-radius: 14px;
-    overflow-x: auto;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
-}
-
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.admin-table th,
-.admin-table td {
-    padding: 16px 18px;
-    text-align: left;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.admin-table th {
-    background: #f8fafc;
-    font-size: 13px;
-    color: #667085;
-    text-transform: uppercase;
-}
-
-.admin-table tbody tr:hover {
-    background: #f9fafb;
-}
-
-.admin-status {
-    display: inline-block;
-    padding: 6px 10px;
-    border-radius: 20px;
-
-    background: #fff7ed;
-    color: #c2410c;
-
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.admin-btn-detalhes {
-    border: none;
-    border-radius: 8px;
-
-    padding: 8px 12px;
-
-    background: #0b3f7a;
-    color: #fff;
-
-    cursor: pointer;
-}
-
-.admin-btn-detalhes:hover {
-    opacity: .9;
-}
-
-.admin-table-empty {
-    text-align: center !important;
-    padding: 35px !important;
-    color: #667085;
-}
-
-.inscricoes-filtro {
-    margin-bottom: 20px;
+.inscricoes-toolbar {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+/* FILTRO */
+
+.inscricoes-filtro-form {
+    margin: 0;
 }
 
 .inscricoes-filtro-campo {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 6px;
 }
 
 .inscricoes-filtro-campo label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #374151;
 }
 
-.inscricoes-filtro-campo select{
-    min-width: 280px;
-    padding: 11px 14px;
+.inscricoes-filtro-campo select {
+    width: 230px;
+    min-height: 40px;
 
-    background: #fff;
+    padding: 9px 12px;
+
     border: 1px solid #d0d5dd;
     border-radius: 8px;
+
+    background: #ffffff;
+    color: #1f2937;
 
     font-size: 14px;
     cursor: pointer;
@@ -279,210 +227,656 @@
 .inscricoes-filtro-campo select:focus {
     outline: none;
     border-color: #0b3f7a;
-}
-.inscricao-detalhes-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 28px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+    box-shadow: 0 0 0 3px rgba(11, 63, 122, 0.08);
 }
 
-.inscricao-detalhes-header {
+
+/* =========================================
+   BOTÕES SUPERIORES
+========================================= */
+
+.inscricoes-toolbar-acoes {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.inscricoes-btn-inserir,
+.admin-btn-editar-topo,
+.admin-btn-excluir-topo {
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* INSERIR */
+
+.inscricoes-btn-inserir {
+    background: #15803d;
+    color: #ffffff;
+}
+
+.inscricoes-btn-inserir:hover {
+    background: #166534;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+
+/* EDITAR */
+
+.admin-btn-editar-topo {
+    background: #0b3f7a;
+    color: #ffffff;
+}
+
+.admin-btn-editar-topo:hover:not(:disabled) {
+    background: #072f5c;
+}
+
+
+/* EXCLUIR */
+
+.admin-btn-excluir-topo {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.admin-btn-excluir-topo:hover:not(:disabled) {
+    background: #b91c1c;
+}
+
+
+/* BOTÕES DESABILITADOS */
+
+.admin-btn-editar-topo:disabled,
+.admin-btn-excluir-topo:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================================
+   TABELA
+========================================= */
+
+.admin-table-container {
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 15px 17px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    vertical-align: middle;
+}
+
+.admin-table th {
+    background: #f8fafc;
+
+    color: #667085;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.admin-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================
+   COLUNA DE SELEÇÃO
+========================================= */
+
+.col-selecao {
+    width: 45px;
+
+    text-align: center !important;
+}
+
+.inscricao-radio {
+    width: 17px;
+    height: 17px;
+
+    margin: 0;
+
+    cursor: pointer;
+
+    accent-color: #0b3f7a;
+}
+
+
+/* LINHA SELECIONADA */
+
+.inscricao-linha.selecionada {
+    background: #eef5ff !important;
+}
+
+.inscricao-linha.selecionada td:first-child {
+    box-shadow: inset 4px 0 0 #0b3f7a;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.admin-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background: #fff7ed;
+    color: #c2410c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BOTÃO DETALHES
+========================================= */
+
+.admin-btn-detalhes {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 12px;
+
+    border-radius: 7px;
+
+    background: #0b3f7a;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-btn-detalhes:hover {
+    background: #072f5c;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TABELA VAZIA
+========================================= */
+
+.admin-table-empty {
+    padding: 35px !important;
+
+    text-align: center !important;
+
+    color: #667085;
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 900px) {
+
+    .inscricoes-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .inscricoes-filtro-campo select {
+        width: 100%;
+    }
+
+    .inscricoes-toolbar-acoes {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .inscricoes-toolbar-acoes {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .inscricoes-btn-inserir,
+    .admin-btn-editar-topo,
+    .admin-btn-excluir-topo {
+        width: 100%;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px;
+    }
+}
+
+/* =========================================
+   DETALHES DA INSCRIÇÃO
+========================================= */
+
+.admin-detalhes-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.admin-detalhes-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
 
     padding-bottom: 22px;
-    margin-bottom: 25px;
-
     border-bottom: 1px solid #e5e7eb;
 }
 
-.inscricao-detalhes-header h3 {
+.admin-detalhes-header h3 {
     margin: 7px 0 0;
-    font-size: 25px;
+
+    font-size: 24px;
+    color: #111827;
 }
 
-.inscricao-detalhes-missao {
+.admin-detalhes-missao {
     color: #0b3f7a;
+
     font-size: 14px;
     font-weight: 700;
 }
 
-.inscricao-detalhes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+.admin-detalhes-secao {
+    padding: 24px 0;
+
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.detalhe-item {
+.admin-detalhes-secao h4 {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 8px;
 
-    padding: 16px;
+    margin: 0 0 18px;
 
-    background: #f8fafc;
-    border-radius: 10px;
+    color: #111827;
+    font-size: 16px;
 }
 
-.detalhe-item span {
-    color: #667085;
-    font-size: 13px;
-}
-
-.detalhe-item strong {
-    color: #1f2937;
-    font-size: 15px;
-}
-
-.detalhe-item-grande {
-    grid-column: 1 / -1;
-}
-
-.inscricao-detalhes-secao {
-    margin-top: 28px;
-}
-
-.inscricao-detalhes-secao h4 {
-    margin: 0 0 15px;
-
-    font-size: 17px;
+.admin-detalhes-secao h4 i {
     color: #0b3f7a;
 }
 
-.detalhe-observacao {
-    padding: 18px;
+.admin-detalhes-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.admin-detalhes-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    padding: 14px 16px;
 
     background: #f8fafc;
-    border-radius: 10px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+}
+
+.admin-detalhes-item span {
+    color: #667085;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-detalhes-item strong {
+    color: #111827;
+
+    font-size: 14px;
+}
+
+.admin-detalhes-item-largo {
+    grid-column: 1 / -1;
+}
+
+.admin-observacao {
+    padding: 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 9px;
+
+    color: #374151;
 
     line-height: 1.6;
 }
 
-.inscricao-detalhes-acoes {
-    margin-top: 30px;
-
+.admin-detalhes-acoes {
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
+
+    padding-top: 24px;
+}
+
+.admin-btn-voltar,
+.admin-btn-editar-detalhes {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
 }
 
 .admin-btn-voltar {
-    padding: 10px 18px;
-
     background: #e5e7eb;
     color: #374151;
-
-    text-decoration: none;
-    border-radius: 8px;
 }
 
-@media (max-width: 700px) {
-    .inscricao-detalhes-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .detalhe-item-grande {
-        grid-column: auto;
-    }
+.admin-btn-editar-detalhes {
+    background: #0b3f7a;
+    color: #ffffff;
 }
+
+.admin-btn-editar-detalhes:hover {
+    background: #072f5c;
+}
+
+/* =========================================
+   FORMULÁRIO ADMIN - EDITAR / INSERIR
+========================================= */
 
 .admin-form-card {
-    background: #fff;
+    max-width: 900px;
     padding: 28px;
+
+    background: #ffffff;
+
     border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
 }
+
+
+/* SEÇÕES */
+
+.admin-form-secao {
+    margin-bottom: 26px;
+}
+
+.admin-form-secao h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0 0 18px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    font-size: 17px;
+    color: #111827;
+}
+
+.admin-form-secao h3 i {
+    color: #0b3f7a;
+}
+
+
+/* GRID DOS CAMPOS */
 
 .admin-form-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 18px;
 }
+
+
+/* CAMPO */
 
 .admin-form-campo {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+
+    gap: 6px;
+
+    margin-bottom: 16px;
 }
 
 .admin-form-campo label {
-    font-size: 14px;
+    color: #344054;
+
+    font-size: 13px;
     font-weight: 600;
-    color: #374151;
 }
+
+
+/* INPUTS */
 
 .admin-form-campo input,
 .admin-form-campo select,
 .admin-form-campo textarea {
     width: 100%;
-    box-sizing: border-box;
 
-    padding: 11px 13px;
+    padding: 11px 12px;
 
     border: 1px solid #d0d5dd;
     border-radius: 8px;
 
+    background: #ffffff;
+
+    color: #111827;
+
     font-size: 14px;
-    background: #fff;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
+/* TEXTAREA */
+
+.admin-form-campo textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+
+/* FOCO */
 
 .admin-form-campo input:focus,
 .admin-form-campo select:focus,
 .admin-form-campo textarea:focus {
     outline: none;
+
     border-color: #0b3f7a;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 63, 122, 0.08);
 }
+
+
+/* CAMPO LARGO */
 
 .admin-form-full {
     grid-column: 1 / -1;
 }
 
-.admin-form-secao {
-    margin-top: 28px;
+
+/* VALIDAÇÃO */
+
+.login-validacao {
+    color: #dc2626;
+
+    font-size: 12px;
 }
 
-.admin-form-secao h3 {
-    color: #0b3f7a;
-    margin-bottom: 16px;
-}
+
+/* BOTÕES */
 
 .admin-form-acoes {
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
 
-    margin-top: 30px;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
 }
 
-.admin-btn-salvar,
-.admin-btn-editar {
+
+.admin-btn-cancelar,
+.admin-btn-salvar {
+    min-height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px 16px;
+
     border: none;
     border-radius: 8px;
 
-    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
 
     text-decoration: none;
+
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
+
+
+/* CANCELAR */
+
+.admin-btn-cancelar {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.admin-btn-cancelar:hover {
+    background: #d1d5db;
+
+    color: #111827;
+}
+
+
+/* SALVAR */
 
 .admin-btn-salvar {
     background: #0b3f7a;
-    color: white;
+
+    color: #ffffff;
 }
 
-.admin-btn-editar {
-    background: #e9f2ff;
-    color: #0b3f7a;
+.admin-btn-salvar:hover {
+    background: #072f5c;
+
+    transform: translateY(-1px);
 }
 
-.admin-acoes {
-    display: flex;
-    gap: 8px;
-}
+
+/* RESPONSIVO */
 
 @media (max-width: 700px) {
+
     .admin-form-grid {
         grid-template-columns: 1fr;
     }
@@ -490,115 +884,361 @@
     .admin-form-full {
         grid-column: auto;
     }
-}
-.admin-form-excluir {
-    margin: 0;
+
+    .admin-form-card {
+        padding: 20px;
+    }
+
+    .admin-form-acoes {
+        flex-direction: column;
+    }
+
+    .admin-btn-cancelar,
+    .admin-btn-salvar {
+        width: 100%;
+    }
 }
 
-.admin-btn-excluir {
-    border: none;
+/* =========================================
+   NOVA MISSÃO
+========================================= */
+
+.nova-missao-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
 
-    padding: 8px 12px;
-
-    background: #fee2e2;
-    color: #b91c1c;
-
-    font-weight: 600;
     cursor: pointer;
 }
 
-.admin-btn-excluir:hover {
-    background: #fecaca;
+.admin-checkbox input {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #0b3f7a;
+
+    cursor: pointer;
 }
 
-.controle-inscricoes {
-    margin-bottom: 30px;
+.admin-checkbox span {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #374151;
 }
 
-.controle-inscricoes-header {
-    margin-bottom: 15px;
+/* =========================================
+   SIDEBAR - SUBMENU
+========================================= */
+
+.admin-nav-grupo {
+    width: 100%;
 }
 
-.controle-inscricoes-header h3 {
-    margin: 0 0 5px;
-    color: #1f2937;
-}
 
-.controle-inscricoes-header p {
-    margin: 0;
-    color: #667085;
-}
+/* BOTÃO PRINCIPAL */
 
-.controle-missoes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.controle-missao-card {
-    background: #fff;
+.admin-nav-toggle {
+    width: 100%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
 
-    padding: 18px;
+    padding: 13px 16px;
 
-    border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, .05);
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
 }
 
-.controle-missao-card>div {
+.admin-nav-toggle>span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-nav-toggle.aberto {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+
+/* SETA */
+
+.admin-nav-seta {
+    font-size: 11px;
+
+    transition: transform 0.25s ease;
+}
+
+.admin-nav-toggle.aberto .admin-nav-seta {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   SUBMENU
+========================================= */
+
+.admin-submenu {
+    max-height: 0;
+
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.14);
+
+    opacity: 0;
+
+    transition:
+        max-height 0.3s ease,
+        opacity 0.25s ease;
+}
+
+.admin-submenu.aberto {
+    max-height: 200px;
+
+    opacity: 1;
+}
+
+
+/* LINKS INTERNOS */
+
+.admin-submenu-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 42px;
+
+    padding: 10px 12px 10px 36px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    border-left: 3px solid transparent;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.admin-submenu-link i {
+    width: 15px;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+.admin-submenu-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+}
+
+.admin-submenu-link.active {
+    background: rgba(255, 255, 255, 0.13);
+
+    border-left-color: #ffffff;
+
+    color: #ffffff;
+
+    font-weight: 600;
+}
+
+/* =========================================
+   CONTROLE DE INSCRIÇÕES
+========================================= */
+
+.controle-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.controle-inscricoes {
+    margin-top: 20px;
+}
+
+
+/* GRID */
+
+.controle-missoes-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* CARD */
+
+.controle-missao-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    min-height: 90px;
+
+    padding: 18px 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+
+/* INFORMAÇÕES */
+
+.controle-missao-info {
     display: flex;
     flex-direction: column;
+
+    align-items: flex-start;
+
     gap: 8px;
 }
 
+.controle-missao-info strong {
+    color: #111827;
+
+    font-size: 15px;
+}
+
+
+/* STATUS */
+
 .status-inscricao {
-    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
 
     padding: 5px 9px;
-    border-radius: 20px;
+
+    border-radius: 999px;
 
     font-size: 12px;
     font-weight: 600;
 }
 
+
+/* ABERTA */
+
 .status-inscricao.aberta {
     background: #dcfce7;
-    color: #166534;
+
+    color: #15803d;
 }
+
+
+/* FECHADA */
 
 .status-inscricao.fechada {
     background: #fee2e2;
-    color: #991b1b;
+
+    color: #b91c1c;
 }
 
-.btn-abrir-inscricao,
-.btn-fechar-inscricao {
+
+/* BOTÕES */
+
+.btn-fechar-inscricao,
+.btn-abrir-inscricao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    min-width: 90px;
+
+    padding: 9px 13px;
+
     border: none;
     border-radius: 8px;
 
-    padding: 9px 14px;
-
+    font-size: 13px;
     font-weight: 600;
+
     cursor: pointer;
 }
 
-.btn-abrir-inscricao {
-    background: #dcfce7;
-    color: #166534;
-}
+
+/* FECHAR */
 
 .btn-fechar-inscricao {
     background: #fee2e2;
-    color: #991b1b;
+
+    color: #b91c1c;
 }
 
-@media (max-width: 900px) {
+.btn-fechar-inscricao:hover {
+    background: #fecaca;
+}
+
+
+/* ABRIR */
+
+.btn-abrir-inscricao {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+.btn-abrir-inscricao:hover {
+    background: #bbf7d0;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 850px) {
+
     .controle-missoes-grid {
         grid-template-columns: 1fr;
     }
+
 }

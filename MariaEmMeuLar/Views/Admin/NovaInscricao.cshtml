@@ -1,0 +1,550 @@
+@model MariaEmMeuLar.Models.ViewModels.NovaInscricaoViewModel
+
+@{
+    ViewData["Title"] = "Nova Inscrição";
+}
+
+<div class="admin-page-title">
+    <h2>Nova Inscrição</h2>
+    <p>Cadastre manualmente uma nova inscrição.</p>
+</div>
+
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="NovaInscricao" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- MISSÃO -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-cross"></i>
+                Missão
+            </h3>
+
+            <div class="admin-form-campo">
+
+                <label asp-for="MissaoId">
+                    Selecione a missão
+                </label>
+
+                <select asp-for="MissaoId" asp-items="ViewBag.Missoes" id="MissaoId">
+
+                    <option value="">
+                        Selecione uma missão
+                    </option>
+
+                </select>
+
+                <span asp-validation-for="MissaoId" class="login-validacao">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- DADOS GERAIS -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-user"></i>
+                Dados Gerais
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Nome">
+                        Nome
+                    </label>
+
+                    <input asp-for="Nome" placeholder="Nome completo" />
+
+                    <span asp-validation-for="Nome" class="login-validacao">
+                    </span>
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Telefone">
+                        Telefone
+                    </label>
+
+                    <input asp-for="Telefone" placeholder="(00) 00000-0000" />
+
+                    <span asp-validation-for="Telefone" class="login-validacao">
+                    </span>
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Idade">
+                        Idade
+                    </label>
+
+                    <input asp-for="Idade" type="number" min="10" max="100" placeholder="Ex: 18" />
+
+                    <span asp-validation-for="Idade" class="login-validacao">
+                    </span>
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Status">
+                        Status
+                    </label>
+
+                    <select asp-for="Status">
+
+                        <option value="Pendente">
+                            Pendente
+                        </option>
+
+                        <option value="Em análise">
+                            Em análise
+                        </option>
+
+                        <option value="Confirmada">
+                            Confirmada
+                        </option>
+
+                        <option value="Cancelada">
+                            Cancelada
+                        </option>
+
+                    </select>
+
+                    <span asp-validation-for="Status" class="login-validacao">
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- MARIA EM MEU LAR -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao missao-campos" data-missao="Maria em Meu Lar">
+
+            <h3>
+                <i class="fa-solid fa-house"></i>
+                Dados da visita
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo admin-form-full">
+
+                    <label asp-for="Endereco">
+                        Endereço
+                    </label>
+
+                    <input asp-for="Endereco" placeholder="Rua, número, bairro e cidade" />
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="DataDesejada">
+                        Data desejada
+                    </label>
+
+                    <input asp-for="DataDesejada" type="date" />
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="HorarioDesejado">
+                        Horário desejado
+                    </label>
+
+                    <input asp-for="HorarioDesejado" type="time" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- RETIRO -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao missao-campos" data-missao="Retiro Quaresmal">
+
+            <h3>
+                <i class="fa-solid fa-cross"></i>
+                Dados do Retiro
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Comunidade">
+                        Comunidade / Paróquia
+                    </label>
+
+                    <input asp-for="Comunidade" placeholder="Informe a comunidade" />
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="JaParticipou">
+                        Já participou de outro retiro?
+                    </label>
+
+                    <select asp-for="JaParticipou">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Sim">
+                            Sim
+                        </option>
+
+                        <option value="Não">
+                            Não
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- SEMANA DA JUVENTUDE -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao missao-campos" data-missao="Semana da Juventude">
+
+            <h3>
+                <i class="fa-solid fa-users"></i>
+                Dados da Semana da Juventude
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Grupo">
+                        Grupo / Pastoral
+                    </label>
+
+                    <input asp-for="Grupo" placeholder="Ex: EJC, Coroinhas..." />
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Turno">
+                        Turno disponível
+                    </label>
+
+                    <select asp-for="Turno">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Manhã">
+                            Manhã
+                        </option>
+
+                        <option value="Tarde">
+                            Tarde
+                        </option>
+
+                        <option value="Noite">
+                            Noite
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- TERÇO -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao missao-campos" data-missao="Terço da Juventude">
+
+            <h3>
+                <i class="fa-solid fa-hands-praying"></i>
+                Dados do Terço
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Participacao">
+                        Participação
+                    </label>
+
+                    <select asp-for="Participacao">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Participante">
+                            Participante
+                        </option>
+
+                        <option value="Leitor">
+                            Leitor
+                        </option>
+
+                        <option value="Músico">
+                            Músico
+                        </option>
+
+                        <option value="Equipe de apoio">
+                            Equipe de apoio
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="DiaDisponivel">
+                        Dia disponível
+                    </label>
+
+                    <select asp-for="DiaDisponivel">
+
+                        <option value="">
+                            Selecione
+                        </option>
+
+                        <option value="Segunda-feira">
+                            Segunda-feira
+                        </option>
+
+                        <option value="Terça-feira">
+                            Terça-feira
+                        </option>
+
+                        <option value="Quarta-feira">
+                            Quarta-feira
+                        </option>
+
+                        <option value="Quinta-feira">
+                            Quinta-feira
+                        </option>
+
+                        <option value="Sexta-feira">
+                            Sexta-feira
+                        </option>
+
+                        <option value="Sábado">
+                            Sábado
+                        </option>
+
+                        <option value="Domingo">
+                            Domingo
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- SEGUE-ME -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao missao-campos" data-missao="Segue-me Jovem">
+
+            <h3>
+                <i class="fa-solid fa-people-group"></i>
+                Dados do Segue-me Jovem
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo admin-form-full">
+
+                    <label asp-for="Comunidade">
+                        Comunidade / Paróquia
+                    </label>
+
+                    <input asp-for="Comunidade" placeholder="Informe a comunidade" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- OBSERVAÇÃO -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-note-sticky"></i>
+                Observação
+            </h3>
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Observacao">
+                    Observação
+                </label>
+
+                <textarea asp-for="Observacao" rows="5" placeholder="Informações adicionais..."></textarea>
+
+                <span asp-validation-for="Observacao" class="login-validacao">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- BOTÕES -->
+        <!-- ========================= -->
+
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="Inscricoes" class="admin-btn-cancelar">
+
+                <i class="fa-solid fa-xmark"></i>
+                Cancelar
+
+            </a>
+
+
+            <button type="submit" class="admin-btn-salvar">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Cadastrar inscrição
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+@section Scripts
+{
+    <script>
+
+        const selectMissao =
+            document.getElementById("MissaoId");
+
+        const secoesMissao =
+            document.querySelectorAll(".missao-campos");
+
+
+        function atualizarCamposMissao() {
+
+            const optionSelecionada =
+                selectMissao.options[
+                selectMissao.selectedIndex
+                ];
+
+            const nomeMissao =
+                optionSelecionada
+                    ? optionSelecionada.textContent.trim()
+                    : "";
+
+
+            secoesMissao.forEach(secao => {
+
+                const controles =
+                    secao.querySelectorAll(
+                        "input, select, textarea"
+                    );
+
+                const mostrar =
+                    secao.dataset.missao === nomeMissao;
+
+
+                if (mostrar) {
+
+                    secao.style.display = "block";
+
+                    controles.forEach(campo => {
+                        campo.disabled = false;
+                    });
+
+                } else {
+
+                    secao.style.display = "none";
+
+                    controles.forEach(campo => {
+                        campo.disabled = true;
+                    });
+
+                }
+
+            });
+
+        }
+
+
+        selectMissao.addEventListener(
+            "change",
+            atualizarCamposMissao
+        );
+
+
+        atualizarCamposMissao();
+
+    </script>
+}
