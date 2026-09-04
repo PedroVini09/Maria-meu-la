@@ -2,12 +2,33 @@
 
 @{
     ViewData["Title"] = "Nova Missão";
+
+    var logos =
+        ViewBag.Logos as List<string>
+        ?? new List<string>();
+
+    var imagensInscricao =
+        ViewBag.ImagensInscricao as List<string>
+        ?? new List<string>();
+
+    var fundos =
+        ViewBag.Fundos as List<string>
+        ?? new List<string>();
 }
 
+
 <div class="admin-page-title">
-    <h2>Nova Missão</h2>
-    <p>Cadastre uma nova missão no sistema.</p>
+
+    <div>
+        <h2>Nova Missão</h2>
+
+        <p>
+            Cadastre uma nova missão e configure sua exibição no site.
+        </p>
+    </div>
+
 </div>
+
 
 <div class="admin-form-card">
 
@@ -17,27 +38,71 @@
         </div>
 
 
+        <!-- ================================= -->
         <!-- DADOS DA MISSÃO -->
+        <!-- ================================= -->
+
         <div class="admin-form-secao">
 
             <h3>
-                <i class="fa-solid fa-cross"></i>
+                <i class="fa-solid fa-church"></i>
                 Dados da Missão
             </h3>
 
+
+            <div class="admin-form-grid">
+
+                <!-- NOME -->
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Nome">
+                        Nome da missão
+                    </label>
+
+                    <input asp-for="Nome" placeholder="Ex: Vigília da Juventude" />
+
+                    <span asp-validation-for="Nome" class="login-validacao">
+                    </span>
+
+                </div>
+
+
+                <!-- SLUG -->
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Slug">
+                        Identificador
+                    </label>
+
+                    <input asp-for="Slug" placeholder="ex: vigilia-da-juventude" />
+
+                    <span asp-validation-for="Slug" class="login-validacao">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUMO -->
+
             <div class="admin-form-campo">
 
-                <label asp-for="Nome">
-                    Nome da missão
+                <label asp-for="Resumo">
+                    Resumo
                 </label>
 
-                <input asp-for="Nome" placeholder="Ex: Vigília da Juventude" />
+                <input asp-for="Resumo" placeholder="Pequeno resumo apresentado no card da missão" />
 
-                <span asp-validation-for="Nome" class="login-validacao">
+                <span asp-validation-for="Resumo" class="login-validacao">
                 </span>
 
             </div>
 
+
+            <!-- DESCRIÇÃO -->
 
             <div class="admin-form-campo">
 
@@ -45,7 +110,7 @@
                     Descrição
                 </label>
 
-                <textarea asp-for="Descricao" rows="5" placeholder="Descrição da missão..."></textarea>
+                <textarea asp-for="Descricao" rows="5" placeholder="Descrição completa da missão..."></textarea>
 
                 <span asp-validation-for="Descricao" class="login-validacao">
                 </span>
@@ -55,15 +120,39 @@
         </div>
 
 
-        <!-- CONFIGURAÇÕES -->
+
+        <!-- ================================= -->
+        <!-- EXIBIÇÃO -->
+        <!-- ================================= -->
+
         <div class="admin-form-secao">
 
             <h3>
-                <i class="fa-solid fa-gear"></i>
-                Configurações
+                <i class="fa-solid fa-eye"></i>
+                Exibição
             </h3>
 
+
+            <!-- ORDEM -->
+
+            <div class="admin-form-campo">
+
+                <label asp-for="OrdemExibicao">
+                    Ordem de exibição
+                </label>
+
+                <input asp-for="OrdemExibicao" type="number" min="0" max="100" />
+
+                <span asp-validation-for="OrdemExibicao" class="login-validacao">
+                </span>
+
+            </div>
+
+
+            <!-- CHECKBOXES -->
+
             <div class="nova-missao-opcoes">
+
 
                 <label class="admin-checkbox">
 
@@ -86,15 +175,212 @@
 
                 </label>
 
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="ExibirIndex" type="checkbox" />
+
+                    <span>
+                        Exibir na página inicial
+                    </span>
+
+                </label>
+
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="ExibirInscricao" type="checkbox" />
+
+                    <span>
+                        Exibir na página de inscrições
+                    </span>
+
+                </label>
+
             </div>
 
         </div>
 
 
+
+        <!-- ================================= -->
+        <!-- IMAGENS -->
+        <!-- ================================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-image"></i>
+                Imagens da Missão
+            </h3>
+
+
+            <!-- ============================= -->
+            <!-- LOGO -->
+            <!-- ============================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Logo da missão</h4>
+
+                <p>
+                    Escolha a logo utilizada na apresentação da missão.
+                </p>
+
+
+                <input asp-for="ImagemLogo" type="hidden" id="ImagemLogo" />
+
+
+                @if (!logos.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhuma logo encontrada.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid" data-input="ImagemLogo">
+
+                        @foreach (var imagem in logos)
+                        {
+                            <button type="button" class="biblioteca-item @(Model.ImagemLogo == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+
+                                <img src="@Url.Content($"~/img/missoes/logos/{imagem}")" alt="@imagem" />
+
+
+                                <span>
+                                    @imagem
+                                </span>
+
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+
+            <!-- ============================= -->
+            <!-- IMAGEM DA INSCRIÇÃO -->
+            <!-- ============================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Imagem da inscrição</h4>
+
+                <p>
+                    Imagem utilizada no card da página de inscrições.
+                </p>
+
+
+                <input asp-for="ImagemInscricao" type="hidden" id="ImagemInscricao" />
+
+
+                @if (!imagensInscricao.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhuma imagem de inscrição encontrada.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid" data-input="ImagemInscricao">
+
+                        @foreach (var imagem in imagensInscricao)
+                        {
+                            <button type="button"
+                                    class="biblioteca-item @(Model.ImagemInscricao == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+
+                                <img src="@Url.Content($"~/img/missoes/inscricao/{imagem}")" alt="@imagem" />
+
+
+                                <span>
+                                    @imagem
+                                </span>
+
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+
+            <!-- ============================= -->
+            <!-- FUNDO -->
+            <!-- ============================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Imagem de fundo</h4>
+
+                <p>
+                    Fundo utilizado na apresentação da missão.
+                </p>
+
+
+                <input asp-for="ImagemFundo" type="hidden" id="ImagemFundo" />
+
+
+                @if (!fundos.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhum fundo encontrado.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid biblioteca-grid-fundos" data-input="ImagemFundo">
+
+                        @foreach (var imagem in fundos)
+                        {
+                            <button type="button" class="biblioteca-item @(Model.ImagemFundo == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+
+                                <img src="@Url.Content($"~/img/missoes/fundos/{imagem}")" alt="@imagem" />
+
+
+                                <span>
+                                    @imagem
+                                </span>
+
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================= -->
         <!-- BOTÕES -->
+        <!-- ================================= -->
+
         <div class="admin-form-acoes">
 
-            <a asp-controller="Admin" asp-action="ControleInscricoes" class="admin-btn-cancelar">
+            <a asp-controller="Admin" asp-action="GerenciarMissoes" class="admin-btn-cancelar">
 
                 <i class="fa-solid fa-xmark"></i>
                 Cancelar
@@ -114,3 +400,59 @@
     </form>
 
 </div>
+
+
+
+@section Scripts
+{
+    <script>
+
+        document
+            .querySelectorAll(".biblioteca-grid")
+            .forEach(galeria => {
+
+                const inputId =
+                    galeria.dataset.input;
+
+                const input =
+                    document.getElementById(inputId);
+
+
+                galeria
+                    .querySelectorAll(".biblioteca-item")
+                    .forEach(item => {
+
+                        item.addEventListener("click", () => {
+
+                            // Remove seleção apenas
+                            // desta categoria
+                            galeria
+                                .querySelectorAll(".biblioteca-item")
+                                .forEach(outro => {
+
+                                    outro.classList.remove(
+                                        "selecionada"
+                                    );
+
+                                });
+
+
+                            // Seleciona o card clicado
+                            item.classList.add(
+                                "selecionada"
+                            );
+
+
+                            // Salva o nome do arquivo
+                            // no input hidden
+                            input.value =
+                                item.dataset.value;
+
+                        });
+
+                    });
+
+            });
+
+    </script>
+}

@@ -20,11 +20,20 @@ public class HomeController : Controller
         _context = context;
         _logger = logger;
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var missoes = await _context.Missoes
+            .Where(m =>
+                m.Ativa &&
+                m.ExibirIndex)
+            .AsNoTracking()
+            .OrderBy(m => m.OrdemExibicao)
+            .ThenBy(m => m.Nome)
+            .ToListAsync();
+
+        return View(missoes);
     }
-    
+
     public IActionResult Programacao()
     {
         return View();
@@ -182,7 +191,7 @@ public class HomeController : Controller
           _logger.LogError(ex, "Erro ao enviar mensagem pelo formulario de contato.");
 
           TempData["Erro"]= "Não foi possivel enviar sua mensagem. Tente novamente";
-          
+
             return RedirectToAction("Contatos");
         }
     }

@@ -14,10 +14,13 @@ namespace MariaEmMeuLar.Controllers
         private readonly AppDbContext _context;
         private readonly ILogger<AdminController> _logger;
 
-        public AdminController(AppDbContext context, ILogger<AdminController> logger)
+        private readonly IWebHostEnvironment _environment;
+
+        public AdminController(AppDbContext context, ILogger<AdminController> logger, IWebHostEnvironment environment)
         {
             _context = context;
             _logger = logger;
+            _environment = environment;
         }
 
         public async Task<IActionResult> Index()
@@ -726,6 +729,7 @@ namespace MariaEmMeuLar.Controllers
         [HttpGet]
         public IActionResult NovaMissao()
         {
+            CarregarBibliotecaImagens();
             return View(new NovaMissaoViewModel());
         }
 
@@ -736,6 +740,7 @@ namespace MariaEmMeuLar.Controllers
         {
             if (!ModelState.IsValid)
             {
+                CarregarBibliotecaImagens();
                 return View(model);
             }
 
@@ -755,6 +760,7 @@ namespace MariaEmMeuLar.Controllers
                         "Já existe uma missão cadastrada com esse nome."
                     );
 
+                    CarregarBibliotecaImagens();
                     return View(model);
                 }
 
@@ -767,9 +773,33 @@ namespace MariaEmMeuLar.Controllers
                         ? null
                         : model.Descricao.Trim(),
 
+                    Resumo = string.IsNullOrWhiteSpace(model.Resumo)
+                        ? null
+                        : model.Resumo.Trim(),
+
+                    Slug = model.Slug.Trim(),
+
+                    ImagemLogo = string.IsNullOrWhiteSpace(model.ImagemLogo)
+                        ? null
+                        : model.ImagemLogo.Trim(),
+
+                    ImagemInscricao = string.IsNullOrWhiteSpace(model.ImagemInscricao)
+                        ? null
+                        : model.ImagemInscricao.Trim(),
+
+                    ImagemFundo = string.IsNullOrWhiteSpace(model.ImagemFundo)
+                        ? null
+                        : model.ImagemFundo.Trim(),
+
                     Ativa = model.Ativa,
 
-                    InscricoesAbertas = model.InscricoesAbertas
+                    InscricoesAbertas = model.InscricoesAbertas,
+
+                    ExibirIndex = model.ExibirIndex,
+
+                    ExibirInscricao = model.ExibirInscricao,
+
+                    OrdemExibicao = model.OrdemExibicao
                 };
 
 
@@ -783,7 +813,7 @@ namespace MariaEmMeuLar.Controllers
 
 
                 return RedirectToAction(
-                    nameof(ControleInscricoes)
+                    nameof(GerenciarMissoes)
                 );
             }
             catch (DbUpdateException ex)
@@ -811,7 +841,7 @@ namespace MariaEmMeuLar.Controllers
                 );
             }
 
-
+            CarregarBibliotecaImagens();
             return View(model);
         }
 
@@ -854,6 +884,8 @@ namespace MariaEmMeuLar.Controllers
                 OrdemExibicao = missao.OrdemExibicao
             };
 
+            CarregarBibliotecaImagens();
+
             return View(model);
         }
 
@@ -864,6 +896,8 @@ namespace MariaEmMeuLar.Controllers
         {
             if (!ModelState.IsValid)
             {
+                CarregarBibliotecaImagens();
+
                 return View(model);
             }
 
@@ -895,6 +929,8 @@ namespace MariaEmMeuLar.Controllers
                         "Já existe outra missão com esse nome."
                     );
 
+                    CarregarBibliotecaImagens();
+
                     return View(model);
                 }
 
@@ -912,6 +948,8 @@ namespace MariaEmMeuLar.Controllers
                         nameof(model.Slug),
                         "Já existe outra missão com esse identificador."
                     );
+
+                    CarregarBibliotecaImagens();
 
                     return View(model);
                 }
@@ -998,8 +1036,53 @@ namespace MariaEmMeuLar.Controllers
                 );
             }
 
+            CarregarBibliotecaImagens();
 
             return View(model);
+        }
+
+        private void CarregarBibliotecaImagens()
+        {
+            ViewBag.Logos = ObterImagensPasta("img","missoes","logos");
+
+            ViewBag.ImagensInscricao = ObterImagensPasta("img","missoes","inscricao");
+
+            ViewBag.Fundos = ObterImagensPasta("img","missoes","fundos");
+        }
+
+        private List<string> ObterImagensPasta(params string[] partes)
+        {
+            var caminho = Path.Combine(
+                new[] { _environment.WebRootPath }
+                    .Concat(partes)
+                    .ToArray()
+            );
+
+            if (!Directory.Exists(caminho))
+            {
+                return new List<string>();
+            }
+
+            var extensoesPermitidas = new[]
+            {
+        ".png",
+        ".jpg",
+        ".jpeg",
+        ".webp"
+    };
+
+            return Directory
+                .EnumerateFiles(caminho)
+                .Where(arquivo =>
+                    extensoesPermitidas.Contains(
+                        Path.GetExtension(arquivo).ToLowerInvariant()
+                    )
+                )
+                .Select(Path.GetFileName)
+                .Where(nome => nome != null)
+                .Select(nome => nome!)
+                .OrderBy(nome => nome)
+                .ToList();
         }
     }
 }

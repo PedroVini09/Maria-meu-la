@@ -1313,3 +1313,163 @@
 
     font-size: 13px;
 }
+
+/* =========================================
+   BIBLIOTECA DE IMAGENS - MISSÕES
+========================================= */
+
+.biblioteca-bloco {
+    margin-top: 22px;
+}
+
+.biblioteca-bloco+.biblioteca-bloco {
+    padding-top: 22px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.biblioteca-bloco h4 {
+    margin: 0 0 5px;
+
+    color: #172033;
+
+    font-size: 15px;
+}
+
+.biblioteca-bloco>p {
+    margin: 0 0 14px;
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+.biblioteca-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(145px, 1fr));
+
+    gap: 14px;
+}
+
+
+.biblioteca-item {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+
+.biblioteca-item:hover {
+    border-color: #93b4d8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 14px rgba(0, 0, 0, .08);
+}
+
+
+.biblioteca-item.selecionada {
+    border: 3px solid #0b4c8c;
+    
+     background: #eef6ff;
+    
+     box-shadow:
+     0 0 0 3px rgba(11, 76, 140, 0.12);
+}
+
+
+.biblioteca-item img {
+    width: 100%;
+    height: 115px;
+
+    object-fit: contain;
+
+    border-radius: 7px;
+
+    background: #f8fafc;
+}
+
+
+.biblioteca-grid-fundos .biblioteca-item img {
+    object-fit: cover;
+}
+
+
+.biblioteca-item span {
+    overflow: hidden;
+
+    color: #344054;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-align: center;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.biblioteca-check {
+    position: absolute;
+    
+    top: 7px;
+    right: 7px;
+    
+    width: 23px;
+    height: 23px;
+    
+    background: #ffffff;
+    
+    border-radius: 50%;
+    
+    color: #0b4c8c;
+    
+    font-size: 19px;
+}
+
+
+/* Esconde o check de TODOS os cards */
+.biblioteca-item .biblioteca-check {
+    display: none !important;
+}
+
+/* Mostra somente no card realmente selecionado */
+.biblioteca-item.selecionada .biblioteca-check {
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.biblioteca-vazia {
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+
+    color: #667085;
+}

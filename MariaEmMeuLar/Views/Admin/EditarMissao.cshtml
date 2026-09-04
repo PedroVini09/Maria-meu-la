@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "Editar Missão";
+
+    var logos = ViewBag.Logos as List<string> ?? new List<string>();
+    var imagensInscricao = ViewBag.ImagensInscricao as List<string> ?? new List<string>();
+    var fundos = ViewBag.Fundos as List<string> ?? new List<string>();
 }
 
 <div class="admin-page-title">
@@ -164,20 +168,153 @@
         <!-- IMAGENS -->
         <!-- ========================= -->
 
+
         <div class="admin-form-secao">
 
             <h3>
                 <i class="fa-solid fa-image"></i>
-                Imagens
+                Imagens da Missão
             </h3>
 
-            <p class="admin-form-aviso">
-                A seleção de logo, imagem da inscrição e fundo será
-                configurada na próxima etapa.
-            </p>
+            <!-- ========================= -->
+            <!-- LOGO -->
+            <!-- ========================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Logo da missão</h4>
+
+                <p>
+                    Selecione a imagem utilizada como logo da missão.
+                </p>
+
+                <input asp-for="ImagemLogo" type="hidden" id="ImagemLogo" />
+
+                @if (!logos.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhuma logo encontrada.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid" data-input="ImagemLogo">
+
+                        @foreach (var imagem in logos)
+                        {
+                            <button type="button" class="biblioteca-item @(Model.ImagemLogo == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+                                <img src="@Url.Content($"~/img/missoes/logos/{imagem}")" alt="@imagem" />
+
+                                <span>
+                                    @imagem
+                                </span>
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- IMAGEM DA INSCRIÇÃO -->
+            <!-- ========================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Imagem da inscrição</h4>
+
+                <p>
+                    Imagem utilizada no card da página de inscrições.
+                </p>
+
+                <input asp-for="ImagemInscricao" type="hidden" id="ImagemInscricao" />
+
+                @if (!imagensInscricao.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhuma imagem de inscrição encontrada.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid" data-input="ImagemInscricao">
+
+                        @foreach (var imagem in imagensInscricao)
+                        {
+                            <button type="button"
+                                    class="biblioteca-item @(Model.ImagemInscricao == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+                                <img src="@Url.Content($"~/img/missoes/inscricao/{imagem}")" alt="@imagem" />
+
+                                <span>
+                                    @imagem
+                                </span>
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- FUNDO -->
+            <!-- ========================= -->
+
+            <div class="biblioteca-bloco">
+
+                <h4>Imagem de fundo</h4>
+
+                <p>
+                    Fundo utilizado na apresentação da missão.
+                </p>
+
+                <input asp-for="ImagemFundo" type="hidden" id="ImagemFundo" />
+
+                @if (!fundos.Any())
+                {
+                    <p class="biblioteca-vazia">
+                        Nenhum fundo encontrado.
+                    </p>
+                }
+                else
+                {
+                    <div class="biblioteca-grid biblioteca-grid-fundos" data-input="ImagemFundo">
+
+                        @foreach (var imagem in fundos)
+                        {
+                            <button type="button" class="biblioteca-item @(Model.ImagemFundo == imagem ? "selecionada" : "")"
+                                    data-value="@imagem">
+
+                                <img src="@Url.Content($"~/img/missoes/fundos/{imagem}")" alt="@imagem" />
+
+                                <span>
+                                    @imagem
+                                </span>
+
+                                <i class="fa-solid fa-circle-check biblioteca-check"></i>
+
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
 
         </div>
-
 
         <!-- ========================= -->
         <!-- BOTÕES -->
@@ -203,5 +340,54 @@
         </div>
 
     </form>
+
+    @section Scripts
+    {
+        <script>
+
+                document
+                    .querySelectorAll(".biblioteca-grid")
+                    .forEach(galeria => {
+
+                        const inputId =
+                            galeria.dataset.input;
+
+                        const input =
+                            document.getElementById(inputId);
+
+
+                        galeria
+                            .querySelectorAll(".biblioteca-item")
+                            .forEach(item => {
+
+                                item.addEventListener("click", () => {
+
+                                    galeria
+                                        .querySelectorAll(".biblioteca-item")
+                                        .forEach(outro => {
+
+                                            outro.classList.remove(
+                                                "selecionada"
+                                            );
+
+                                        });
+
+
+                                    item.classList.add(
+                                        "selecionada"
+                                    );
+
+
+                                    input.value =
+                                        item.dataset.value;
+
+                                });
+
+                            });
+
+                    });
+
+        </script>
+    }
 
 </div>
