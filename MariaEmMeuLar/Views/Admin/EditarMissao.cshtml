@@ -1,0 +1,207 @@
+@model MariaEmMeuLar.Models.ViewModels.EditarMissaoViewModel
+
+@{
+    ViewData["Title"] = "Editar Missão";
+}
+
+<div class="admin-page-title">
+    <div>
+        <h2>Editar Missão</h2>
+        <p>Atualize as informações e configurações da missão.</p>
+    </div>
+</div>
+
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="EditarMissao" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- DADOS PRINCIPAIS -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-church"></i>
+                Dados da Missão
+            </h3>
+
+            <div class="admin-form-grid">
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Nome">
+                        Nome da missão
+                    </label>
+
+                    <input asp-for="Nome" />
+
+                    <span asp-validation-for="Nome" class="login-validacao">
+                    </span>
+
+                </div>
+
+
+                <div class="admin-form-campo">
+
+                    <label asp-for="Slug">
+                        Identificador
+                    </label>
+
+                    <input asp-for="Slug" placeholder="ex: maria-em-meu-lar" />
+
+                    <span asp-validation-for="Slug" class="login-validacao">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Resumo">
+                    Resumo
+                </label>
+
+                <input asp-for="Resumo" placeholder="Texto curto usado no card da missão" />
+
+                <span asp-validation-for="Resumo" class="login-validacao">
+                </span>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Descricao">
+                    Descrição
+                </label>
+
+                <textarea asp-for="Descricao" rows="5" placeholder="Descrição completa da missão..."></textarea>
+
+                <span asp-validation-for="Descricao" class="login-validacao">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- EXIBIÇÃO -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-eye"></i>
+                Exibição
+            </h3>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="OrdemExibicao">
+                    Ordem de exibição
+                </label>
+
+                <input asp-for="OrdemExibicao" type="number" min="0" max="100" />
+
+                <span asp-validation-for="OrdemExibicao" class="login-validacao">
+                </span>
+
+            </div>
+
+
+            <div class="nova-missao-opcoes">
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="Ativa" type="checkbox" />
+
+                    <span>
+                        Missão ativa
+                    </span>
+
+                </label>
+
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="ExibirIndex" type="checkbox" />
+
+                    <span>
+                        Exibir na página inicial
+                    </span>
+
+                </label>
+
+
+                <label class="admin-checkbox">
+
+                    <input asp-for="ExibirInscricao" type="checkbox" />
+
+                    <span>
+                        Exibir na página de inscrições
+                    </span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- IMAGENS -->
+        <!-- ========================= -->
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-image"></i>
+                Imagens
+            </h3>
+
+            <p class="admin-form-aviso">
+                A seleção de logo, imagem da inscrição e fundo será
+                configurada na próxima etapa.
+            </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- BOTÕES -->
+        <!-- ========================= -->
+
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="GerenciarMissoes" class="admin-btn-cancelar">
+
+                <i class="fa-solid fa-xmark"></i>
+                Cancelar
+
+            </a>
+
+
+            <button type="submit" class="admin-btn-salvar">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Salvar alterações
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

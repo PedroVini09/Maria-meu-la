@@ -26,5 +26,26 @@ namespace MariaEmMeuLar.Models
         public ICollection<Galeria> Galerias { get; set; } = new List<Galeria>();
 
         public bool InscricoesAbertas { get; set; } = true;
+
+        [MaxLength(180)]
+        public string? Resumo { get; set; } = string.Empty;
+
+        [MaxLength(150)]
+        public string? Slug { get; set; } = string.Empty;
+
+        [MaxLength(150)]
+        public string? ImagemLogo { get; set; } = string.Empty;
+
+        [MaxLength(150)]
+        public string? ImagemInscricao { get; set; } = string.Empty;
+
+        [MaxLength(150)]
+        public string? ImagemFundo { get; set; } = string.Empty;
+
+        public bool ExibirIndex { get; set; } = true;
+        public bool ExibirInscricao { get; set; } = true;
+
+        public int OrdemExibicao { get; set; } = 0;
+
     }
 }

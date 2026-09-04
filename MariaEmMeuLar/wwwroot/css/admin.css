@@ -1242,3 +1242,74 @@
     }
 
 }
+
+/* =========================================
+   GERENCIAR MISSÕES
+========================================= */
+
+.missoes-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+}
+
+.missao-radio {
+    width: 17px;
+    height: 17px;
+
+    cursor: pointer;
+
+    accent-color: #0b3f7a;
+}
+
+.missao-linha.selecionada {
+    background: #eef5ff !important;
+}
+
+.missao-linha.selecionada td:first-child {
+    box-shadow: inset 4px 0 0 #0b3f7a;
+}
+
+
+/* STATUS DA MISSÃO */
+
+.missao-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.missao-status.ativa {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.missao-status.inativa {
+    background: #e5e7eb;
+    color: #667085;
+}
+
+.admin-form-aviso {
+    margin: 0;
+
+    padding: 14px 16px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+
+    color: #1e40af;
+
+    font-size: 13px;
+}

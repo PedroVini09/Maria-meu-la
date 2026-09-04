@@ -816,14 +816,190 @@ namespace MariaEmMeuLar.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GerenciarMissao()
+        public async Task<IActionResult> GerenciarMissoes()
         {
-            var missao = await _context.Missoes
+            var missoes = await _context.Missoes
                 .AsNoTracking()
                 .OrderBy(m => m.Nome)
                 .ToListAsync();
 
-            return View(missao);
+            return View(missoes);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditarMissao(int id)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (missao == null)
+            {
+                return NotFound();
+            }
+
+            var model = new EditarMissaoViewModel
+            {
+                Id = missao.Id,
+                Nome = missao.Nome,
+                Descricao = missao.Descricao,
+                Resumo = missao.Resumo,
+                Slug = missao.Slug ?? string.Empty,
+                ImagemLogo = missao.ImagemLogo,
+                ImagemInscricao = missao.ImagemInscricao,
+                ImagemFundo = missao.ImagemFundo,
+                Ativa = missao.Ativa,
+                ExibirIndex = missao.ExibirIndex,
+                ExibirInscricao = missao.ExibirInscricao,
+                OrdemExibicao = missao.OrdemExibicao
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarMissao(
+    EditarMissaoViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var missao = await _context.Missoes
+                .FirstOrDefaultAsync(m => m.Id == model.Id);
+
+            if (missao == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                var nome = model.Nome.Trim();
+                var slug = model.Slug.Trim().ToLowerInvariant();
+
+
+                // Evita outro registro com o mesmo nome
+                var nomeExiste = await _context.Missoes
+                    .AsNoTracking()
+                    .AnyAsync(m =>
+                        m.Id != model.Id &&
+                        m.Nome == nome);
+
+                if (nomeExiste)
+                {
+                    ModelState.AddModelError(
+                        nameof(model.Nome),
+                        "Já existe outra missão com esse nome."
+                    );
+
+                    return View(model);
+                }
+
+
+                // Evita outro registro com o mesmo slug
+                var slugExiste = await _context.Missoes
+                    .AsNoTracking()
+                    .AnyAsync(m =>
+                        m.Id != model.Id &&
+                        m.Slug == slug);
+
+                if (slugExiste)
+                {
+                    ModelState.AddModelError(
+                        nameof(model.Slug),
+                        "Já existe outra missão com esse identificador."
+                    );
+
+                    return View(model);
+                }
+
+
+                // ==============================
+                // ATUALIZAÇÃO
+                // ==============================
+
+                missao.Nome = nome;
+
+                missao.Slug = slug;
+
+                missao.Descricao =
+                    string.IsNullOrWhiteSpace(model.Descricao)
+                        ? null
+                        : model.Descricao.Trim();
+
+                missao.Resumo =
+                    string.IsNullOrWhiteSpace(model.Resumo)
+                        ? null
+                        : model.Resumo.Trim();
+
+
+                missao.Ativa = model.Ativa;
+
+                missao.ExibirIndex =
+                    model.ExibirIndex;
+
+                missao.ExibirInscricao =
+                    model.ExibirInscricao;
+
+                missao.OrdemExibicao =
+                    model.OrdemExibicao;
+
+
+                // As imagens serão tratadas
+                // na próxima etapa.
+                missao.ImagemLogo =
+                    model.ImagemLogo;
+
+                missao.ImagemInscricao =
+                    model.ImagemInscricao;
+
+                missao.ImagemFundo =
+                    model.ImagemFundo;
+
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    "Missão atualizada com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(GerenciarMissoes)
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao atualizar a missão {MissaoId}.",
+                    model.Id
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível atualizar a missão."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao atualizar a missão {MissaoId}.",
+                    model.Id
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao atualizar a missão."
+                );
+            }
+
+
+            return View(model);
         }
     }
 }

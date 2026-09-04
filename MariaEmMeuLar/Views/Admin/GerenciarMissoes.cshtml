@@ -5,6 +5,183 @@
 }
 
 <div class="admin-page-title">
-    <h2>Gerenciar Missões</h2>
-    <p>Cadastre, edite e gerencie as missões do sistema.</p>
+    <div>
+        <h2>Gerenciar Missões</h2>
+        <p>Cadastre, edite e gerencie as missões do sistema.</p>
+    </div>
 </div>
+
+
+<div class="missoes-toolbar">
+
+    <a asp-controller="Admin" asp-action="NovaMissao" class="inscricoes-btn-inserir">
+
+        <i class="fa-solid fa-plus"></i>
+        Nova Missão
+
+    </a>
+
+
+    <button type="button" id="btnEditarMissao" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-pen"></i>
+        Editar
+
+    </button>
+
+
+    <button type="button" id="btnExcluirMissao" class="admin-btn-excluir-topo" disabled>
+
+        <i class="fa-solid fa-trash"></i>
+        Excluir / Desativar
+
+    </button>
+
+</div>
+
+
+<div class="admin-table-container">
+
+    <table class="admin-table">
+
+        <thead>
+            <tr>
+                <th class="col-selecao"></th>
+                <th>Missão</th>
+                <th>Status</th>
+                <th>Inscrições</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="admin-table-empty">
+
+                        Nenhuma missão cadastrada.
+
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var missao in Model)
+                {
+                    <tr class="missao-linha">
+
+                        <td class="col-selecao">
+
+                            <input type="radio" name="missaoSelecionada" value="@missao.Id" class="missao-radio" />
+
+                        </td>
+
+
+                        <td>
+                            <strong>@missao.Nome</strong>
+                        </td>
+
+
+                        <td>
+
+                            @if (missao.Ativa)
+                            {
+                                <span class="missao-status ativa">
+                                    Ativa
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="missao-status inativa">
+                                    Inativa
+                                </span>
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            @if (missao.InscricoesAbertas)
+                            {
+                                <span class="status-inscricao aberta">
+                                    Inscrições abertas
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="status-inscricao fechada">
+                                    Inscrições fechadas
+                                </span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+@section Scripts
+{
+    <script>
+
+        const radiosMissao =
+            document.querySelectorAll(".missao-radio");
+
+        const btnEditarMissao =
+            document.getElementById("btnEditarMissao");
+
+        const btnExcluirMissao =
+            document.getElementById("btnExcluirMissao");
+
+        let missaoSelecionadaId = null;
+
+
+        radiosMissao.forEach(radio => {
+
+            radio.addEventListener("change", () => {
+
+                missaoSelecionadaId = radio.value;
+
+                btnEditarMissao.disabled = false;
+                btnExcluirMissao.disabled = false;
+
+
+                document
+                    .querySelectorAll(".missao-linha")
+                    .forEach(linha => {
+
+                        linha.classList.remove("selecionada");
+
+                    });
+
+
+                radio
+                    .closest(".missao-linha")
+                    .classList.add("selecionada");
+
+            });
+
+        });
+
+        btnEditarMissao.addEventListener("click", () => {
+
+            if (!missaoSelecionadaId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/EditarMissao/${missaoSelecionadaId}`;
+
+        });
+    </script>
+}
