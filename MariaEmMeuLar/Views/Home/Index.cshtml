@@ -276,12 +276,19 @@
                 da nossa paróquia e transformam vidas.
             </p>
         </div>
-
+        
         <div class="juventude-card-row">
 
             @foreach (var missao in Model)
             {
-                <article class="juventude-card">
+                var fundoClaro =
+             string.Equals(
+                 missao.ImagemFundo,
+                 "segue-me-jovem.png",
+                 StringComparison.OrdinalIgnoreCase
+             );
+
+                <article class="juventude-card @(fundoClaro ? "juventude-card-claro" : "")">
 
                     <div class="juventude-imagem">
 

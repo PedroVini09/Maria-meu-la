@@ -117,6 +117,13 @@ document.body.classList.add("js-enabled");
 const juventudeSection = document.querySelector(".juventude-animation");
 
 if (juventudeSection) {
+    const juventudeCards = juventudeSection.querySelectorAll(".juventude-card");
+
+    juventudeCards.forEach((card, index) => {
+        const delay = 0.45 + (index * 0.12)
+        card.style.setProperty("--juventude-delay", `${delay}s`);
+    });
+
     const juventudeObserver = new IntersectionObserver(
         (entries, observer) => {
             entries.forEach((entry) => {

@@ -352,29 +352,9 @@
 }
 
 
-.juventude-animation.is-visible .juventude-card:nth-child(1) {
+.juventude-animation.is-visible .juventude-card {
     animation: welcomeFadeUp 0.8s ease forwards;
-    animation-delay: 0.62s;
-}
-
-.juventude-animation.is-visible .juventude-card:nth-child(2) {
-    animation: welcomeFadeUp 0.8s ease forwards;
-    animation-delay: 0.75s;
-}
-
-.juventude-animation.is-visible .juventude-card:nth-child(3) {
-    animation: welcomeFadeUp 0.8s ease forwards;
-    animation-delay: 0.80s;
-}
-
-.juventude-animation.is-visible .juventude-card:nth-child(4) {
-    animation: welcomeFadeUp 0.8s ease forwards;
-    animation-delay: 0.80s;
-}
-
-.juventude-animation.is-visible .juventude-card:nth-child(5) {
-    animation: welcomeFadeUp 0.8s ease forwards;
-    animation-delay: 0.80s;
+    animation-delay: var(--juventude-delay, 0.5s);
 }
 
 .juventude-animation.is-visible .juventude-link {
