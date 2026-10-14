@@ -1,0 +1,337 @@
+@model MariaEmMeuLar.Models.ViewModels.GerenciarItensSecaoViewModel
+
+@{
+    ViewData["Title"] = "Itens da Seção";
+}
+
+<div class="admin-page-title">
+
+    <div>
+
+        <h2>Itens da Seção</h2>
+
+        <p>
+            Gerencie os itens da seção
+            <strong>@Model.Secao.Titulo</strong>.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="missoes-toolbar">
+
+    <a asp-controller="Admin" asp-action="ConteudoMissao" asp-route-id="@Model.Secao.MissaoId"
+       class="admin-btn-cancelar">
+
+        <i class="fa-solid fa-arrow-left"></i>
+        Voltar
+
+    </a>
+
+
+    <a asp-controller="Admin" asp-action="NovoItemSecao" asp-route-secaoId="@Model.Secao.Id" class="admin-btn-novo">
+
+        <i class="fa-solid fa-plus"></i>
+        Novo Item
+
+    </a>
+
+    <button type="button" id="btnEditarItem" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-pen"></i>
+        Editar
+
+    </button>
+
+    <button type="button" id="btnDesativarItem" class="admin-btn-excluir" disabled>
+
+        <i class="fa-solid fa-ban"></i>
+        Desativar
+
+    </button>
+
+    <button type="button" id="btnReativarItem" class="admin-btn-novo" disabled>
+
+        <i class="fa-solid fa-rotate-left"></i>
+        Reativar
+
+    </button>
+
+    <button type="button" id="btnExcluirItem" class="admin-btn-excluir" disabled>
+
+        <i class="fa-solid fa-trash"></i>
+        Excluir
+
+    </button>
+
+</div>
+<form asp-controller="Admin" asp-action="ReativarItemSecao" method="post" id="formReativarItem" style="display:none;">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="id" id="itemIdReativar" />
+
+</form>
+
+
+<div class="admin-table-container">
+
+    <table class="admin-table">
+
+        <thead>
+
+            <tr>
+                <th></th>
+                <th>Ordem</th>
+                <th>Marcador</th>
+                <th>Título</th>
+                <th>Ícone</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            @if (!Model.Itens.Any())
+            {
+                <tr>
+
+                    <td colspan="6" class="admin-table-empty">
+
+                        Nenhum item cadastrado nesta seção.
+
+                    </td>
+
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model.Itens)
+                {
+                    <tr class="item-linha">
+
+                        <td>
+                            <input type="radio" name="itemSelecionado" value="@item.Id"
+                                   data-ativo="@item.Ativo.ToString().ToLower()" data-titulo="@item.Titulo" class="item-radio" />
+                        </td>
+
+                        <td>
+                            @item.Ordem
+                        </td>
+
+                        <td>
+                            @(string.IsNullOrWhiteSpace(item.Marcador)
+                                ? "-"
+                                : item.Marcador)
+                        </td>
+
+                        <td>
+                            <strong>
+                                @(string.IsNullOrWhiteSpace(item.Titulo)
+                                    ? "-"
+                                    : item.Titulo)
+                            </strong>
+                        </td>
+
+                        <td>
+                            @(string.IsNullOrWhiteSpace(item.Icone)
+                                ? "-"
+                                : item.Icone)
+                        </td>
+
+                        <td>
+
+                            @if (item.Ativo)
+                            {
+                                <span class="missao-status ativa">
+                                    Ativo
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="missao-status inativa">
+                                    Inativo
+                                </span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<form asp-controller="Admin" asp-action="DesativarItemSecao" method="post" id="formDesativarItem" style="display:none;">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="id" id="itemIdDesativar" />
+
+</form>
+
+<form asp-controller="Admin" asp-action="ExcluirItemSecao" method="post" id="formExcluirItem" style="display:none;">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="id" id="itemIdExcluir" />
+
+</form>
+
+@section Scripts
+{
+    <script>
+
+        const radiosItem =
+            document.querySelectorAll(".item-radio");
+
+        const btnEditarItem =
+            document.getElementById("btnEditarItem");
+
+        const btnDesativarItem =
+            document.getElementById("btnDesativarItem");
+
+        const formDesativarItem =
+            document.getElementById("formDesativarItem");
+
+        const itemIdDesativar =
+            document.getElementById("itemIdDesativar");
+
+        const btnReativarItem =
+            document.getElementById("btnReativarItem");
+
+        const formReativarItem =
+            document.getElementById("formReativarItem");
+
+        const itemIdReativar =
+            document.getElementById("itemIdReativar");
+
+        const btnExcluirItem =
+            document.getElementById("btnExcluirItem");
+
+        const formExcluirItem =
+            document.getElementById("formExcluirItem");
+
+        const itemIdExcluir =
+            document.getElementById("itemIdExcluir");
+
+        let itemSelecionadoId = null;
+
+
+        radiosItem.forEach(radio => {
+
+            radio.addEventListener("change", () => {
+
+                itemSelecionadoId = radio.value;
+
+                btnEditarItem.disabled = false;
+                btnDesativarItem.disabled = false;
+
+                btnReativarItem.disabled = false;
+
+                let itemSelecionadoAtivo = false;
+                let itemSelecionadoTitulo = "";
+
+                itemIdReativar.value =
+                    itemSelecionadoId;
+
+                itemIdDesativar.value =
+                    itemSelecionadoId;
+
+                document
+                    .querySelectorAll(".item-linha")
+                    .forEach(linha => {
+
+                        linha.classList.remove("selecionada");
+
+                    });
+
+
+                radio
+                    .closest(".item-linha")
+                    .classList.add("selecionada");
+
+            });
+
+        });
+
+
+        btnEditarItem.addEventListener("click", () => {
+
+            if (!itemSelecionadoId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/EditarItemSecao/${itemSelecionadoId}`;
+
+        });
+
+        btnDesativarItem.addEventListener("click", () => {
+
+            if (!itemSelecionadoId) {
+                return;
+            }
+
+            const confirmar = confirm(
+                "Deseja realmente desativar este item?"
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            formDesativarItem.submit();
+
+        });
+
+        btnReativarItem.addEventListener("click", () => {
+
+            if (!itemSelecionadoId) {
+                return;
+            }
+
+            formReativarItem.submit();
+
+        });
+
+        btnExcluirItem.addEventListener("click", () => {
+
+            if (!itemSelecionadoId) {
+                return;
+            }
+
+            if (itemSelecionadoAtivo) {
+
+                alert(
+                    "Desative o item antes de excluí-lo."
+                );
+
+                return;
+            }
+
+
+            const confirmar = confirm(
+                `Deseja excluir definitivamente o item "${itemSelecionadoTitulo}"? Essa ação não poderá ser desfeita.`
+            );
+
+
+            if (!confirmar) {
+                return;
+            }
+
+
+            formExcluirItem.submit();
+
+        });
+
+    </script>
+}

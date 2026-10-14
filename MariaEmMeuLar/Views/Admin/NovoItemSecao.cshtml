@@ -1,0 +1,152 @@
+@model MariaEmMeuLar.Models.ViewModels.NovoItemSecaoViewModel
+
+@{
+    ViewData["Title"] = "Novo Item";
+}
+
+<div class="admin-page-title">
+
+    <div>
+
+        <h2>Novo Item</h2>
+
+        <p>
+            Cadastre um item para a seção
+            <strong>@Model.SecaoTitulo</strong>.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="NovoItemSecao" method="post">
+
+        @Html.AntiForgeryToken()
+
+        <input asp-for="SecaoId" type="hidden" />
+
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+
+        <div class="admin-form-secao">
+
+            <h3>
+                <i class="fa-solid fa-list"></i>
+                Informações do item
+            </h3>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Marcador">
+                    Marcador
+                </label>
+
+                <input asp-for="Marcador" placeholder="Ex: 1" />
+
+                <small>
+                    Pode ser um número ou pequeno identificador.
+                </small>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Titulo">
+                    Título
+                </label>
+
+                <input asp-for="Titulo" placeholder="Ex: Inscrição" />
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Conteudo">
+                    Conteúdo
+                </label>
+
+                <textarea asp-for="Conteudo" rows="6" placeholder="Digite a descrição do item..."></textarea>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Icone">
+                    Ícone
+                </label>
+
+                <input asp-for="Icone" placeholder="Ex: fa-solid fa-heart" />
+
+                <small>
+                    Usado principalmente em seções do tipo Cards.
+                </small>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Imagem">
+                    Imagem
+                </label>
+
+                <input asp-for="Imagem" placeholder="Ex: imagem.png" />
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Ordem">
+                    Ordem
+                </label>
+
+                <input asp-for="Ordem" type="number" min="0" max="100" />
+
+            </div>
+
+
+            <div class="admin-form-checkbox">
+
+                <input asp-for="Ativo" />
+
+                <label asp-for="Ativo">
+                    Item ativo
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="ItensSecao" asp-route-id="@Model.SecaoId" class="admin-btn-cancelar">
+
+                <i class="fa-solid fa-arrow-left"></i>
+                Cancelar
+
+            </a>
+
+
+            <button type="submit" class="admin-btn-salvar">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+                Salvar Item
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

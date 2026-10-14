@@ -44,6 +44,13 @@
 
     </button>
 
+    <button type="button" id="btnGerenciarItens" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-list"></i>
+        Gerenciar Itens
+
+    </button>
+
 
     <button type="button" id="btnExcluirSecao" class="admin-btn-excluir" disabled>
 
@@ -190,6 +197,9 @@
         const formExcluirSecao =
             document.getElementById("formExcluirSecao");
 
+        const btnGerenciarItens =
+            document.getElementById("btnGerenciarItens");
+
         const secaoIdExcluir =
             document.getElementById("secaoIdExcluir");
 
@@ -211,6 +221,8 @@
                 btnEditarSecao.disabled = false;
 
                 btnExcluirSecao.disabled = false;
+
+                btnGerenciarItens.disabled = false;
 
 
                 secaoIdExcluir.value =
@@ -270,6 +282,20 @@
             }
 
             formExcluirSecao.submit();
+
+        });
+
+        // ===============================
+        // GERENCIAR ITENS
+        // ===============================
+        btnGerenciarItens.addEventListener("click", () => {
+
+            if (!secaoSelecionadaId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/ItensSecao/${secaoSelecionadaId}`;
 
         });
 

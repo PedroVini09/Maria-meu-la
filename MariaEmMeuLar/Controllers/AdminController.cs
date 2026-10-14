@@ -1690,5 +1690,424 @@ namespace MariaEmMeuLar.Controllers
 
             return View(model);
         }
+        [HttpGet]
+        public async Task<IActionResult> NovoItemSecao(int secaoId)
+        {
+            var secao = await _context.MissoesSecoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == secaoId);
+
+            if (secao == null)
+            {
+                TempData["Erro"] = "Seção não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+
+            var maiorOrdem = await _context.MissoesSecoesItens
+                .Where(i => i.SecaoId == secaoId)
+                .MaxAsync(i => (int?)i.Ordem) ?? 0;
+
+
+            var model = new NovoItemSecaoViewModel
+            {
+                SecaoId = secao.Id,
+                SecaoTitulo = secao.Titulo,
+                Ordem = maiorOrdem + 1,
+                Ativo = true
+            };
+
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NovoItemSecao(
+    NovoItemSecaoViewModel model)
+        {
+            var secao = await _context.MissoesSecoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == model.SecaoId);
+
+            if (secao == null)
+            {
+                TempData["Erro"] = "Seção não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            model.SecaoTitulo = secao.Titulo;
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            try
+            {
+                var item = new MissaoSecaoItem
+                {
+                    SecaoId = model.SecaoId,
+
+                    Marcador = string.IsNullOrWhiteSpace(model.Marcador)
+                        ? null
+                        : model.Marcador.Trim(),
+
+                    Icone = string.IsNullOrWhiteSpace(model.Icone)
+                        ? null
+                        : model.Icone.Trim(),
+
+                    Titulo = string.IsNullOrWhiteSpace(model.Titulo)
+                        ? null
+                        : model.Titulo.Trim(),
+
+                    Conteudo = string.IsNullOrWhiteSpace(model.Conteudo)
+                        ? null
+                        : model.Conteudo.Trim(),
+
+                    Imagem = string.IsNullOrWhiteSpace(model.Imagem)
+                        ? null
+                        : model.Imagem.Trim(),
+
+                    Ordem = model.Ordem,
+
+                    Ativo = model.Ativo
+                };
+
+
+                _context.MissoesSecoesItens.Add(item);
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    $"Item \"{item.Titulo}\" cadastrado com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(ItensSecao),
+                    new { id = model.SecaoId }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao cadastrar item da seção {SecaoId}.",
+                    model.SecaoId
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível cadastrar o item."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao cadastrar item da seção {SecaoId}.",
+                    model.SecaoId
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao cadastrar o item."
+                );
+            }
+
+
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditarItemSecao(int id)
+        {
+            var item = await _context.MissoesSecoesItens
+                .AsNoTracking()
+                .Include(i => i.Secao)
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (item == null)
+            {
+                TempData["Erro"] = "Item não encontrado.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            var model = new EditarItemSecaoViewModel
+            {
+                Id = item.Id,
+
+                SecaoId = item.SecaoId,
+
+                SecaoTitulo =
+                    item.Secao?.Titulo ?? "Seção",
+
+                Marcador = item.Marcador,
+
+                Icone = item.Icone,
+
+                Titulo = item.Titulo,
+
+                Conteudo = item.Conteudo,
+
+                Imagem = item.Imagem,
+
+                Ordem = item.Ordem,
+
+                Ativo = item.Ativo
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarItemSecao(
+    EditarItemSecaoViewModel model)
+        {
+            var item = await _context.MissoesSecoesItens
+                .Include(i => i.Secao)
+                .FirstOrDefaultAsync(i => i.Id == model.Id);
+
+            if (item == null)
+            {
+                TempData["Erro"] = "Item não encontrado.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            // Não confiamos no SecaoId vindo do navegador
+            model.SecaoId = item.SecaoId;
+
+            model.SecaoTitulo =
+                item.Secao?.Titulo ?? "Seção";
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                item.Marcador =
+                    string.IsNullOrWhiteSpace(model.Marcador)
+                        ? null
+                        : model.Marcador.Trim();
+
+                item.Icone =
+                    string.IsNullOrWhiteSpace(model.Icone)
+                        ? null
+                        : model.Icone.Trim();
+
+                item.Titulo =
+                    string.IsNullOrWhiteSpace(model.Titulo)
+                        ? null
+                        : model.Titulo.Trim();
+
+                item.Conteudo =
+                    string.IsNullOrWhiteSpace(model.Conteudo)
+                        ? null
+                        : model.Conteudo.Trim();
+
+                item.Imagem =
+                    string.IsNullOrWhiteSpace(model.Imagem)
+                        ? null
+                        : model.Imagem.Trim();
+
+                item.Ordem = model.Ordem;
+
+                item.Ativo = model.Ativo;
+
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    $"Item \"{item.Titulo}\" atualizado com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(ItensSecao),
+                    new { id = item.SecaoId }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao atualizar item {ItemId}.",
+                    model.Id
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível atualizar o item."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao atualizar item {ItemId}.",
+                    model.Id
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao atualizar o item."
+                );
+            }
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DesativarItemSecao(int id)
+        {
+            try
+            {
+                var item = await _context.MissoesSecoesItens
+                    .FirstOrDefaultAsync(i => i.Id == id);
+
+                if (item == null)
+                {
+                    TempData["Erro"] = "Item não encontrado.";
+
+                    return RedirectToAction(nameof(HistoriaMissoes));
+                }
+
+                var secaoId = item.SecaoId;
+
+                item.Ativo = false;
+
+                await _context.SaveChangesAsync();
+
+                TempData["Sucesso"] =
+                    $"Item \"{item.Titulo}\" desativado com sucesso.";
+
+                return RedirectToAction(
+                    nameof(ItensSecao),
+                    new { id = secaoId }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao desativar item {ItemId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Não foi possível desativar o item.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao desativar item {ItemId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Ocorreu um erro ao desativar o item.";
+            }
+
+            return RedirectToAction(nameof(HistoriaMissoes));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ReativarItemSecao(int id)
+        {
+            var item = await _context.MissoesSecoesItens
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (item == null)
+            {
+                TempData["Erro"] = "Item não encontrado.";
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            item.Ativo = true;
+
+            await _context.SaveChangesAsync();
+
+            TempData["Sucesso"] =
+                $"Item \"{item.Titulo}\" reativado com sucesso.";
+
+            return RedirectToAction(
+                nameof(ItensSecao),
+                new { id = item.SecaoId }
+            );
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExcluirItemSecao(int id)
+        {
+            var item = await _context.MissoesSecoesItens
+                .FirstOrDefaultAsync(i => i.Id == id);
+
+            if (item == null)
+            {
+                TempData["Erro"] = "Item não encontrado.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            var secaoId = item.SecaoId;
+
+            // Item ativo não pode ser excluído
+            if (item.Ativo)
+            {
+                TempData["Erro"] =
+                    "O item precisa ser desativado antes de ser excluído.";
+
+                return RedirectToAction(
+                    nameof(ItensSecao),
+                    new { id = secaoId }
+                );
+            }
+
+            try
+            {
+                _context.MissoesSecoesItens.Remove(item);
+
+                await _context.SaveChangesAsync();
+
+                TempData["Sucesso"] =
+                    $"Item \"{item.Titulo}\" excluído definitivamente.";
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao excluir item {ItemId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Não foi possível excluir o item.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao excluir item {ItemId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Ocorreu um erro ao excluir o item.";
+            }
+
+            return RedirectToAction(
+                nameof(ItensSecao),
+                new { id = secaoId }
+            );
+        }
     }
 }
