@@ -1,0 +1,233 @@
+@model IEnumerable<MariaEmMeuLar.Models.Missao>
+
+@{
+    ViewData["Title"] = "História das Missões";
+
+    var historias =
+        ViewBag.Historias as Dictionary<int, MariaEmMeuLar.Models.MissaoHistoria>
+        ?? new Dictionary<int, MariaEmMeuLar.Models.MissaoHistoria>();
+}
+
+<div class="admin-page-title">
+
+    <div>
+        <h2>História das Missões</h2>
+
+        <p>
+            Cadastre e edite a história apresentada em cada missão.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="missoes-toolbar">
+
+    <button type="button" id="btnEditarHistoria" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-pen"></i>
+        Editar História
+
+    </button>
+
+    <button type="button" id="btnConteudoMissao" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-layer-group"></i>
+        Gerenciar Conteúdo
+
+    </button>
+
+</div>
+
+
+<div class="admin-table-container">
+
+    <table class="admin-table">
+
+        <thead>
+
+            <tr>
+
+                <th class="col-selecao"></th>
+
+                <th>
+                    Missão
+                </th>
+
+                <th>
+                    História
+                </th>
+
+                <th>
+                    Última atualização
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            @if (!Model.Any())
+            {
+                <tr>
+
+                    <td colspan="4" class="admin-table-empty">
+
+                        Nenhuma missão cadastrada.
+
+                    </td>
+
+                </tr>
+            }
+            else
+            {
+                @foreach (var missao in Model)
+                {
+                    var possuiHistoria =
+                        historias.TryGetValue(
+                            missao.Id,
+                            out var historia
+                        );
+
+                    <tr class="missao-linha">
+
+                        <td class="col-selecao">
+
+                            <input type="radio" name="missaoSelecionada" value="@missao.Id" class="missao-radio" />
+
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                @missao.Nome
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            @if (possuiHistoria)
+                            {
+                                <span class="missao-status ativa">
+                                    Cadastrada
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="missao-status inativa">
+                                    Não cadastrada
+                                </span>
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            @if (possuiHistoria &&
+                                 historia != null)
+                            {
+                               @historia.DataAtualizacao.ToString("dd/MM/yyyy HH:mm");
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+@section Scripts
+{
+    <script>
+        const radiosMissao =
+            document.querySelectorAll(".missao-radio");
+
+        const btnEditarHistoria =
+            document.getElementById("btnEditarHistoria");
+
+        const btnConteudoMissao =
+            document.getElementById("btnConteudoMissao");
+
+        let missaoSelecionadaId = null;
+
+
+        radiosMissao.forEach(radio => {
+
+            radio.addEventListener("change", () => {
+
+                missaoSelecionadaId = radio.value;
+
+                // Habilita os dois botões
+                btnEditarHistoria.disabled = false;
+                btnConteudoMissao.disabled = false;
+
+
+                // Remove seleção das outras linhas
+                document
+                    .querySelectorAll(".missao-linha")
+                    .forEach(linha => {
+
+                        linha.classList.remove("selecionada");
+
+                    });
+
+
+                // Marca visualmente a linha selecionada
+                radio
+                    .closest(".missao-linha")
+                    .classList.add("selecionada");
+
+            });
+
+        });
+
+
+        // ===============================
+        // EDITAR HISTÓRIA
+        // ===============================
+
+        btnEditarHistoria.addEventListener("click", () => {
+
+            if (!missaoSelecionadaId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/EditarHistoriaMissao/${missaoSelecionadaId}`;
+
+        });
+
+
+        // ===============================
+        // GERENCIAR CONTEÚDO
+        // ===============================
+
+        btnConteudoMissao.addEventListener("click", () => {
+
+            if (!missaoSelecionadaId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/ConteudoMissao/${missaoSelecionadaId}`;
+
+        });
+
+    </script>
+}

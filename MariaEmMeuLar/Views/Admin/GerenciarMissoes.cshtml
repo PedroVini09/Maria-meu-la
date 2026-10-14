@@ -30,11 +30,9 @@
     </button>
 
 
-    <button type="button" id="btnExcluirMissao" class="admin-btn-excluir-topo" disabled>
-
+    <button type="button" id="btnExcluirMissao" class="admin-btn-excluir" disabled>
         <i class="fa-solid fa-trash"></i>
         Excluir / Desativar
-
     </button>
 
 </div>
@@ -74,7 +72,8 @@
 
                         <td class="col-selecao">
 
-                            <input type="radio" name="missaoSelecionada" value="@missao.Id" class="missao-radio" />
+                            <input type="radio" name="missaoSelecionada" value="@missao.Id" data-nome="@missao.Nome"
+                                    class="missao-radio" />
 
                         </td>
 
@@ -127,6 +126,15 @@
 
     </table>
 
+    <form asp-controller="Admin" asp-action="ExcluirOuDesativarMissao" method="post" id="formExcluirMissao"
+          style="display: none;">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="id" id="missaoIdExcluir" />
+
+    </form>
+
 </div>
 
 
@@ -143,8 +151,20 @@
         const btnExcluirMissao =
             document.getElementById("btnExcluirMissao");
 
-        let missaoSelecionadaId = null;
+        const formExcluirMissao =
+            document.getElementById("formExcluirMissao");
 
+        const missaoIdExcluir =
+            document.getElementById("missaoIdExcluir");
+
+
+        let missaoSelecionadaId = null;
+        let missaoSelecionadaNome = "";
+
+
+        // ==========================================
+        // SELEÇÃO DA MISSÃO
+        // ==========================================
 
         radiosMissao.forEach(radio => {
 
@@ -152,36 +172,94 @@
 
                 missaoSelecionadaId = radio.value;
 
+                missaoSelecionadaNome =
+                    radio.dataset.nome;
+
+
+                // Habilita os botões
                 btnEditarMissao.disabled = false;
                 btnExcluirMissao.disabled = false;
 
 
+                // Guarda o ID no formulário de exclusão
+                missaoIdExcluir.value =
+                    missaoSelecionadaId;
+
+
+                // Remove destaque das outras linhas
                 document
                     .querySelectorAll(".missao-linha")
                     .forEach(linha => {
 
-                        linha.classList.remove("selecionada");
+                        linha.classList.remove(
+                            "selecionada"
+                        );
 
                     });
 
 
+                // Destaca a linha selecionada
                 radio
                     .closest(".missao-linha")
-                    .classList.add("selecionada");
+                    .classList.add(
+                        "selecionada"
+                    );
 
             });
 
         });
 
-        btnEditarMissao.addEventListener("click", () => {
 
-            if (!missaoSelecionadaId) {
-                return;
+        // ==========================================
+        // EDITAR MISSÃO
+        // ==========================================
+
+        btnEditarMissao.addEventListener(
+            "click",
+            () => {
+
+                if (!missaoSelecionadaId) {
+                    return;
+                }
+
+
+                window.location.href =
+                    `/Admin/EditarMissao/${missaoSelecionadaId}`;
+
             }
+        );
 
-            window.location.href =
-                `/Admin/EditarMissao/${missaoSelecionadaId}`;
 
-        });
+        // ==========================================
+        // EXCLUIR / DESATIVAR MISSÃO
+        // ==========================================
+
+        btnExcluirMissao.addEventListener(
+            "click",
+            () => {
+
+                if (!missaoSelecionadaId) {
+                    return;
+                }
+
+
+                const confirmar =
+                    window.confirm(
+                        `Deseja realmente excluir ou desativar a missão "${missaoSelecionadaNome}"?\n\n` +
+                        `Se a missão possuir inscrições, ela será apenas desativada.\n` +
+                        `Se não possuir inscrições, ela será excluída permanentemente.`
+                    );
+
+
+                if (!confirmar) {
+                    return;
+                }
+
+
+                formExcluirMissao.submit();
+
+            }
+        );
+
     </script>
 }

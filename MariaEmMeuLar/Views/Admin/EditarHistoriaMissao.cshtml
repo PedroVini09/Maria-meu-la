@@ -1,0 +1,102 @@
+@model MariaEmMeuLar.Models.ViewModels.EditarHistoriaMissaoViewModel
+
+@{
+    ViewData["Title"] = "Editar História da Missão";
+}
+
+
+<div class="admin-page-title">
+
+    <div>
+
+        <h2>História da Missão</h2>
+
+        <p>
+            Cadastre ou atualize a história apresentada para
+            <strong>@Model.MissaoNome</strong>.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="admin-form-card">
+
+    <form asp-controller="Admin" asp-action="EditarHistoriaMissao" method="post">
+
+        @Html.AntiForgeryToken()
+
+
+        <input asp-for="MissaoId" type="hidden" />
+
+
+        <div asp-validation-summary="ModelOnly" class="login-validacao">
+        </div>
+
+
+        <div class="admin-form-secao">
+
+            <h3>
+
+                <i class="fa-solid fa-book-open"></i>
+
+                História de @Model.MissaoNome
+
+            </h3>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Titulo">
+                    Título
+                </label>
+
+                <input asp-for="Titulo" placeholder="Ex: Nossa História" />
+
+                <span asp-validation-for="Titulo" class="login-validacao">
+                </span>
+
+            </div>
+
+
+            <div class="admin-form-campo">
+
+                <label asp-for="Conteudo">
+                    Conteúdo da história
+                </label>
+
+                <textarea asp-for="Conteudo" rows="14" placeholder="Conte aqui a história da missão..."></textarea>
+
+                <span asp-validation-for="Conteudo" class="login-validacao">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-form-acoes">
+
+            <a asp-controller="Admin" asp-action="HistoriaMissoes" class="admin-btn-cancelar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Cancelar
+
+            </a>
+
+
+            <button type="submit" class="admin-btn-salvar">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar história
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

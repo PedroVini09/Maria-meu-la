@@ -1,0 +1,277 @@
+@model MariaEmMeuLar.Models.ViewModels.GerenciarConteudoMissaoViewModel
+
+@{
+    ViewData["Title"] = "Conteúdo da Missão";
+}
+
+
+<div class="admin-page-title">
+
+    <div>
+        <h2>Conteúdo da Missão</h2>
+
+        <p>
+            Gerencie as seções da missão
+            <strong>@Model.Missao.Nome</strong>.
+        </p>
+    </div>
+
+</div>
+
+
+<div class="missoes-toolbar">
+
+    <a asp-controller="Admin" asp-action="HistoriaMissoes" class="admin-btn-cancelar">
+
+        <i class="fa-solid fa-arrow-left"></i>
+        Voltar
+
+    </a>
+
+
+    <a asp-controller="Admin" asp-action="NovaSecaoMissao" asp-route-missaoId="@Model.Missao.Id" class="admin-btn-novo">
+
+        <i class="fa-solid fa-plus"></i>
+        Nova Seção
+
+    </a>
+
+
+    <button type="button" id="btnEditarSecao" class="admin-btn-editar-topo" disabled>
+
+        <i class="fa-solid fa-pen"></i>
+        Editar
+
+    </button>
+
+
+    <button type="button" id="btnExcluirSecao" class="admin-btn-excluir" disabled>
+
+        <i class="fa-solid fa-trash"></i>
+        Excluir / Desativar
+
+    </button>
+
+</div>
+
+
+<div class="admin-table-container">
+
+    <table class="admin-table">
+
+        <thead>
+
+            <tr>
+                <th></th>
+                <th>Ordem</th>
+                <th>Tópico</th>
+                <th>Título</th>
+                <th>Tipo</th>
+                <th>Itens</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            @if (!Model.Secoes.Any())
+            {
+                <tr>
+
+                    <td colspan="7" class="admin-table-empty">
+
+                        Nenhuma seção cadastrada para esta missão.
+
+                    </td>
+
+                </tr>
+            }
+            else
+            {
+                @foreach (var secao in Model.Secoes)
+                {
+                    <tr class="secao-linha">
+
+                        <td>
+                            <input type="radio" name="secaoSelecionada" value="@secao.Id" data-titulo="@secao.Titulo"
+                                   class="secao-radio" />
+                        </td>
+
+                        <td>
+                            @secao.Ordem
+                        </td>
+
+
+                        <td>
+
+                            @if (!string.IsNullOrWhiteSpace(secao.Topico))
+                            {
+                                @secao.Topico
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+
+                        </td>
+
+
+                        <td>
+                            <strong>
+                                @secao.Titulo
+                            </strong>
+                        </td>
+
+
+                        <td>
+                            @secao.Tipo
+                        </td>
+
+
+                        <td>
+                            @secao.Itens.Count
+                        </td>
+
+
+                        <td>
+
+                            @if (secao.Ativa)
+                            {
+                                <span class="missao-status ativa">
+                                    Ativa
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="missao-status inativa">
+                                    Inativa
+                                </span>
+                            }
+
+                        </td>
+
+                    </tr>
+                }
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- FORMULÁRIO OCULTO PARA EXCLUIR / DESATIVAR -->
+<form asp-controller="Admin" asp-action="ExcluirOuDesativarSecao" method="post" id="formExcluirSecao"
+      style="display:none;">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="id" id="secaoIdExcluir" />
+
+</form>
+
+
+@section Scripts
+{
+    <script>
+
+        const radiosSecao =
+            document.querySelectorAll(".secao-radio");
+
+        const btnEditarSecao =
+            document.getElementById("btnEditarSecao");
+
+        const btnExcluirSecao =
+            document.getElementById("btnExcluirSecao");
+
+        const formExcluirSecao =
+            document.getElementById("formExcluirSecao");
+
+        const secaoIdExcluir =
+            document.getElementById("secaoIdExcluir");
+
+
+        let secaoSelecionadaId = null;
+        let secaoSelecionadaTitulo = "";
+
+
+        radiosSecao.forEach(radio => {
+
+            radio.addEventListener("change", () => {
+
+                secaoSelecionadaId = radio.value;
+
+                secaoSelecionadaTitulo =
+                    radio.dataset.titulo;
+
+
+                btnEditarSecao.disabled = false;
+
+                btnExcluirSecao.disabled = false;
+
+
+                secaoIdExcluir.value =
+                    secaoSelecionadaId;
+
+
+                document
+                    .querySelectorAll(".secao-linha")
+                    .forEach(linha => {
+
+                        linha.classList.remove("selecionada");
+
+                    });
+
+
+                radio
+                    .closest(".secao-linha")
+                    .classList.add("selecionada");
+
+            });
+
+        });
+
+
+        // ===============================
+        // EDITAR
+        // ===============================
+
+        btnEditarSecao.addEventListener("click", () => {
+
+            if (!secaoSelecionadaId) {
+                return;
+            }
+
+            window.location.href =
+                `/Admin/EditarSecaoMissao/${secaoSelecionadaId}`;
+
+        });
+
+
+        // ===============================
+        // EXCLUIR / DESATIVAR
+        // ===============================
+
+        btnExcluirSecao.addEventListener("click", () => {
+
+            if (!secaoSelecionadaId) {
+                return;
+            }
+
+            const confirmar = confirm(
+                `Deseja realmente excluir ou desativar a seção "${secaoSelecionadaTitulo}"?`
+            );
+
+            if (!confirmar) {
+                return;
+            }
+
+            formExcluirSecao.submit();
+
+        });
+
+    </script>
+}

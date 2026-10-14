@@ -20,6 +20,12 @@ namespace MariaEmMeuLar.Data
 
         public DbSet<UsuarioAdmin> UsuariosAdmin { get; set; }
 
+        public DbSet<MissaoHistoria> HistoriasMissoes { get; set; }
+
+        public DbSet<MissaoSecao> MissoesSecoes { get; set; }
+
+        public DbSet<MissaoSecaoItem> MissoesSecoesItens { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +40,26 @@ namespace MariaEmMeuLar.Data
             modelBuilder.Entity<Contatos>().ToTable("contatos_tb");
             modelBuilder.Entity<Noticia>().ToTable("noticias_tb");
             modelBuilder.Entity<UsuarioAdmin>().ToTable("usuariosadmin_tb");
+            modelBuilder.Entity<MissaoHistoria>(entity =>
+            {
+                entity.HasIndex(h => h.MissaoId).IsUnique();
+
+                entity.HasOne(h => h.Missao).WithOne().HasForeignKey<MissaoHistoria>(h => h.MissaoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(h => h.DataAtualizacao).HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .ValueGeneratedOnAddOrUpdate();
+            });
+            modelBuilder.Entity<MissaoSecao>().HasOne(s => s.Missao).WithMany().HasForeignKey(s => s.MissaoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<MissaoSecao>().HasIndex(s => new { s.MissaoId, s.Chave }).IsUnique();
+
+            modelBuilder.Entity<MissaoSecaoItem>()
+    .HasOne(i => i.Secao)
+    .WithMany(s => s.Itens)
+    .HasForeignKey(i => i.SecaoId)
+    .OnDelete(DeleteBehavior.Cascade);
         }
 
     }

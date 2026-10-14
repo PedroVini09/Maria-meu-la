@@ -296,6 +296,60 @@
 
 
 /* EXCLUIR */
+.admin-btn-excluir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 48px;
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #e05252;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.admin-btn-excluir:hover:not(:disabled) {
+    background: #c93f3f;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(224, 82, 82, 0.25);
+}
+
+.admin-btn-excluir:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.admin-btn-excluir:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+    transform: none;
+
+    opacity: 1;
+}
+
+.admin-btn-excluir i {
+    font-size: 14px;
+}
 
 .admin-btn-excluir-topo {
     background: #dc2626;
@@ -304,6 +358,55 @@
 
 .admin-btn-excluir-topo:hover:not(:disabled) {
     background: #b91c1c;
+}
+
+
+.admin-btn-novo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 48px;
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #16843d;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.admin-btn-novo:hover {
+    background: #116f33;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(22, 132, 61, 0.25);
+
+    text-decoration: none;
+}
+
+.admin-btn-novo:active {
+    transform: translateY(0);
+}
+
+.admin-btn-novo i {
+    font-size: 14px;
 }
 
 

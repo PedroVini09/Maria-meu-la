@@ -5,10 +5,11 @@ using MariaEmMeuLar.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MariaEmMeuLar.Models.ViewModels;
 using MariaEmMeuLar.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MariaEmMeuLar.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;
@@ -34,7 +35,7 @@ namespace MariaEmMeuLar.Controllers
 
         public async Task<IActionResult> Inscricoes(int? missaoId)
         {
-           var query = _context.Inscricoes.Include(i => i.Missao).AsQueryable().AsNoTracking();
+            var query = _context.Inscricoes.Include(i => i.Missao).AsQueryable().AsNoTracking();
 
             if (missaoId.HasValue)
             {
@@ -716,7 +717,7 @@ namespace MariaEmMeuLar.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult>ControleInscricoes()
+        public async Task<IActionResult> ControleInscricoes()
         {
             var missoes = await _context.Missoes
                 .AsNoTracking()
@@ -1043,11 +1044,11 @@ namespace MariaEmMeuLar.Controllers
 
         private void CarregarBibliotecaImagens()
         {
-            ViewBag.Logos = ObterImagensPasta("img","missoes","logos");
+            ViewBag.Logos = ObterImagensPasta("img", "missoes", "logos");
 
-            ViewBag.ImagensInscricao = ObterImagensPasta("img","missoes","inscricao");
+            ViewBag.ImagensInscricao = ObterImagensPasta("img", "missoes", "inscricao");
 
-            ViewBag.Fundos = ObterImagensPasta("img","missoes","fundos");
+            ViewBag.Fundos = ObterImagensPasta("img", "missoes", "fundos");
         }
 
         private List<string> ObterImagensPasta(params string[] partes)
@@ -1084,6 +1085,610 @@ namespace MariaEmMeuLar.Controllers
                 .OrderBy(nome => nome)
                 .ToList();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExcluirOuDesativarMissao(int id)
+        {
+            try
+            {
+                var missao = await _context.Missoes.FirstOrDefaultAsync(m => m.Id == id);
+
+                if (missao == null)
+                {
+                    TempData["Erro"] = "Missão Não Encontrado.";
+
+                    return RedirectToAction(nameof(GerenciarMissoes));
+                }
+
+                var possuiInscricoes = await _context.Inscricoes.AnyAsync(i => i.MissaoId == id);
+
+                if (possuiInscricoes)
+                {
+                    //Não apagamos porque existem registros ligados
+
+                    missao.Ativa = false;
+                    missao.InscricoesAbertas = false;
+                    missao.ExibirIndex = false;
+                    missao.ExibirInscricao = false;
+
+                    TempData["Sucesso"] =
+                        $"A missão \"{missao.Nome}\" foi desativada porque possui inscrições vinculadas.";
+                }
+                else
+                {
+                    // Sem inscrições: pode excluir fisicamente
+                    _context.Missoes.Remove(missao);
+
+                    TempData["Sucesso"] = $"A missão \"{missao.Nome}\" foi excluída com sucesso.";
+                }
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Erro de banco ao excluir/desativar missão {MissaoId}.", id);
+
+                TempData["Erro"] = "Não foi possível excluir a missão porque existem dados vinculados a ela.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao excluir/desativar missão {MissaoId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Ocorreu um erro ao processar a missão.";
+            }
+
+            return RedirectToAction(nameof(GerenciarMissoes));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> HistoriaMissoes()
+        {
+            var missoes = await _context.Missoes.AsNoTracking().OrderBy(m => m.OrdemExibicao)
+            .ThenBy(m => m.Nome).ToListAsync();
+
+            var historias = await _context.HistoriasMissoes.AsNoTracking().ToDictionaryAsync(h => h.MissaoId);
+
+            ViewBag.Historias = historias;
+
+            return View(missoes);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditarHistoriaMissao(int id)
+        {
+            var missao = await _context.Missoes.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+
+            if (missao == null)
+            {
+                TempData["Erro"] = "Missão não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            var historia = await _context.HistoriasMissoes.AsNoTracking().FirstOrDefaultAsync(h => h.MissaoId == id);
+
+            var model = new EditarHistoriaMissaoViewModel
+            {
+                MissaoId = missao.Id,
+
+                MissaoNome = missao.Nome,
+
+                Titulo = historia?.Titulo ?? $"História - {missao.Nome}",
+
+                Conteudo = historia?.Conteudo ?? string.Empty
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarHistoriaMissao(
+    EditarHistoriaMissaoViewModel model)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(
+                    m => m.Id == model.MissaoId
+                );
+
+
+            if (missao == null)
+            {
+                TempData["Erro"] =
+                    "Missão não encontrada.";
+
+                return RedirectToAction(
+                    nameof(HistoriaMissoes)
+                );
+            }
+
+
+            model.MissaoNome = missao.Nome;
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            try
+            {
+                var historia = await _context.HistoriasMissoes
+                    .FirstOrDefaultAsync(
+                        h => h.MissaoId == model.MissaoId
+                    );
+
+
+                // =====================================
+                // CRIAR HISTÓRIA
+                // =====================================
+
+                if (historia == null)
+                {
+                    historia = new MissaoHistoria
+                    {
+                        MissaoId = model.MissaoId,
+
+                        Titulo = model.Titulo.Trim(),
+
+                        Conteudo = model.Conteudo.Trim()
+                    };
+
+
+                    _context.HistoriasMissoes.Add(
+                        historia
+                    );
+                }
+
+                // =====================================
+                // ATUALIZAR HISTÓRIA
+                // =====================================
+
+                else
+                {
+                    historia.Titulo =
+                        model.Titulo.Trim();
+
+                    historia.Conteudo =
+                        model.Conteudo.Trim();
+                }
+
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    $"História da missão \"{missao.Nome}\" salva com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(HistoriaMissoes)
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao salvar história da missão {MissaoId}.",
+                    model.MissaoId
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível salvar a história."
+                );
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao salvar história da missão {MissaoId}.",
+                    model.MissaoId
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocorreu um erro ao salvar a história."
+                );
+            }
+
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConteudoMissao(int id)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (missao == null)
+            {
+                TempData["Erro"] = "Missão não encontrada.";
+
+                return RedirectToAction(
+                    nameof(HistoriaMissoes)
+                );
+            }
+
+
+            var secoes = await _context.MissoesSecoes
+                .Where(s => s.MissaoId == id)
+
+                // Carrega também os itens de cada seção
+                .Include(s => s.Itens)
+
+                .AsNoTracking()
+                .OrderBy(s => s.Ordem)
+                .ThenBy(s => s.Id)
+                .ToListAsync();
+
+
+            var model = new GerenciarConteudoMissaoViewModel
+            {
+                Missao = missao,
+                Secoes = secoes
+            };
+
+
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> NovaSecaoMissao(int missaoId)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == missaoId);
+
+            if (missao == null)
+            {
+                TempData["Erro"] = "Missão não encontrada.";
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            var maiorOrdem = await _context.MissoesSecoes
+             .Where(s => s.MissaoId == missaoId)
+             .MaxAsync(s => (int?)s.Ordem) ?? 0;
+
+
+            var model = new NovaSecaoMissaoViewModel
+            {
+                MissaoId = missao.Id,
+                MissaoNome = missao.Nome,
+                Ordem = maiorOrdem + 1,
+                Ativa = true
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NovaSecaoMissao(
+    NovaSecaoMissaoViewModel model)
+        {
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == model.MissaoId);
+
+            if (missao == null)
+            {
+                TempData["Erro"] = "Missão não encontrada.";
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+            model.MissaoNome = missao.Nome;
+
+            //Normaliza a chave para evitar espaços e maiúsculas
+            model.Chave = model.Chave.Trim().ToLower();
+
+            var chaveExiste = await _context.MissoesSecoes
+                .AnyAsync(s => s.MissaoId == model.MissaoId && s.Chave == model.Chave);
+
+            if (chaveExiste)
+            {
+                ModelState.AddModelError(nameof(model.Chave), "Já existe uma seção com esta chave.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var secao = new MissaoSecao
+                {
+                    MissaoId = model.MissaoId,
+                    Chave = model.Chave.Trim(),
+                    Topico = string.IsNullOrWhiteSpace(model.Topico) ? null : model.Topico.Trim(),
+                    Titulo = model.Titulo.Trim(),
+                    Conteudo = string.IsNullOrWhiteSpace(model.Conteudo) ? null : model.Conteudo.Trim(),
+                    Tipo = model.Tipo.Trim(),
+                    Imagem = string.IsNullOrWhiteSpace(model.Imagem) ? null : model.Imagem.Trim(),
+                    Ordem = model.Ordem,
+                    Ativa = model.Ativa
+                };
+
+                _context.MissoesSecoes.Add(secao);
+                await _context.SaveChangesAsync();
+
+                TempData["Sucesso"] = $"Seção \"{secao.Titulo}\" adicionada à missão \"{missao.Nome}\" com sucesso.";
+
+                return RedirectToAction(nameof(ConteudoMissao), new { id = missao.Id });
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Erro de banco ao adicionar seção à missão {MissaoId}.", model.MissaoId);
+
+                ModelState.AddModelError(string.Empty, "Não foi possível adicionar a seção.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erro ao adicionar seção à missão {MissaoId}.", model.MissaoId);
+
+                ModelState.AddModelError(string.Empty, "Ocorreu um erro ao adicionar a seção.");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditarSecaoMissao(int id)
+        {
+            var secao = await _context.MissoesSecoes
+                .AsNoTracking()
+                .Include(s => s.Missao)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (secao == null)
+            {
+                TempData["Erro"] = "Seção não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+
+            var model = new EditarSecaoMissaoViewModel
+            {
+                Id = secao.Id,
+                MissaoId = secao.MissaoId,
+                MissaoNome = secao.Missao?.Nome ?? "Missão",
+
+                Chave = secao.Chave,
+                Topico = secao.Topico,
+                Titulo = secao.Titulo,
+                Conteudo = secao.Conteudo,
+                Tipo = secao.Tipo,
+                Imagem = secao.Imagem,
+                Ordem = secao.Ordem,
+                Ativa = secao.Ativa
+            };
+
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarSecaoMissao(
+    EditarSecaoMissaoViewModel model)
+        {
+            var secao = await _context.MissoesSecoes
+                .FirstOrDefaultAsync(s => s.Id == model.Id);
+
+            if (secao == null)
+            {
+                TempData["Erro"] = "Seção não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+
+            var missao = await _context.Missoes
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == secao.MissaoId);
+
+            if (missao == null)
+            {
+                TempData["Erro"] = "Missão não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+
+            model.MissaoId = missao.Id;
+            model.MissaoNome = missao.Nome;
+
+            model.Chave = model.Chave
+                .Trim()
+                .ToLowerInvariant();
+
+
+            var chaveExiste = await _context.MissoesSecoes
+                .AnyAsync(s =>
+                    s.MissaoId == missao.Id &&
+                    s.Id != model.Id &&
+                    s.Chave == model.Chave);
+
+            if (chaveExiste)
+            {
+                ModelState.AddModelError(
+                    nameof(model.Chave),
+                    "Já existe outra seção com essa chave."
+                );
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            try
+            {
+                secao.Chave = model.Chave;
+
+                secao.Topico =
+                    string.IsNullOrWhiteSpace(model.Topico)
+                        ? null
+                        : model.Topico.Trim();
+
+                secao.Titulo = model.Titulo.Trim();
+
+                secao.Conteudo =
+                    string.IsNullOrWhiteSpace(model.Conteudo)
+                        ? null
+                        : model.Conteudo.Trim();
+
+                secao.Tipo = model.Tipo.Trim();
+
+                secao.Imagem =
+                    string.IsNullOrWhiteSpace(model.Imagem)
+                        ? null
+                        : model.Imagem.Trim();
+
+                secao.Ordem = model.Ordem;
+
+                secao.Ativa = model.Ativa;
+
+
+                await _context.SaveChangesAsync();
+
+
+                TempData["Sucesso"] =
+                    $"Seção \"{secao.Titulo}\" atualizada com sucesso.";
+
+
+                return RedirectToAction(
+                    nameof(ConteudoMissao),
+                    new { id = missao.Id }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao atualizar seção {SecaoId}.",
+                    model.Id
+                );
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Não foi possível atualizar a seção."
+                );
+            }
+
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ExcluirOuDesativarSecao(int id)
+        {
+            try
+            {
+                var secao = await _context.MissoesSecoes
+                    .Include(s => s.Itens)
+                    .FirstOrDefaultAsync(s => s.Id == id);
+
+                if (secao == null)
+                {
+                    TempData["Erro"] = "Seção não encontrada.";
+
+                    return RedirectToAction(nameof(HistoriaMissoes));
+                }
+
+                var missaoId = secao.MissaoId;
+
+                // Se possui itens, não apagamos o conteúdo
+                if (secao.Itens.Any())
+                {
+                    secao.Ativa = false;
+
+                    TempData["Sucesso"] =
+                        $"A seção \"{secao.Titulo}\" foi desativada porque possui itens vinculados.";
+                }
+                else
+                {
+                    _context.MissoesSecoes.Remove(secao);
+
+                    TempData["Sucesso"] =
+                        $"A seção \"{secao.Titulo}\" foi excluída com sucesso.";
+                }
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(
+                    nameof(ConteudoMissao),
+                    new { id = missaoId }
+                );
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro de banco ao excluir/desativar seção {SecaoId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Não foi possível excluir ou desativar a seção.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Erro ao excluir/desativar seção {SecaoId}.",
+                    id
+                );
+
+                TempData["Erro"] =
+                    "Ocorreu um erro ao processar a seção.";
+            }
+
+            return RedirectToAction(nameof(HistoriaMissoes));
+        }
+        [HttpGet]
+        public async Task<IActionResult> ItensSecao(int id)
+        {
+            var secao = await _context.MissoesSecoes
+                .Include(s => s.Missao)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (secao == null)
+            {
+                TempData["Erro"] = "Seção não encontrada.";
+
+                return RedirectToAction(nameof(HistoriaMissoes));
+            }
+
+
+            var itens = await _context.MissoesSecoesItens
+                .Where(i => i.SecaoId == id)
+                .AsNoTracking()
+                .OrderBy(i => i.Ordem)
+                .ThenBy(i => i.Id)
+                .ToListAsync();
+
+
+            var model = new GerenciarItensSecaoViewModel
+            {
+                Secao = secao,
+                Itens = itens
+            };
+
+
+            return View(model);
+        }
     }
 }
-
