@@ -1,6 +1,6 @@
 # Pastoral da Juventude
 
-![CI](https://github.com/PedroVini09/Maria-meu-la/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/PedroVini09/Pastoral_Juventude/actions/workflows/ci.yml/badge.svg)
 ![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-MVC-512BD4?logo=dotnet)
 ![MySQL](https://img.shields.io/badge/MySQL-EF_Core-4479A1?logo=mysql&logoColor=white)
@@ -80,8 +80,8 @@ MariaEmMeuLar.Tests/ # Testes unitários com xUnit
 
 ### 1. Clonar
 ```bash
-git clone https://github.com/PedroVini09/Maria-meu-la.git
-cd Maria-meu-la/MariaEmMeuLar
+git clone https://github.com/PedroVini09/Pastoral_Juventude.git
+cd Pastoral_Juventude/MariaEmMeuLar
 ```
 
 ### 2. Configurar variáveis de ambiente
