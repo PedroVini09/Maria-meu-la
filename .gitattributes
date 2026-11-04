@@ -1,0 +1,5 @@
+# Bibliotecas de terceiros (Bootstrap, jQuery) não entram na estatística de linguagens do GitHub
+MariaEmMeuLar/wwwroot/lib/** linguist-vendored
+
+# Views Razor (.cshtml) misturam C# e HTML; contabilizadas como C#
+*.cshtml linguist-language=C#

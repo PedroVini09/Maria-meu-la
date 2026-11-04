@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/.idea/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.user
+**/Dockerfile*
+**/docker-compose*
+.git/
+.gitignore
+MariaEmMeuLar.Tests/
+README.md
