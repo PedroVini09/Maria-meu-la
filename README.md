@@ -1,4 +1,4 @@
-# Maria em Meu Lar
+# Pastoral da Juventude
 
 ![CI](https://github.com/PedroVini09/Maria-meu-la/actions/workflows/ci.yml/badge.svg)
 ![.NET](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)
