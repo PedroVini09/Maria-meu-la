@@ -137,5 +137,5 @@ docker run -p 8080:8080 --env-file MariaEmMeuLar/.env maria-em-meu-lar
 
 **Pedro Vinícius Lima Guimarães** – Desenvolvedor Back-end .NET
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedro-vinicius-99aa402a3/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/pedrovinicius--dev/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github)](https://github.com/PedroVini09)
