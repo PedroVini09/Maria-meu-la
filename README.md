@@ -44,7 +44,7 @@ Sistema web da **Pastoral da Juventude** (Paróquia Sagrado Coração de Jesus �
 | Segurança | JWT Bearer, `PasswordHasher` (ASP.NET Core Identity), proteção anti-CSRF |
 | E-mail | SMTP (`System.Net.Mail`) |
 | Front-end | Razor Views, HTML, CSS, JavaScript, Bootstrap |
-| Testes | xUnit (41 testes de validação dos modelos) |
+| Testes | xUnit (40 testes de validação dos modelos) |
 | Infra | Docker, GitHub Actions |
 
 ---
